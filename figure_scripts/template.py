@@ -31,6 +31,10 @@ half_figure_width = column_width*0.35136*0.1*inches_per_cm  # in inches
 half_figure_size = np.array([1, regular_aspect_ratio])*half_figure_width
 large_figure_size = np.array([1, regular_aspect_ratio])*large_figure_width
 
+half_figure_size_inv = np.array([1, 1/regular_aspect_ratio])*half_figure_width
+large_figure_size_inv = np.array(
+    [1, 1/regular_aspect_ratio])*large_figure_width
+
 rcParams['figure.figsize'] = large_figure_size
 
 # %% colors
@@ -41,7 +45,11 @@ cmap_images = cmo.cm.gray
 # cmap_images = cmr.arctic
 
 color_cycle = plt.rcParams['axes.prop_cycle'].by_key()['color']
+# color_setups = {'Cyril': color_cycle[0], 'Rastello': color_cycle[2],
+#                 'Jean': color_cycle[1], 'Julien': color_cycle[5],
+#                 'Cyril/Marie': color_cycle[4]}
 color_setups = {'Cyril': color_cycle[0], 'Rastello': color_cycle[2],
-                'Jean': color_cycle[1], 'Julien': color_cycle[5], 'Cyril/Marie': color_cycle[4]}
+                'Jean': color_cycle[1], 'Julien': 'tab:green',
+                'Cyril/Marie': 'tab:purple'}
 # color_setups = {'IMFT': color_cycle[0], 'LEGI': color_cycle[1],
 #                 'LEMTA': color_cycle[2], 'NUM': color_cycle[3]}

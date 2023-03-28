@@ -65,6 +65,7 @@ SETUPS = {'Cyril': 'IMFT', 'Cyril/Marie': 'LEGI', 'Jean': 'LEMTA',
 
 # %% Loading data
 list_runs = glob.glob(os.path.join(input_path, 'runs*/*.nc'))
+# list_runs = glob.glob(os.path.join(input_path, 'runs_JEAN/*.nc'))
 datasets = [Dataset(run) for run in list_runs]
 
 # %% Loop over data file and analysis
@@ -74,21 +75,20 @@ for i, d in enumerate(datasets):
     x_front = d.variables['x_front'][:].data
     #
     # Loading some variables
-    H0 = d.variables['H0'][:].data        # lock characteristic height, [cm]
+    H0 = d.variables['H0'][:].data        # lock characteristic height, [m]
     rho_p = d.variables['rho_p'][:].data  # particle velocity, [kg/m3]
     rho_f = d.variables['rho_f'][:].data  # lock fluid density, [kg/m3]
     rho_a = d.variables['rho_a'][:].data  # ambiant fluid density, [kg/m3]
     alpha = d.variables['alpha'][:].data  # bottom slope, [deg.]
-    diam = d.variables['d'][:].data*1e-6  # grain size, [mum]
+    diam = d.variables['d'][:].data  # grain size, [m]
     phi = d.variables['phi'][:].data
     if d.author == 'Julien':
         H0 = H0/100
         rho_f, rho_p, rho_a = rho_f*1e3, rho_p*1e3, rho_a*1e3
         alpha = alpha*180/np.pi
+        diam = diam*1e-6  # grain size, [m]
     #
-    # Computing other variables
-    a = H0/d.variables['L0'][:].data  # lock aspect ratio
-    vs = Stokes_Velocity(diam, mu, rho_p, rho_f, g)  # [m/s]
+    # Computing variables for adi time
     rho_c = rho_f + phi * (rho_p - rho_f)  # average lock density, [kg/m3]
     gprime = g*(rho_c - rho_a)/rho_a  # specific gravity
     u0 = np.sqrt(gprime*H0)
@@ -142,6 +142,7 @@ for i, d in enumerate(datasets):
     if newfile.author == 'Julien':
         newfile.variables['H0'][:] = newfile.variables['H0'][:].data/100
         newfile.variables['alpha'][:] = newfile.variables['alpha'][:].data*180/np.pi
+        newfile.variables['d'][:] = newfile.variables['d'][:].data*1e-6
         for var in ['rho_p', 'rho_f', 'rho_a']:
             newfile.variables[var][:] = newfile.variables[var][:].data*1e3
     # fit results
@@ -152,14 +153,33 @@ for i, d in enumerate(datasets):
     create_variable(newfile, 'p', p, std=perr, unit=['cm/s', 'cm/s2', 'cm'],
                     comments='fit results of logistic curve', dimensions=(fitdim))
     # other variables
-    create_variable(newfile, 'a', a, unit='None', comments='lock aspect ratio')
+    vs = Stokes_Velocity(diam, mu, rho_p, rho_f, g)  # [m/s]
     create_variable(newfile, 'vs', vs, unit='m/s',
                     comments='particle Stokes velocity')
     create_variable(newfile, 'rho_c', rho_c, unit='kg/m3',
                     comments='lock average density')
     create_variable(newfile, 'gprime', gprime, unit='m/s2',
                     comments='specific gravity')
-    create_variable(newfile, 'u0', u0, unit='cm/s',
+    create_variable(newfile, 'u0', u0, unit='m/s',
                     comments='characteristic velocity')
+    create_variable(newfile, 'uc', p[0], unit='m/s',
+                    comments='current initial velocity')
+    create_variable(newfile, 'lambda', p[1], unit='m/s2',
+                    comments='current dissipation')
+    # Non-dimensional numbers
+    create_variable(newfile, 'a', H0/d.variables['L0'][:].data, unit='None',
+                    comments='lock aspect ratio')
+    create_variable(newfile, 'Re', u0*H0*rho_c/mu, unit='None',
+                    comments='Reynolds number')
+    create_variable(newfile, 'At', (rho_c - rho_a)/rho_a, unit='None',
+                    comments='Atwood number')
+    create_variable(newfile, 'St', vs/u0, unit='None',
+                    comments='Stokes number')
+    # Non-dimensional variables
+    create_variable(newfile, 'Fr', p[0]/u0, unit='None',
+                    comments='Froude number (adi. initial current velocity)')
+    create_variable(newfile, 'L', p[1]/gprime, unit='None',
+                    comments='adi. current dissipation')
+
     # saving and closing netcdf file
     newfile.close()
