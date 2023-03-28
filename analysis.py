@@ -64,7 +64,7 @@ SETUPS = {'Cyril': 'IMFT', 'Cyril/Marie': 'LEGI', 'Jean': 'LEMTA',
           'Julien': 'NUM', 'Rastello': 'LEGI'}
 
 # %% Loading data
-list_runs = glob.glob(os.path.join(input_path, '*/*.nc'))
+list_runs = glob.glob(os.path.join(input_path, 'runs*/*.nc'))
 datasets = [Dataset(run) for run in list_runs]
 
 # %% Loop over data file and analysis
