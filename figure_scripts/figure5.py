@@ -43,7 +43,9 @@ for var, ax in zip([Fr, L], axarr.flatten()):
 # saline current
 # ATTENTION Saline all NAn -> check fits ?
 mask_saline = (particle_type == 'saline water') & mask_alpha
-axarr[1].axhline(np.nanmean(L[mask_saline]), color='k', ls='--')
+moy, std = np.nanmean(L[mask_saline]), np.nanstd(L[mask_saline])
+axarr[1].axhline(moy, color='k', ls='--', zorder=-10)
+axarr[1].axhspan(moy - std, moy + std, color='k', alpha=0.2, zorder=-10)
 
 axarr[1].set_xlabel(r'Stokes number, $\mathcal{S}t$')
 axarr[1].set_xscale('log')
