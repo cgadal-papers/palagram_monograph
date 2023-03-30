@@ -1,12 +1,11 @@
 import glob
 import os
+import sys
 
 import matplotlib.pyplot as plt
-from matplotlib.lines import Line2D
 import numpy as np
 import template as tp
 from netCDF4 import Dataset
-
 
 # %% Load data
 path_data = '../data/output_data'
@@ -39,13 +38,11 @@ for var, ax in zip([Fr, L], axarr.flatten()):
         #
         ax.scatter(St[mask], var[mask], c=tp.color_setups[author],
                    label=author, marker=marker)
-        #
-# saline current
-# ATTENTION Saline all NAn -> check fits ?
-mask_saline = (particle_type == 'saline water') & mask_alpha
-moy, std = np.nanmean(L[mask_saline]), np.nanstd(L[mask_saline])
-axarr[1].axhline(moy, color='k', ls='--', zorder=-10)
-axarr[1].axhspan(moy - std, moy + std, color='k', alpha=0.2, zorder=-10)
+    # saline current
+    mask_saline = (particle_type == 'saline water') & mask_alpha
+    moy, std = np.nanmean(var[mask_saline]), np.nanstd(var[mask_saline])
+    ax.axhline(moy, color='k', ls='--', zorder=-10)
+    ax.axhspan(moy - std, moy + std, color='k', alpha=0.2, zorder=-10)
 
 axarr[1].set_xlabel(r'Stokes number, $\mathcal{S}t$')
 axarr[1].set_xscale('log')
@@ -55,4 +52,5 @@ axarr[1].set_ylabel(r'Non dim. dissipation, $\tilde{\lambda}$')
 axarr[0].set_ylim(0, 1.4)
 # axarr[1].set_ylim(0, 1.4)
 
-plt.show()
+fig.savefig(
+    '../paper/figures/{}.pdf'.format(sys.argv[0].split(os.sep)[-1].replace('.py', '')), dpi=600)

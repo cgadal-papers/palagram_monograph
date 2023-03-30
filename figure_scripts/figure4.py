@@ -1,12 +1,11 @@
 import glob
 import os
+import sys
 
 import matplotlib.pyplot as plt
-from matplotlib.lines import Line2D
 import numpy as np
 import template as tp
 from netCDF4 import Dataset
-
 
 # %% Load data
 path_data = '../data/output_data'
@@ -52,4 +51,5 @@ leg = ax.legend(ncols=3)
 for lh in leg.legend_handles:
     lh.set_alpha(1)
 
-plt.show()
+fig.savefig(
+    '../paper/figures/{}.pdf'.format(sys.argv[0].split(os.sep)[-1].replace('.py', '')), dpi=600)
