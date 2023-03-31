@@ -43,6 +43,17 @@ def determine_fit_props(author, alpha, run, params):
         params['L'].vary = False
     if author == 'Julien':
         params['xi'].vary = True
+    if author == 'Cyril':
+        if run == 'run_012.nc':
+            t_bounds[-1] = min(t_bounds[-1], 30)
+        elif run == 'run_006.nc':
+            t_bounds[-1] = min(t_bounds[-1], 42)
+        elif run == 'run_020.nc':
+            t_bounds[-1] = min(t_bounds[-1], 16)
+        elif run == 'run_116.nc':
+            t_bounds[-1] = min(t_bounds[-1], 20)
+        elif run == 'run_114.nc':
+            t_bounds[-1] = min(t_bounds[-1], 17)
     return t_bounds
 
 
