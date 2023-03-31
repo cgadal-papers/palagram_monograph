@@ -4,7 +4,7 @@ import os
 
 import numpy as np
 from netCDF4 import Dataset
-from scipy.optimize import curve_fit
+from lmfit import Model
 
 
 def create_variable(netcdf_group, name, data, dimensions=None, std=None,
@@ -22,25 +22,28 @@ def create_variable(netcdf_group, name, data, dimensions=None, std=None,
         var.comments = comments
 
 
-def logistiqueNUM(x, a, b, c):
-    y = a*(x-0) - b*(x-0)**(2)/2 + c
-    return y
-
-
-def logistique(x, a, b):
-    return logistiqueNUM(x, a, b, c=0)
-
-
-def compute_rsquared(ydata, yfit, ndeg):
-    residuals = ydata - yfit
-    ss_res = np.sum(residuals**2)
-    ss_tot = np.sum((ydata-np.nanmean(ydata))**2)
-    r2 = 1 - (ss_res / ss_tot)
-    return r2
+def polyFULL(t, Fr, L, xi, c, d):
+    return xi + Fr*t - L*t**2/2 + c*t**3 + d*t**4
 
 
 def Stokes_Velocity(d, mu, rho_p, rho_f, g):
     return d**2*(rho_p - rho_f) * g/mu/18
+
+
+def determine_fit_props(author, alpha, run, params):
+    params['Fr'].vary = True
+    params['L'].vary = True
+    params['c'].vary = False
+    params['d'].vary = False
+    params['xi'].vary = False
+    t_bounds = [10, 30]
+    #
+    if author == 'Jean':
+        t_bounds = [2, 40]
+        params['L'].vary = False
+    if author == 'Julien':
+        params['xi'].vary = True
+    return t_bounds
 
 
 # %% Variable definition
@@ -52,30 +55,44 @@ output_path = 'data/output_data'
 g = 9.81  # [m/s2]
 mu = 1e-3  # [kg/m/s]
 
-# fit specifications
-BOUNDS_FIT = {'Cyril': (3, 15), 'Cyril/Marie': (3, 15), 'Jean': (0.5, 20),
-              'Julien': (2, 15), 'Rastello': (4, 60)}
-
-FUNC_FIT = {'Cyril': logistique, 'Cyril/Marie': logistique, 'Jean': logistique,
-            'Julien': logistiqueNUM, 'Rastello': logistique}
-
 # other
 SETUPS = {'Cyril': 'IMFT', 'Cyril/Marie': 'LEGI', 'Jean': 'LEMTA',
           'Julien': 'NUM', 'Rastello': 'LEGI'}
 
+# %% fit objects definition
+# model object creation
+model = Model(polyFULL)
+params = model.make_params()
+
+# parameter properties (Non dim.)
+p0 = {'Fr': 0.4, 'xi': 0, 'L': 0, 'c': 0, 'd': 0}
+
+lower_bounds = {'Fr': 0, 'xi': -np.inf,
+                'L': -0.05, 'c': -1e-3, 'd': -1e-4}
+higher_bounds = {'Fr': 1.6, 'xi': np.inf, 'L': 0.1, 'c': 1e-3, 'd': 1e-4}
+
+# set parameter bounds
+for par in params.keys():
+    params[par].set(value=p0[par], min=lower_bounds[par],
+                    max=higher_bounds[par])
+
 # %% Loading data
 list_runs = glob.glob(os.path.join(input_path, 'runs*/*.nc'))
-# list_runs = glob.glob(os.path.join(input_path, 'runs_JEAN/*.nc'))
+# list_runs = glob.glob(os.path.join(input_path, 'runs_JULIEN*/*.nc'))
 datasets = [Dataset(run) for run in list_runs]
 
 # %% Loop over data file and analysis
 
 for i, d in enumerate(datasets):
+    run = list_runs[i].split(os.sep)[-1]
+    print(run)
+    #
     t = d.variables['t'][:].data
     x_front = d.variables['x_front'][:].data
     #
     # Loading some variables
     H0 = d.variables['H0'][:].data        # lock characteristic height, [m]
+    L0 = d.variables['L0'][:].data        # lock characteristic width, [m]
     rho_p = d.variables['rho_p'][:].data  # particle velocity, [kg/m3]
     rho_f = d.variables['rho_f'][:].data  # lock fluid density, [kg/m3]
     rho_a = d.variables['rho_a'][:].data  # ambiant fluid density, [kg/m3]
@@ -84,6 +101,7 @@ for i, d in enumerate(datasets):
     phi = d.variables['phi'][:].data
     if d.author == 'Julien':
         H0 = H0/100
+        L0 = L0/100
         rho_f, rho_p, rho_a = rho_f*1e3, rho_p*1e3, rho_a*1e3
         alpha = alpha*180/np.pi
         diam = diam*1e-6  # grain size, [m]
@@ -92,37 +110,26 @@ for i, d in enumerate(datasets):
     rho_c = rho_f + phi * (rho_p - rho_f)  # average lock density, [kg/m3]
     gprime = g*(rho_c - rho_a)/rho_a  # specific gravity
     u0 = np.sqrt(gprime*H0)
-    t_ad = H0/u0
-    #
+    t_ad = L0/u0
     #
     # #### Fitting front position curves
+    t_bounds = determine_fit_props(d.author, alpha, run, params)
     # defining fitting masks
     mask_ok = ~np.isnan(x_front)
-    t_ok, x_ok = t[mask_ok][:-2], x_front[mask_ok][:-2]
-    bounds_fit = BOUNDS_FIT[d.author]
-    mask = (t_ok > bounds_fit[0]*t_ad) & (t_ok < bounds_fit[1]*t_ad)
+    t_ok, x_ok = t[mask_ok]/t_ad, x_front[mask_ok]/L0
+    mask = (t_ok > t_bounds[0]) & (t_ok < t_bounds[1])
     #
     # Make fit
-    func_fit = FUNC_FIT[d.author]
-    if mask.any():
-        p, pcov = curve_fit(func_fit, t_ok[mask], x_ok[mask])
-        perr = np.sqrt(np.diag(pcov))
-        r_squared = compute_rsquared(
-            x_ok[mask], func_fit(t_ok[mask], *p), p.size)
-        #
+    if mask.sum() > 5:
+        result = model.fit(x_ok[mask], params, t=t_ok[mask])
+        r_squared = result.rsquared
         print('author: {}, r2: {:.3f}'.format(d.author, r_squared))
-        if (d.author == 'Rastello') & ~((perr[0] < 1e-5) or (t[-1]/t_ad > 30)):
-            mask = (t_ok < 13*t_ad) & (t_ok > 3*t_ad)
-            p, pcov = curve_fit(func_fit, t_ok[mask], x_ok[mask])
-            perr = np.sqrt(np.diag(pcov))
-            r_squared = compute_rsquared(
-                x_ok[mask], func_fit(t_ok[mask], *p), p.size)
-            print('Bad Fit, new r2: {:.3f}'.format(r_squared))
+        Fr, Fr_err = result.params['Fr'].value, result.params['Fr'].stderr
+        L, L_err = result.params['L'].value, result.params['L'].stderr
     else:
-        p = np.array([np.nan, np.nan, np.nan])
-        perr = np.copy(p)
-        r_squared = np.nan
-    #
+        Fr, Fr_err = np.nan, np.nan
+        L, L_err = np.nan, np.nan
+        print('All NaNs')
     #
     # ### Writting corresponding netcdf file
     path_dataset = os.path.join(output_path, 'run_{:03d}.nc'.format(i))
@@ -141,17 +148,11 @@ for i, d in enumerate(datasets):
     # correct Julien stuff
     if newfile.author == 'Julien':
         newfile.variables['H0'][:] = newfile.variables['H0'][:].data/100
+        newfile.variables['L0'][:] = newfile.variables['L0'][:].data/100
         newfile.variables['alpha'][:] = newfile.variables['alpha'][:].data*180/np.pi
         newfile.variables['d'][:] = newfile.variables['d'][:].data*1e-6
         for var in ['rho_p', 'rho_f', 'rho_a']:
             newfile.variables[var][:] = newfile.variables[var][:].data*1e3
-    # fit results
-    fitdim = newfile.createDimension("fitdim", 3)
-    if p.size == 2:
-        p = np.append(p, 0)
-        perr = np.append(perr, 0)
-    create_variable(newfile, 'p', p, std=perr, unit=['cm/s', 'cm/s2', 'cm'],
-                    comments='fit results of logistic curve', dimensions=(fitdim))
     # other variables
     vs = Stokes_Velocity(diam, mu, rho_p, rho_f, g)  # [m/s]
     create_variable(newfile, 'vs', vs, unit='m/s',
@@ -162,10 +163,6 @@ for i, d in enumerate(datasets):
                     comments='specific gravity')
     create_variable(newfile, 'u0', u0, unit='m/s',
                     comments='characteristic velocity')
-    create_variable(newfile, 'uc', p[0], unit='m/s',
-                    comments='current initial velocity')
-    create_variable(newfile, 'lambda', p[1], unit='m/s2',
-                    comments='current dissipation')
     # Non-dimensional numbers
     create_variable(newfile, 'a', H0/d.variables['L0'][:].data, unit='None',
                     comments='lock aspect ratio')
@@ -175,11 +172,15 @@ for i, d in enumerate(datasets):
                     comments='Atwood number')
     create_variable(newfile, 'St', vs/u0, unit='None',
                     comments='Stokes number')
-    # Non-dimensional variables
-    create_variable(newfile, 'Fr', p[0]/u0, unit='None',
+    # Non-dimensional variables and fit results
+    create_variable(newfile, 'Fr', Fr, unit='None', std=Fr_err,
                     comments='Froude number (adi. initial current velocity)')
-    create_variable(newfile, 'L', p[1]/gprime, unit='None',
+    create_variable(newfile, 'L', L, unit='None', std=L_err,
                     comments='adi. current dissipation')
 
     # saving and closing netcdf file
     newfile.close()
+    # fit results
+    if mask.sum() > 5:
+        np.save(os.path.join(output_path,
+                'fitresult_run_{:03d}.npy'.format(i)), result)

@@ -5,28 +5,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 from netCDF4 import Dataset
 import numpy as np
-from scipy.optimize import curve_fit
+from lmfit import Model
 
 
-# def logistiqueNUM(x, a, b, c, d, e):
-#     y = a*(x-0) - b*(x-0)**(2)/2 + c + d*x**3 + e*x**4
-#     return y
-
-def logistiqueNUM(x, a, b, c, d, e):
-    y = a*(x-0) - b*(x-0)**(2)/2 + c + d*x**3 + e*x**4
-    return y
-
-
-def logistique(x, a, b, c):
-    return logistiqueNUM(x, a, c, b=0, d=0, e=0)
-
-
-def compute_rsquared(ydata, yfit):
-    residuals = ydata - yfit
-    ss_res = np.sum(residuals**2)
-    ss_tot = np.sum((ydata-np.nanmean(ydata))**2)
-    r2 = 1 - (ss_res / ss_tot)
-    return r2
+def polyFULL(t, uc, lamb, xi, c, d):
+    return xi + uc*t - lamb*t**2/2 + c*t**3 + d*t**4
 
 
 def Stokes_Velocity(d, mu, rho_p, rho_f, g):
@@ -42,19 +25,35 @@ g = 9.81  # [m/s2]
 mu = 1e-3  # [kg/m/s]
 
 # fit specifications
-BOUNDS_FIT = {'Cyril': (3, 40), 'Cyril/Marie': (8, 100), 'Jean': (0.5, 20),
-              'Julien': (3, 80), 'Rastello': (0, 60)}
+BOUNDS_FIT = {'Cyril': (8, 40), 'Cyril/Marie': (8, 100), 'Jean': (0.5, 20),
+              'Julien': (8, 30), 'Rastello': (0, 30)}
 
-FUNC_FIT = {'Cyril': logistiqueNUM, 'Cyril/Marie': logistiqueNUM, 'Jean': logistique,
-            'Julien': logistiqueNUM, 'Rastello': logistiqueNUM}
+# %% fit objects definition
 
+# model object creation
+model = Model(polyFULL)
+params = model.make_params()
+
+params['c'].vary = False
+params['d'].vary = False
+
+# parameter properties (Non dim.)
+p0 = {'uc': 0.4, 'xi': 0, 'lamb': 0, 'c': 0, 'd': 0}
+lower_bounds = {'uc': 0.2, 'xi': -np.inf,
+                'lamb': -0.02, 'c': -1e-3, 'd': -1e-4}
+higher_bounds = {'uc': 1.6, 'xi': np.inf, 'lamb': 0.1, 'c': 1e-3, 'd': 1e-4}
+
+# set parameter bounds
+for par in params.keys():
+    params[par].set(value=p0[par], min=lower_bounds[par],
+                    max=higher_bounds[par])
 # other
 SETUPS = {'Cyril': 'IMFT', 'Cyril/Marie': 'LEGI', 'Jean': 'LEMTA',
           'Julien': 'NUM', 'Rastello': 'LEGI'}
 
 # %% Loading data
-# list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JULIEN*/*.nc')))
-list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JEAN/*.nc')))
+list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JULIEN*/*.nc')))
+# list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JEAN/*.nc')))
 # list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_MARIE/*.nc')))
 # list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_CYRIL/*.nc')))
 datasets = np.array([Dataset(run) for run in list_runs])
@@ -63,14 +62,20 @@ alphas = np.array([np.degrees(d.variables['alpha'][:].data) if d.author ==
                   'Julien' else d.variables['alpha'][:].data for d in datasets])
 grains = np.array([d.particle_type for d in datasets])
 authors = np.array([d.author for d in datasets])
+
+
+authors = np.array([d.author for d in datasets])
 # mask_runs = alphas < 0.5
-mask_runs = ((alphas > 6) & (alphas < 10)) & (
-    grains == 'glass beads') & (authors == 'Cyril')
+# mask_runs = ((alphas > 6) & (alphas < 10)) & (
+# grains == 'glass beads') & (authors == 'Cyril')
+# mask_runs = (grains == 'saline water') & (authors == 'Cyril')
 # mask_runs = ((alphas > 6) & (alphas < 10)) & (
 #     grains == 'silica sand') & (authors == 'Cyril')
-# mask_runs = (alphas > 30)
-# mask_runs = (authors == 'Cyril')
+# mask_runs = (authors == 'Cyril/Marie')
 mask_runs = np.ones_like(alphas).astype('bool')
+# mask_runs = (alphas < 5) & (alphas > 2)
+# mask_runs = (alphas > 40)
+# mask_runs = (grains == 'PMMA')
 
 # %% Loop over data file and analysis
 
@@ -109,7 +114,7 @@ for i, d in enumerate(datasets[mask_runs]):
     # #### Fitting front position curves
     # defining fitting masks
     mask_ok = ~np.isnan(x_front)
-    t_ok, x_ok = t[mask_ok], x_front[mask_ok]
+    t_ok, x_ok = t[mask_ok]/t_ad, x_front[mask_ok]/L0
     bounds_fit = BOUNDS_FIT[d.author]
     if (d.author == 'Cyril'):
         if run == 'run_012.nc':
@@ -123,15 +128,17 @@ for i, d in enumerate(datasets[mask_runs]):
         elif run == 'run_114.nc':
             bounds_fit = (bounds_fit[0], 17)
     #
-    mask = (t_ok > bounds_fit[0]*t_ad) & (t_ok < bounds_fit[1]*t_ad)
+    mask = (t_ok > bounds_fit[0]) & (t_ok < bounds_fit[1])
     #
+    # Define fit props
+
     # Make fit
-    func_fit = FUNC_FIT[d.author]
-    if mask.any():
-        p, pcov = curve_fit(func_fit, t_ok[mask], x_ok[mask])
-        perr = np.sqrt(np.diag(pcov))
-        r_squared = compute_rsquared(
-            x_ok[mask], func_fit(t_ok[mask], *p))
+    if mask.sum() > 5:
+        result = model.fit(x_ok[mask], params, t=t_ok[mask])
+        # perr = np.sqrt(np.diag(pcov))
+        r_squared = 1 - result.residual.var() / np.var(x_ok[mask])
+        # r_squared = compute_rsquared(
+        #     x_ok[mask], func_fit(t_ok[mask], *p))
         #
         print('author: {}, r2: {:.3f}'.format(d.author, r_squared))
         # if (d.author == 'Rastello') & ~((perr[0] < 1e-5) or (t[-1]/t_ad > 30)):
@@ -143,17 +150,23 @@ for i, d in enumerate(datasets[mask_runs]):
         #     print('Bad Fit, new r2: {:.3f}'.format(r_squared))
         #
         #
-        ax.plot(t_ok[mask]/t_ad, x_ok[mask]/L0,
+        ax.plot(t_ok[mask], x_ok[mask],
                 lw=5, alpha=0.5, color='tab:orange')
         ax.plot(t/t_ad, x_front/L0, '.-', color='tab:blue', lw=1)
-        ax.plot(t_ok[mask]/t_ad, func_fit(t_ok[mask], *p) /
-                L0, color='k', ls='--')
-        if func_fit == logistique:
-            ax.text(t_ok[mask][-1]/t_ad, x_ok[mask][-1]/L0,
-                    '{}, {:.0f}, {:.0f}:{} \n {:.1e}, {:.1e}'.format(phi, alpha, diam*1e6, d.particle_type, p[0]/u0, p[1]/gprime), ha='left')
-        else:
-            ax.text(t_ok[mask][-1]/t_ad, x_ok[mask][-1]/L0,
-                    '{}: {}, {:.0f}, {:.0f}:{} \n {:.0e}, {:.0e}, {:.0e}, {:.0e}'.format(run, phi, alpha, diam*1e6, d.particle_type, p[0]/u0, p[1]/gprime, p[3]/gprime/t_ad, p[4]/gprime/t_ad**2), ha='left')
+        ax.plot(t_ok[mask], result.best_fit, color='k', ls='--')
+        print(result.fit_report())
+
+        par_str = ', '.join(['{:.1e}'.format(result.best_values[key])
+                            for key in result.best_values.keys()])
+        ax.text(t_ok[mask][-1], x_ok[mask][-1],
+                '{}, {:.0f}, {:.0f}:{} + \n'.format(
+                    phi, alpha, diam*1e6, d.particle_type) + par_str)
+        # if func_fit == logistique:
+        #     ax.text(t_ok[mask][-1]/t_ad, x_ok[mask][-1]/L0,
+        #             '{}, {:.0f}, {:.0f}:{} \n {:.1e}, {:.1e}'.format(phi, alpha, diam*1e6, d.particle_type, p[0]/u0, p[1]/gprime), ha='left')
+        # else:
+        #     ax.text(t_ok[mask][-1]/t_ad, x_ok[mask][-1]/L0,
+        #             '{}: {}, {:.0f}, {:.0f}:{} \n {:.0e}, {:.0e}, {:.0e}, {:.0e}'.format(run, phi, alpha, diam*1e6, d.particle_type, p[0]/u0, p[1]/(u0/t_ad), p[3]/(u0/t_ad**2), p[4]/(u0/t_ad**3)), ha='left')
     else:
         p = np.array([np.nan, np.nan, np.nan])
         perr = np.copy(p)
