@@ -46,6 +46,7 @@ for var, ax in zip([Fr, L], axarr.flatten()):
 
 axarr[1].set_xlabel(r'Stokes number, $\mathcal{S}t$')
 axarr[1].set_xscale('log')
+# axarr[1].set_yscale('asinh', linear_width=0.006)
 
 axarr[0].set_ylabel(r'Froude number, $\mathcal{F}r$')
 axarr[1].set_ylabel(r'Non dim. dissipation, $\tilde{\lambda}$')

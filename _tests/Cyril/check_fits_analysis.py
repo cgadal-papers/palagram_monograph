@@ -8,8 +8,8 @@ import numpy as np
 from lmfit import Model
 
 
-def polyFULL(t, uc, lamb, xi, c, d):
-    return xi + uc*t - lamb*t**2/2 + c*t**3 + d*t**4
+def polyFULL(t, Fr, L, xi, c, d):
+    return xi + Fr*t - L*t**2/2 + c*t**3 + d*t**4
 
 
 def Stokes_Velocity(d, mu, rho_p, rho_f, g):
@@ -25,8 +25,8 @@ g = 9.81  # [m/s2]
 mu = 1e-3  # [kg/m/s]
 
 # fit specifications
-BOUNDS_FIT = {'Cyril': (8, 40), 'Cyril/Marie': (8, 100), 'Jean': (0.5, 20),
-              'Julien': (8, 30), 'Rastello': (0, 30)}
+BOUNDS_FIT = {'Cyril': (5, 30), 'Cyril/Marie': (5, 30), 'Jean': (2, 40),
+              'Julien': (5, 30), 'Rastello': (5, 30)}
 
 # %% fit objects definition
 
@@ -34,45 +34,52 @@ BOUNDS_FIT = {'Cyril': (8, 40), 'Cyril/Marie': (8, 100), 'Jean': (0.5, 20),
 model = Model(polyFULL)
 params = model.make_params()
 
-params['c'].vary = False
-params['d'].vary = False
+params['Fr'].vary = True
+params['L'].vary = True
+params['c'].vary = True
+params['d'].vary = True
+params['xi'].vary = False
 
 # parameter properties (Non dim.)
-p0 = {'uc': 0.4, 'xi': 0, 'lamb': 0, 'c': 0, 'd': 0}
-lower_bounds = {'uc': 0.2, 'xi': -np.inf,
-                'lamb': -0.02, 'c': -1e-3, 'd': -1e-4}
-higher_bounds = {'uc': 1.6, 'xi': np.inf, 'lamb': 0.1, 'c': 1e-3, 'd': 1e-4}
+p0 = {'Fr': 0.4, 'xi': 0, 'L': 0, 'c': 0, 'd': 0}
+
+lower_bounds = {'Fr': 0, 'xi': -np.inf,
+                'L': -0.05, 'c': -1e-3, 'd': -1e-4}
+higher_bounds = {'Fr': 1.6, 'xi': np.inf, 'L': 0.1, 'c': 1e-3, 'd': 1e-4}
 
 # set parameter bounds
 for par in params.keys():
     params[par].set(value=p0[par], min=lower_bounds[par],
                     max=higher_bounds[par])
+
 # other
 SETUPS = {'Cyril': 'IMFT', 'Cyril/Marie': 'LEGI', 'Jean': 'LEMTA',
           'Julien': 'NUM', 'Rastello': 'LEGI'}
 
 # %% Loading data
-list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JULIEN*/*.nc')))
+# list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JULIEN*/*.nc')))
 # list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JEAN/*.nc')))
 # list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_MARIE/*.nc')))
-# list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_CYRIL/*.nc')))
+list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_CYRIL/*.nc')))
 datasets = np.array([Dataset(run) for run in list_runs])
 
 alphas = np.array([np.degrees(d.variables['alpha'][:].data) if d.author ==
                   'Julien' else d.variables['alpha'][:].data for d in datasets])
 grains = np.array([d.particle_type for d in datasets])
 authors = np.array([d.author for d in datasets])
+diams = np.array([d.variables['d'][:].data for d in datasets])
+phi = np.array([d.variables['phi'][:].data for d in datasets])
 
 
 authors = np.array([d.author for d in datasets])
 # mask_runs = alphas < 0.5
-# mask_runs = ((alphas > 6) & (alphas < 10)) & (
-# grains == 'glass beads') & (authors == 'Cyril')
+mask_runs = ((alphas > 6) & (alphas < 10)) & (
+    grains == 'glass beads') & (authors == 'Cyril') & (np.abs(diams - 6.4*1e-5) < 1e-5) & (phi > 3/100)
 # mask_runs = (grains == 'saline water') & (authors == 'Cyril')
 # mask_runs = ((alphas > 6) & (alphas < 10)) & (
 #     grains == 'silica sand') & (authors == 'Cyril')
 # mask_runs = (authors == 'Cyril/Marie')
-mask_runs = np.ones_like(alphas).astype('bool')
+# mask_runs = np.ones_like(alphas).astype('bool')
 # mask_runs = (alphas < 5) & (alphas > 2)
 # mask_runs = (alphas > 40)
 # mask_runs = (grains == 'PMMA')
@@ -151,16 +158,18 @@ for i, d in enumerate(datasets[mask_runs]):
         #
         #
         ax.plot(t_ok[mask], x_ok[mask],
-                lw=5, alpha=0.5, color='tab:orange')
+                lw=10, alpha=0.5, color='tab:orange')
         ax.plot(t/t_ad, x_front/L0, '.-', color='tab:blue', lw=1)
         ax.plot(t_ok[mask], result.best_fit, color='k', ls='--')
         print(result.fit_report())
 
         par_str = ', '.join(['{:.1e}'.format(result.best_values[key])
                             for key in result.best_values.keys()])
+        vs = Stokes_Velocity(diam, mu, rho_p, rho_f, g)  # [m/s]
+        St = vs/u0
         ax.text(t_ok[mask][-1], x_ok[mask][-1],
-                '{}, {:.0f}, {:.0f}:{} + \n'.format(
-                    phi, alpha, diam*1e6, d.particle_type) + par_str)
+                '{}, {:.0f}, {:.0f}:{}, {:.1e} \n'.format(
+                    phi, alpha, diam*1e6, d.particle_type, St) + par_str)
         # if func_fit == logistique:
         #     ax.text(t_ok[mask][-1]/t_ad, x_ok[mask][-1]/L0,
         #             '{}, {:.0f}, {:.0f}:{} \n {:.1e}, {:.1e}'.format(phi, alpha, diam*1e6, d.particle_type, p[0]/u0, p[1]/gprime), ha='left')
