@@ -57,10 +57,10 @@ SETUPS = {'Cyril': 'IMFT', 'Cyril/Marie': 'LEGI', 'Jean': 'LEMTA',
           'Julien': 'NUM', 'Rastello': 'LEGI'}
 
 # %% Loading data
-# list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JULIEN*/*.nc')))
+list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JULIEN2/*.nc')))
 # list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JEAN/*.nc')))
 # list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_MARIE/*.nc')))
-list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_CYRIL/*.nc')))
+# list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_CYRIL/*.nc')))
 datasets = np.array([Dataset(run) for run in list_runs])
 
 alphas = np.array([np.degrees(d.variables['alpha'][:].data) if d.author ==
@@ -73,13 +73,13 @@ phi = np.array([d.variables['phi'][:].data for d in datasets])
 
 authors = np.array([d.author for d in datasets])
 # mask_runs = alphas < 0.5
-mask_runs = ((alphas > 6) & (alphas < 10)) & (
-    grains == 'glass beads') & (authors == 'Cyril') & (np.abs(diams - 6.4*1e-5) < 1e-5) & (phi > 3/100)
+# mask_runs = ((alphas > 6) & (alphas < 10)) & (
+#     grains == 'glass beads') & (authors == 'Cyril') & (np.abs(diams - 6.4*1e-5) < 1e-5) & (phi > 3/100)
 # mask_runs = (grains == 'saline water') & (authors == 'Cyril')
 # mask_runs = ((alphas > 6) & (alphas < 10)) & (
 #     grains == 'silica sand') & (authors == 'Cyril')
 # mask_runs = (authors == 'Cyril/Marie')
-# mask_runs = np.ones_like(alphas).astype('bool')
+mask_runs = np.ones_like(alphas).astype('bool')
 # mask_runs = (alphas < 5) & (alphas > 2)
 # mask_runs = (alphas > 40)
 # mask_runs = (grains == 'PMMA')
@@ -122,6 +122,7 @@ for i, d in enumerate(datasets[mask_runs]):
     # defining fitting masks
     mask_ok = ~np.isnan(x_front)
     t_ok, x_ok = t[mask_ok]/t_ad, x_front[mask_ok]/L0
+    print(t_ok.max())
     bounds_fit = BOUNDS_FIT[d.author]
     if (d.author == 'Cyril'):
         if run == 'run_012.nc':
@@ -140,7 +141,7 @@ for i, d in enumerate(datasets[mask_runs]):
     # Define fit props
 
     # Make fit
-    if mask.sum() > 5:
+    if mask.sum() > 2:
         result = model.fit(x_ok[mask], params, t=t_ok[mask])
         # perr = np.sqrt(np.diag(pcov))
         r_squared = 1 - result.residual.var() / np.var(x_ok[mask])
@@ -161,7 +162,7 @@ for i, d in enumerate(datasets[mask_runs]):
                 lw=10, alpha=0.5, color='tab:orange')
         ax.plot(t/t_ad, x_front/L0, '.-', color='tab:blue', lw=1)
         ax.plot(t_ok[mask], result.best_fit, color='k', ls='--')
-        print(result.fit_report())
+        # print(result.fit_report())
 
         par_str = ', '.join(['{:.1e}'.format(result.best_values[key])
                             for key in result.best_values.keys()])
