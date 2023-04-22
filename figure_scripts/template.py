@@ -48,8 +48,11 @@ color_cycle = plt.rcParams['axes.prop_cycle'].by_key()['color']
 # color_setups = {'Cyril': color_cycle[0], 'Rastello': color_cycle[2],
 #                 'Jean': color_cycle[1], 'Julien': color_cycle[5],
 #                 'Cyril/Marie': color_cycle[4]}
-color_setups = {'Cyril': color_cycle[0], 'Rastello': color_cycle[2],
-                'Jean': color_cycle[1], 'Julien': 'tab:green',
+# color_setups = {'Cyril': color_cycle[0], 'Rastello': color_cycle[2],
+#                 'Jean': color_cycle[1], 'Julien': 'tab:green',
+#                 'Cyril/Marie': 'tab:purple'}
+color_setups = {'Cyril': color_cycle[0], 'Rastello': 'tab:green',
+                'Jean': color_cycle[1], 'Julien': 'k',
                 'Cyril/Marie': 'tab:purple'}
 # color_setups = {'IMFT': color_cycle[0], 'LEGI': color_cycle[1],
 #                 'LEMTA': color_cycle[2], 'NUM': color_cycle[3]}

@@ -89,7 +89,7 @@ for par in params.keys():
 
 # %% Loading data
 list_runs = glob.glob(os.path.join(input_path, 'runs*/*.nc'))
-# list_runs = glob.glob(os.path.join(input_path, 'runs_JULIEN*/*.nc'))
+# list_runs = glob.glob(os.path.join(input_path, 'runs_JULIEN2/*.nc'))
 datasets = [Dataset(run) for run in list_runs]
 
 # %% Loop over data file and analysis
@@ -111,10 +111,11 @@ for i, d in enumerate(datasets):
     diam = d.variables['d'][:].data  # grain size, [m]
     phi = d.variables['phi'][:].data
     if d.author == 'Julien':
+        alpha = alpha*180/np.pi
+    if rho_f < 500:
         H0 = H0/100
         L0 = L0/100
         rho_f, rho_p, rho_a = rho_f*1e3, rho_p*1e3, rho_a*1e3
-        alpha = alpha*180/np.pi
         diam = diam*1e-6  # grain size, [m]
     #
     # Computing variables for adi time
