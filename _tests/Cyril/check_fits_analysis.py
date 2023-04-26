@@ -25,8 +25,8 @@ g = 9.81  # [m/s2]
 mu = 1e-3  # [kg/m/s]
 
 # fit specifications
-BOUNDS_FIT = {'Cyril': (5, 30), 'Cyril/Marie': (5, 30), 'Jean': (2, 40),
-              'Julien': (5, 30), 'Rastello': (5, 30)}
+BOUNDS_FIT = {'Cyril': (5, 30), 'Cyril/Marie': (5, 30), 'Jean': (0, 40),
+              'Julien': (3, 30), 'Rastello': (5, 30)}
 
 # %% fit objects definition
 
@@ -36,9 +36,9 @@ params = model.make_params()
 
 params['Fr'].vary = True
 params['L'].vary = True
-params['c'].vary = True
-params['d'].vary = True
-params['xi'].vary = False
+params['c'].vary = False
+params['d'].vary = False
+params['xi'].vary = True
 
 # parameter properties (Non dim.)
 p0 = {'Fr': 0.4, 'xi': 0, 'L': 0, 'c': 0, 'd': 0}
@@ -57,8 +57,8 @@ SETUPS = {'Cyril': 'IMFT', 'Cyril/Marie': 'LEGI', 'Jean': 'LEMTA',
           'Julien': 'NUM', 'Rastello': 'LEGI'}
 
 # %% Loading data
-list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JULIEN2/*.nc')))
-# list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JEAN/*.nc')))
+# list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JULIEN2/*.nc')))
+list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JEAN/*.nc')))
 # list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_MARIE/*.nc')))
 # list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_CYRIL/*.nc')))
 datasets = np.array([Dataset(run) for run in list_runs])
@@ -105,10 +105,11 @@ for i, d in enumerate(datasets[mask_runs]):
     diam = d.variables['d'][:].data  # grain size, [m]
     phi = d.variables['phi'][:].data
     if d.author == 'Julien':
+        alpha = alpha*180/np.pi
+    if rho_f < 500:
         H0 = H0/100
         L0 = L0/100
         rho_f, rho_p, rho_a = rho_f*1e3, rho_p*1e3, rho_a*1e3
-        alpha = alpha*180/np.pi
         diam = diam*1e-6  # grain size, [m]
     #
     # Computing variables for adi time
@@ -116,13 +117,15 @@ for i, d in enumerate(datasets[mask_runs]):
     gprime = g*(rho_c - rho_a)/rho_a  # specific gravity
     u0 = np.sqrt(gprime*H0)
     t_ad = L0/u0
+    # if diam > 400e-6:
+    #     print(run)
     #
     #
     # #### Fitting front position curves
     # defining fitting masks
     mask_ok = ~np.isnan(x_front)
     t_ok, x_ok = t[mask_ok]/t_ad, x_front[mask_ok]/L0
-    print(t_ok.max())
+    # print(t_ok.max())
     bounds_fit = BOUNDS_FIT[d.author]
     if (d.author == 'Cyril'):
         if run == 'run_012.nc':
@@ -135,7 +138,9 @@ for i, d in enumerate(datasets[mask_runs]):
             bounds_fit = (bounds_fit[0], 20)
         elif run == 'run_114.nc':
             bounds_fit = (bounds_fit[0], 17)
-    #
+    if (d.author == 'Julien'):
+        if run == 'run42b_front.nc':
+            bounds_fit = [0, 6.6]
     mask = (t_ok > bounds_fit[0]) & (t_ok < bounds_fit[1])
     #
     # Define fit props
