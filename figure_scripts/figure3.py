@@ -41,7 +41,7 @@ ax.set_ylim(bottom=0)
 
 legend_elements = [Line2D([0], [0], marker='.', ls='none', color=c, label=key)
                    for key, c in sorted(tp.color_setups.items())]
-ax.legend(handles=legend_elements)
+ax.legend(handles=legend_elements, loc='lower right')
 
 fig.savefig(
     '../paper/figures/{}.pdf'.format(sys.argv[0].split(os.sep)[-1].replace('.py', '')), dpi=600)

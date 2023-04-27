@@ -9,7 +9,7 @@ import template as tp
 from netCDF4 import Dataset
 
 plt.rcParams['figure.constrained_layout.hspace'] = 0
-plt.rcParams['figure.constrained_layout.h_pad'] = 0
+plt.rcParams['figure.constrained_layout.h_pad'] = 0.0005
 
 # %% Load data
 path_data = '../data/output_data'
@@ -67,16 +67,22 @@ for a0, axarr_sub in zip(alpha0, axarr):
             else:
                 ax.axhline(0, color='k', ls=':', zorder=-10, lw=1)
 
-    axarr_sub[0].set_ylabel(r'$\sqrt{a}\mathcal{F}r$')
+    axarr_sub[0].set_ylabel(r'Froude number, $\mathcal{F}r$')
     axarr_sub[1].set_ylabel(r'Dissipation, $\tilde{\lambda}$')
 
     axarr_sub[1].set_xscale('log')
+    # axarr_sub[1].ticklabel_format(
+    #     axis='y', style='sci', scilimits=(0, 1), useMathText=True)
 
     # axarr_sub[0].set_ylim(0, 1.85)
     axarr_sub[0].set_ylim(0, 1.4)
     axarr_sub[1].set_ylim(-0.02, 0.07)
+    # axarr_sub[1].set_ylim(0.0001, 0.07)
+    # axarr_sub[1].set_yscale('log')
     axarr_sub[1].set_xlim(1.5e-3, 1)
     axarr_sub[0].set_xlim(1.5e-3, 1)
+    #
+    axarr_sub[1].set_yticks([0, 0.03, 0.06])
     #
     if a0 != 45:
         axarr_sub[0].set_xticklabels([])
