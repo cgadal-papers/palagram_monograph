@@ -33,6 +33,7 @@ author_zorder = ['Cyril', 'Cyril/Marie', 'Jean', 'Rastello', 'Julien']
 # %% masks for plot
 alphas = [0, 45]
 alpha_pad = 1
+var = Fr
 
 fig, axarr = plt.subplots(2, 1, constrained_layout=True,
                           figsize=tp.half_figure_size_inv, sharex=True)
@@ -49,24 +50,24 @@ for alpha0, ax in zip(alphas, axarr.flatten()):
         mask = (authors == author) & mask_alpha
         marker = 's' if author == 'Julien' else None
         #
-        ax.scatter(phi[mask], Fr[mask], c=tp.color_setups[author],
+        ax.scatter(phi[mask], var[mask], c=tp.color_setups[author],
                    label=author, marker=marker)
         if alpha0 == 0:
-            axins.scatter(phi[mask], Fr[mask], c=tp.color_setups[author],
+            axins.scatter(phi[mask], var[mask], c=tp.color_setups[author],
                           label=author, marker=marker)
     # saline current
     mask_saline = (particle_type == 'saline water') & mask_alpha
-    moy, std = np.nanmean(Fr[mask_saline]), np.nanstd(Fr[mask_saline])
+    moy, std = np.nanmean(var[mask_saline]), np.nanstd(var[mask_saline])
     ax.axhline(moy, color='k', ls='--', zorder=-10)
     ax.axhspan(moy - std, moy + std, color='k', alpha=0.2, zorder=-10)
     #
-    ax.set_ylabel(r'Froude number, $\mathcal{F}r$')
-    ax.set_ylim([0, 1.4])
+    ax.set_ylabel(r'Froude number, $\sqrt{a}\mathcal{F}r$')
+    ax.set_ylim([0, 1.85])
 
 ax.set_xlabel(r'Volume fraction, $\phi$')
 ax.set_xscale('log')
 
-for ax, l in zip(axarr.flatten(), ['a', 'b']):
+for ax, l in zip(axarr.flatten(), 'ab'):
     trans = mtransforms.ScaledTranslation(
         5/72, -5/72, fig.dpi_scale_trans)
     label = '({})'.format(l)

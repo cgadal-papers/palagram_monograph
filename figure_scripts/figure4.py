@@ -53,10 +53,11 @@ H0 = np.array([d.variables['H0'][:].data for d in datasets])
 L0 = np.array([d.variables['L0'][:].data for d in datasets])
 Ha = np.array([d.variables['H_a'][:].data if 'H_a' in d.variables.keys()
               else d.variables['H0'][:].data for d in datasets])
+aspect = H0/L0
 
 # %% graphic specifications
 # changing order depending on authors
-author_zorder = ['Rastello', 'Cyril', 'Cyril/Marie', 'Julien', 'Jean']
+author_zorder = ['Rastello', 'Cyril', 'Cyril/Marie', 'Jean', 'Julien']
 
 # %% masks for plot
 mask_Stokes = (St > 4e-2) & (St < 6e-2)
@@ -76,22 +77,34 @@ markers[H0/Ha < 0.2] = 'd'
 
 
 # %% figure
-fig, ax = plt.subplots(1, 1, constrained_layout=True,
-                       figsize=tp.large_figure_size)
-for author in author_zorder:
-    mask = (authors == author)
-    #
-    mscatter(np.sin(np.radians(alpha[mask])), Fr[mask], ax=ax,
-             c=tp.color_setups[author], alpha=alphas[mask], label=author, m=markers[mask])
-ax.set_xlabel(r'$\sin \alpha$')
-ax.set_ylabel(r'Froude number, $\mathcal{F}r$')
-ax.set_xlim(left=-0.012)
-ax.set_ylim(0, 1.35)
+layout = [['legend', 'legend'], [('(a)'), '(b)']]
+fig, axarr = plt.subplot_mosaic(layout, figsize=tp.large_figure_size, constrained_layout=True,
+                                gridspec_kw={'height_ratios': [0.001, 1]})
 
-secax = ax.secondary_xaxis('top', functions=(sin2ang, ang2sin))
-secax.set_xlabel('angle [deg.]')
+for label in ['(a)', '(b)']:
+    ax = axarr[label]
+    for author in author_zorder:
+        mask = (authors == author)
+        #
+        Y = Fr if label == '(a)' else Fr*np.sqrt(aspect)
+        #
+        mscatter(np.sin(np.radians(alpha[mask])), Y[mask], ax=ax,
+                 c=tp.color_setups[author], alpha=alphas[mask], label=author, m=markers[mask])
+    ax.set_xlabel(r'$\sin \alpha$')
+    ax.set_xlim(left=-0.012)
 
-leg = ax.legend(ncols=3)
+    secax = ax.secondary_xaxis('top', functions=(sin2ang, ang2sin))
+    secax.set_xlabel(r'angle, $\alpha$ [deg.]')
+
+axarr['(a)'].set_ylabel(r'Froude number, $\mathcal{F}r$')
+axarr['(b)'].set_ylabel(r'$\sqrt{a}\mathcal{F}r$')
+axarr['(a)'].set_ylim(0, 1.35)
+axarr['(b)'].set_ylim(0, 1.85)
+
+axarr['legend'].axis('off')
+handles, labels = axarr['(a)'].get_legend_handles_labels()
+leg = axarr['legend'].legend(handles, labels, loc="upper center", ncol=5,
+                             borderaxespad=0, title='Datasets')
 for lh in leg.legend_handles:
     lh.set_alpha(1)
 
