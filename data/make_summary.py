@@ -13,7 +13,8 @@ for i, run in enumerate(list_runs):
     variables = [var for var in d.variables.keys() if var not in [
         'x_front', 't', 'v_front']]
     if i == 0:  # writing headline
-        column_heads = (attributes +
+        var_save = np.copy(variables)
+        column_heads = (['file_ID'] + attributes +
                         ['{} ({})'.format(par, d.variables[par].unit)
                             for par in variables]
                         )
@@ -23,13 +24,10 @@ for i, run in enumerate(list_runs):
             for i in range(2):
                 the_file.write('\n')
     # writing data to csv
-    line_values = ([d.__dict__[attr] for attr in attributes] +
-                   ['{:.3e}'.format(d.variables[var][:].data)
-                    for var in variables]
+    line_values = ([run.split(os.sep)[-1]] + [d.__dict__[attr] for attr in attributes] +
+                   ['{:.3e}'.format(d.variables[var][:].data) if (var in variables) else '-'
+                    for var in var_save]
                    )
     line = ','.join(line_values) + '\n'
     with open('dataset_summary.csv', 'a') as the_file:
         the_file.write(line)
-
-[d.variables[var][:].data for var in variables if var not in [
-    'x_front', 't']]

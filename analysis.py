@@ -171,9 +171,10 @@ for i, d in enumerate(datasets):
         newfile[name].setncatts(d[name].__dict__)  # copy variable attributes
     # correct Julien stuff
     if newfile.author == 'Julien':
+        newfile.variables['alpha'][:] = newfile.variables['alpha'][:].data*180/np.pi
+    if newfile.variables['rho_f'][:].data < 500:
         newfile.variables['H0'][:] = newfile.variables['H0'][:].data/100
         newfile.variables['L0'][:] = newfile.variables['L0'][:].data/100
-        newfile.variables['alpha'][:] = newfile.variables['alpha'][:].data*180/np.pi
         newfile.variables['d'][:] = newfile.variables['d'][:].data*1e-6
         for var in ['rho_p', 'rho_f', 'rho_a']:
             newfile.variables[var][:] = newfile.variables[var][:].data*1e3
