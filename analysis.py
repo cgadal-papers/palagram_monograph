@@ -5,6 +5,7 @@ import os
 import numpy as np
 from netCDF4 import Dataset
 from lmfit import Model
+from lmfit.model import save_modelresult
 
 
 def create_variable(netcdf_group, name, data, dimensions=None, std=None,
@@ -31,11 +32,11 @@ def Stokes_Velocity(d, mu, rho_p, rho_f, g):
 
 
 def determine_fit_props(author, alpha, run, params):
+    params['xi'].vary = False
     params['Fr'].vary = True
     params['L'].vary = True
     params['c'].vary = False
     params['d'].vary = False
-    params['xi'].vary = False
     t_bounds = [5, 30]
     #
     if author == 'Jean':
@@ -46,6 +47,8 @@ def determine_fit_props(author, alpha, run, params):
         params['xi'].vary = True
         if run == 'run42b_front.nc':
             t_bounds = [0, 6]
+        if run == 'run37_front.nc':
+            t_bounds = [0, 20]
     if author == 'Cyril':
         if run == 'run_012.nc':
             t_bounds[-1] = min(t_bounds[-1], 30)
@@ -137,6 +140,10 @@ for i, d in enumerate(datasets):
     # Make fit
     if mask.sum() > 5:
         result = model.fit(x_ok[mask], params, t=t_ok[mask])
+        L, L_err = result.params['L'].value, result.params['L'].stderr
+        if L > 2e-2:
+            params['d'].vary = True
+            result = model.fit(x_ok[mask], params, t=t_ok[mask])
         r_squared = result.rsquared
         print('author: {}, r2: {:.3f}'.format(d.author, r_squared))
         Fr, Fr_err = result.params['Fr'].value, result.params['Fr'].stderr
@@ -156,6 +163,7 @@ for i, d in enumerate(datasets):
     for name, dimension in d.dimensions.items():  # dimensions
         newfile.createDimension(
             name, (len(dimension) if not dimension.isunlimited() else None))
+    newfile.label = 'run_{:03d}.nc'.format(i)
     for name, variable in d.variables.items():  # variables
         create_variable(
             newfile, name, d.variables[name][:], dimensions=variable.dimensions, type=variable.datatype)
@@ -197,5 +205,5 @@ for i, d in enumerate(datasets):
     newfile.close()
     # fit results
     if mask.sum() > 5:
-        np.save(os.path.join(output_path,
-                'fitresult_run_{:03d}.npy'.format(i)), result)
+        save_modelresult(result, os.path.join(output_path,
+                                              'fitresult_run_{:03d}.save'.format(i)))

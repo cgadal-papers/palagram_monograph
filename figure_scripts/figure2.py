@@ -3,6 +3,7 @@ import os
 import sys
 
 import matplotlib.pyplot as plt
+import matplotlib.transforms as mtransforms
 import numpy as np
 import template as tp
 from netCDF4 import Dataset
@@ -55,3 +56,13 @@ axarr[3].set_ylabel(r'Stokes number, $\mathcal{S}t$')
 #
 axarr[2].set_yscale('linear')
 axarr[2].set_ylim(bottom=-1)
+
+for ax, l in zip(axarr[1:].flatten(), 'abcdefgh'):
+    trans = mtransforms.ScaledTranslation(
+        5/72, -5/72, fig.dpi_scale_trans)
+    label = '({})'.format(l)
+    ax.text(0.0, 1.0, label, transform=ax.transAxes + trans, color='k',
+            va='top', ha='left')
+
+fig.savefig(
+    '../paper/figures/{}.pdf'.format(sys.argv[0].split(os.sep)[-1].replace('.py', '')), dpi=600)

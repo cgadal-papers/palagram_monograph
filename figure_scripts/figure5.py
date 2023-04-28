@@ -34,7 +34,7 @@ particle_type = np.array([d.particle_type for d in datasets])
 author_zorder = ['Cyril', 'Cyril/Marie', 'Julien', 'Rastello', 'Jean']
 
 # %% masks for plot
-alpha0 = [3, 7, 15, 45]
+alpha0 = [1, 7, 15, 45]
 alpha_pad = 1.5
 
 figsize = (tp.large_figure_width, tp.golden*tp.large_figure_width/2)

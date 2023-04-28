@@ -16,6 +16,40 @@ def Stokes_Velocity(d, mu, rho_p, rho_f, g):
     return d**2*(rho_p - rho_f) * g/mu/18
 
 
+def determine_fit_props(author, alpha, run, params):
+    params['xi'].vary = False
+    params['Fr'].vary = True
+    params['L'].vary = True
+    params['c'].vary = False
+    params['d'].vary = False
+    t_bounds = [5, 30]
+    #
+    if author == 'Jean':
+        t_bounds = [0, 40]
+        params['L'].vary = False
+        params['xi'].vary = True
+    if author == 'Julien':
+        params['xi'].vary = True
+        if run == 'run42b_front.nc':
+            t_bounds = [0, 6]
+        if run == 'run37_front.nc':
+            t_bounds = [0, 20]
+    # if author == 'Rastello':
+    #     params['xi'].vary = True
+    if author == 'Cyril':
+        if run == 'run_012.nc':
+            t_bounds[-1] = min(t_bounds[-1], 30)
+        elif run == 'run_006.nc':
+            t_bounds[-1] = min(t_bounds[-1], 42)
+        elif run == 'run_020.nc':
+            t_bounds[-1] = min(t_bounds[-1], 16)
+        elif run == 'run_116.nc':
+            t_bounds[-1] = min(t_bounds[-1], 20)
+        elif run == 'run_114.nc':
+            t_bounds[-1] = min(t_bounds[-1], 17)
+    return t_bounds
+
+
 # %% Variable definition
 # paths
 input_path = '../../data/input_data'
@@ -24,21 +58,12 @@ input_path = '../../data/input_data'
 g = 9.81  # [m/s2]
 mu = 1e-3  # [kg/m/s]
 
-# fit specifications
-BOUNDS_FIT = {'Cyril': (5, 30), 'Cyril/Marie': (5, 30), 'Jean': (0, 40),
-              'Julien': (3, 30), 'Rastello': (5, 30)}
-
 # %% fit objects definition
 
+# %% fit objects definition
 # model object creation
 model = Model(polyFULL)
 params = model.make_params()
-
-params['Fr'].vary = True
-params['L'].vary = True
-params['c'].vary = False
-params['d'].vary = False
-params['xi'].vary = True
 
 # parameter properties (Non dim.)
 p0 = {'Fr': 0.4, 'xi': 0, 'L': 0, 'c': 0, 'd': 0}
@@ -57,8 +82,8 @@ SETUPS = {'Cyril': 'IMFT', 'Cyril/Marie': 'LEGI', 'Jean': 'LEMTA',
           'Julien': 'NUM', 'Rastello': 'LEGI'}
 
 # %% Loading data
-# list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JULIEN2/*.nc')))
-list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JEAN/*.nc')))
+list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JULIEN*/*.nc')))
+# list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JEAN/*.nc')))
 # list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_MARIE/*.nc')))
 # list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_CYRIL/*.nc')))
 datasets = np.array([Dataset(run) for run in list_runs])
@@ -79,9 +104,9 @@ authors = np.array([d.author for d in datasets])
 # mask_runs = ((alphas > 6) & (alphas < 10)) & (
 #     grains == 'silica sand') & (authors == 'Cyril')
 # mask_runs = (authors == 'Cyril/Marie')
-mask_runs = np.ones_like(alphas).astype('bool')
-# mask_runs = (alphas < 5) & (alphas > 2)
-# mask_runs = (alphas > 40)
+# mask_runs = np.ones_like(alphas).astype('bool')
+mask_runs = (alphas > 6) & (alphas < 8)
+# mask_runs = (alphas < 3)
 # mask_runs = (grains == 'PMMA')
 
 # %% Loop over data file and analysis
@@ -122,46 +147,21 @@ for i, d in enumerate(datasets[mask_runs]):
     #
     #
     # #### Fitting front position curves
+    t_bounds = determine_fit_props(d.author, alpha, run, params)
     # defining fitting masks
     mask_ok = ~np.isnan(x_front)
     t_ok, x_ok = t[mask_ok]/t_ad, x_front[mask_ok]/L0
-    # print(t_ok.max())
-    bounds_fit = BOUNDS_FIT[d.author]
-    if (d.author == 'Cyril'):
-        if run == 'run_012.nc':
-            bounds_fit = (bounds_fit[0], 30)
-        elif run == 'run_006.nc':
-            bounds_fit = (bounds_fit[0], 42)
-        elif run == 'run_020.nc':
-            bounds_fit = (bounds_fit[0], 16)
-        elif run == 'run_116.nc':
-            bounds_fit = (bounds_fit[0], 20)
-        elif run == 'run_114.nc':
-            bounds_fit = (bounds_fit[0], 17)
-    if (d.author == 'Julien'):
-        if run == 'run42b_front.nc':
-            bounds_fit = [0, 6.6]
-    mask = (t_ok > bounds_fit[0]) & (t_ok < bounds_fit[1])
+    mask = (t_ok > t_bounds[0]) & (t_ok < t_bounds[1])
     #
-    # Define fit props
-
     # Make fit
-    if mask.sum() > 2:
+    if mask.sum() > 5:
         result = model.fit(x_ok[mask], params, t=t_ok[mask])
-        # perr = np.sqrt(np.diag(pcov))
-        r_squared = 1 - result.residual.var() / np.var(x_ok[mask])
-        # r_squared = compute_rsquared(
-        #     x_ok[mask], func_fit(t_ok[mask], *p))
-        #
+        L, L_err = result.params['L'].value, result.params['L'].stderr
+        if L > 1.5e-2:
+            params['d'].vary = True
+            result = model.fit(x_ok[mask], params, t=t_ok[mask])
+        r_squared = result.rsquared
         print('author: {}, r2: {:.3f}'.format(d.author, r_squared))
-        # if (d.author == 'Rastello') & ~((perr[0] < 1e-5) or (t[-1]/t_ad > 30)):
-        #     mask = (t_ok < 13*t_ad) & (t_ok > 3*t_ad)
-        #     p, pcov = curve_fit(func_fit, t_ok[mask], x_ok[mask])
-        #     perr = np.sqrt(np.diag(pcov))
-        #     r_squared = compute_rsquared(
-        #         x_ok[mask], func_fit(t_ok[mask], *p), p.size)
-        #     print('Bad Fit, new r2: {:.3f}'.format(r_squared))
-        #
         #
         ax.plot(t_ok[mask], x_ok[mask],
                 lw=10, alpha=0.5, color='tab:orange')
@@ -174,8 +174,8 @@ for i, d in enumerate(datasets[mask_runs]):
         vs = Stokes_Velocity(diam, mu, rho_p, rho_f, g)  # [m/s]
         St = vs/u0
         ax.text(t_ok[mask][-1], x_ok[mask][-1],
-                '{}, {:.0f}, {:.0f}:{}, {:.1e} \n'.format(
-                    phi, alpha, diam*1e6, d.particle_type, St) + par_str)
+                '{}: {}, {:.0f}, {:.0f}:{}, {:.1e} \n'.format(run,
+                                                              phi, alpha, diam*1e6, d.particle_type, St) + par_str)
         # if func_fit == logistique:
         #     ax.text(t_ok[mask][-1]/t_ad, x_ok[mask][-1]/L0,
         #             '{}, {:.0f}, {:.0f}:{} \n {:.1e}, {:.1e}'.format(phi, alpha, diam*1e6, d.particle_type, p[0]/u0, p[1]/gprime), ha='left')
