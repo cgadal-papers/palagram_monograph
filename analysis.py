@@ -94,8 +94,7 @@ for par in params.keys():
                     max=higher_bounds[par])
 
 # %% Loading data
-list_runs = glob.glob(os.path.join(input_path, 'runs*/*.nc'))
-# list_runs = glob.glob(os.path.join(input_path, 'runs_JULIEN2/*.nc'))
+list_runs = sorted(glob.glob(os.path.join(input_path, 'runs*/*.nc')))
 datasets = [Dataset(run) for run in list_runs]
 
 # %% Loop over data file and analysis
@@ -158,6 +157,8 @@ for i, d in enumerate(datasets):
     # creating netcdf file and groups
     newfile = Dataset(path_dataset, "w", format="NETCDF4")
     newfile.setup = SETUPS[d.author]
+    if not hasattr(d, 'run_oldID'):
+        newfile.run_oldID = '{} -- {}'.format(d.author, run)
     # copy input data
     newfile.setncatts(d.__dict__)  # global attributes
     for name, dimension in d.dimensions.items():  # dimensions
@@ -187,18 +188,18 @@ for i, d in enumerate(datasets):
     create_variable(newfile, 'u0', u0, unit='m/s',
                     comments='characteristic velocity')
     # Non-dimensional numbers
-    create_variable(newfile, 'a', H0/d.variables['L0'][:].data, unit='None',
+    create_variable(newfile, 'a', H0/d.variables['L0'][:].data, unit='-',
                     comments='lock aspect ratio')
-    create_variable(newfile, 'Re', u0*H0*rho_c/mu, unit='None',
+    create_variable(newfile, 'Re', u0*H0*rho_c/mu, unit='-',
                     comments='Reynolds number')
-    create_variable(newfile, 'At', (rho_c - rho_a)/rho_a, unit='None',
+    create_variable(newfile, 'At', (rho_c - rho_a)/rho_a, unit='-',
                     comments='Atwood number')
-    create_variable(newfile, 'St', vs/u0, unit='None',
+    create_variable(newfile, 'St', vs/u0, unit='-',
                     comments='Stokes number')
     # Non-dimensional variables and fit results
-    create_variable(newfile, 'Fr', Fr, unit='None', std=Fr_err,
+    create_variable(newfile, 'Fr', Fr, unit='-', std=Fr_err,
                     comments='Froude number (adi. initial current velocity)')
-    create_variable(newfile, 'L', L, unit='None', std=L_err,
+    create_variable(newfile, 'L', L, unit='-', std=L_err,
                     comments='adi. current dissipation')
 
     # saving and closing netcdf file
