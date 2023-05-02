@@ -4,6 +4,7 @@ import sys
 
 import matplotlib.pyplot as plt
 import matplotlib.transforms as mtransforms
+from matplotlib.legend_handler import HandlerTuple
 import numpy as np
 import template as tp
 from netCDF4 import Dataset
@@ -36,15 +37,16 @@ for ax, var in zip(axarr[1:].flatten(), [phi, alpha, St]):
     for author in author_zorder:
         mask = (authors == author)
         marker = 's' if author == 'Julien' else None
-        ax.scatter(Re[mask], var[mask], c=tp.color_setups[author],
-                   label=author, marker=marker)
+        sc = ax.scatter(Re[mask], var[mask], c=tp.color_setups[author],
+                        label=author, marker=marker)
         ax.set_xscale('log')
         ax.set_yscale('log')
 
 axarr[0].axis('off')
-handles, labels = axarr[1].get_legend_handles_labels()
-leg = axarr[0].legend(handles, labels, loc="upper center", ncol=3,
-                      borderaxespad=0, title='Datasets', mode='expand')
+# leg = axarr[0].legend(handles=tp.legend_elements, labels=tp.leg_labels, loc="upper center",
+#                       ncol=3, borderaxespad=0, title='Datasets', mode='expand', handler_map={tuple: HandlerTuple(ndivide=None)})
+leg = axarr[0].legend(handles=tp.legend_elements, loc="upper center",
+                      ncol=3, borderaxespad=0, title='Datasets', mode='expand')
 #
 axarr[1].set_xticks([])
 axarr[2].set_xticks([])
@@ -63,6 +65,8 @@ for ax, l in zip(axarr[1:].flatten(), 'abcdefgh'):
     label = '({})'.format(l)
     ax.text(0.0, 1.0, label, transform=ax.transAxes + trans, color='k',
             va='top', ha='left')
+
+fig.align_labels()
 
 fig.savefig(
     '../paper/figures/{}.pdf'.format(sys.argv[0].split(os.sep)[-1].replace('.py', '')), dpi=600)

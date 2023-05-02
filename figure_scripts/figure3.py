@@ -3,7 +3,7 @@ import os
 import sys
 
 import matplotlib.pyplot as plt
-from matplotlib.lines import Line2D
+import matplotlib.transforms as mtransforms
 import numpy as np
 import template as tp
 from netCDF4 import Dataset
@@ -29,10 +29,10 @@ zorder_setups = {'Cyril': -9, 'Rastello': -10,
                  'Jean': -6, 'Julien': -7, 'Cyril/Marie': -9}
 
 # %% figure
-layout = [['legend', 'legend'], [('(a)'), '(b)']]
-
-fig, axarr = plt.subplot_mosaic(layout, figsize=tp.large_figure_size, constrained_layout=True,
+layout = [['legend', 'legend'], ['(a)', '(b)']]
+fig, axarr = plt.subplot_mosaic(layout, figsize=(tp.large_figure_width, 0.55*tp.large_figure_width), constrained_layout=True,
                                 gridspec_kw={'height_ratios': [0.001, 1]})
+
 # All runs
 ax = axarr['(a)']
 for d in datasets[mask]:
@@ -47,7 +47,7 @@ ax.set_ylim(bottom=0)
 
 # selected run, non-dimensional
 ax = axarr['(b)']
-runs = [50, 100, 150, 200, 250]
+runs = [0, 94, 119, 195]
 
 for run in runs:
     d = datasets[list_runs.index(os.path.join(
@@ -59,7 +59,8 @@ for run in runs:
     #
     x_axis = d.variables['t'][:].data/t_ad
     y_axis = d.variables['x_front'][:].data/x_ad
-    ax.scatter(x_axis, y_axis, color=tp.color_setups[d.author], s=2)
+    ax.scatter(x_axis, y_axis,
+               color=tp.color_setups[d.author], s=2, rasterized=True)
     # plotting fit
     fitresult = load_modelresult(os.path.join(
         path_data, 'fitresult_run_{:03d}.save'.format(run)))
@@ -71,10 +72,18 @@ for run in runs:
 ax.set_ylabel(r'Front position, $x_{\rm f}/L_{0}$')
 ax.set_xlabel(r'Time, $t/t_{0}$')
 
-# axarr['legend'].axis('off')
-# handles, labels = axarr['(a)'].get_legend_handles_labels()
-# leg = axarr['legend'].legend(handles, labels, loc="upper center", ncol=5,
-#                              borderaxespad=0, title='Datasets')
+axarr['legend'].axis('off')
+leg = axarr['legend'].legend(handles=tp.legend_elements,
+                             ncol=5, title='Datasets', loc="upper center", borderaxespad=0)
+
+for label, ax in axarr.items():
+    if label not in ['legend']:
+        trans = mtransforms.ScaledTranslation(
+            5/72, -5/72, fig.dpi_scale_trans)
+        ax.text(0.0, 1.0, label, transform=ax.transAxes + trans, color='k',
+                va='top', ha='left')
+
+fig.align_labels()
 
 fig.savefig(
     '../paper/figures/{}.pdf'.format(sys.argv[0].split(os.sep)[-1].replace('.py', '')), dpi=600)

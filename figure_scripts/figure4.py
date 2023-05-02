@@ -3,9 +3,11 @@ import os
 import sys
 
 import matplotlib.pyplot as plt
+import matplotlib.transforms as mtransforms
 import numpy as np
 import template as tp
 from netCDF4 import Dataset
+from matplotlib.colors import to_rgba
 
 plt.rcParams['xtick.top'] = False
 
@@ -77,7 +79,7 @@ markers[H0/Ha < 0.2] = 'd'
 
 
 # %% figure
-layout = [['legend', 'legend'], [('(a)'), '(b)']]
+layout = [['legend', 'legend'], ['(a)', '(b)']]
 fig, axarr = plt.subplot_mosaic(layout, figsize=tp.large_figure_size, constrained_layout=True,
                                 gridspec_kw={'height_ratios': [0.001, 1]})
 
@@ -88,8 +90,14 @@ for label in ['(a)', '(b)']:
         #
         Y = Fr if label == '(a)' else Fr*np.sqrt(aspect)
         #
+        edgecolors = [to_rgba(tp.color_setups[author], a)
+                      for a in alphas[mask]]
+        # edgecolors = [(0.4, 0.4, 0.4, a)
+        #               for a in alphas[mask]]
+        facecolors = [to_rgba(tp.color_setups[author], a)
+                      for a in alphas[mask]]
         mscatter(np.sin(np.radians(alpha[mask])), Y[mask], ax=ax,
-                 c=tp.color_setups[author], alpha=alphas[mask], label=author, m=markers[mask])
+                 edgecolors=edgecolors, label=author, m=markers[mask], facecolors=facecolors)
     ax.set_xlabel(r'$\sin \alpha$')
     ax.set_xlim(left=-0.012)
 
@@ -102,11 +110,23 @@ axarr['(a)'].set_ylim(0, 1.35)
 axarr['(b)'].set_ylim(0, 1.85)
 
 axarr['legend'].axis('off')
-handles, labels = axarr['(a)'].get_legend_handles_labels()
-leg = axarr['legend'].legend(handles, labels, loc="upper center", ncol=5,
+leg = axarr['legend'].legend(handles=tp.legend_elements, loc="upper center", ncol=5,
                              borderaxespad=0, title='Datasets')
 for lh in leg.legend_handles:
     lh.set_alpha(1)
+
+axarr['legend'].axis('off')
+leg = axarr['legend'].legend(handles=tp.legend_elements,
+                             ncol=5, title='Datasets', loc="upper center", borderaxespad=0)
+
+for label, ax in axarr.items():
+    if label not in ['legend']:
+        trans = mtransforms.ScaledTranslation(
+            5/72, -5/72, fig.dpi_scale_trans)
+        ax.text(0.0, 1.0, label, transform=ax.transAxes + trans, color='k',
+                va='top', ha='left')
+
+fig.align_labels()
 
 fig.savefig(
     '../paper/figures/{}.pdf'.format(sys.argv[0].split(os.sep)[-1].replace('.py', '')), dpi=600)

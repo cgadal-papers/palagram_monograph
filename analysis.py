@@ -172,10 +172,12 @@ for i, d in enumerate(datasets):
     # correct Julien stuff
     if newfile.author == 'Julien':
         newfile.variables['alpha'][:] = newfile.variables['alpha'][:].data*180/np.pi
-    if newfile.variables['rho_f'][:].data < 500:
+    if newfile.variables['H0'][:].data > 1:
         newfile.variables['H0'][:] = newfile.variables['H0'][:].data/100
         newfile.variables['L0'][:] = newfile.variables['L0'][:].data/100
+    if newfile.variables['d'][:].data > 1:
         newfile.variables['d'][:] = newfile.variables['d'][:].data*1e-6
+    if newfile.variables['rho_f'][:].data < 500:
         for var in ['rho_p', 'rho_f', 'rho_a']:
             newfile.variables[var][:] = newfile.variables[var][:].data*1e3
     # other variables

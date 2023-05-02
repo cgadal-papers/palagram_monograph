@@ -1,3 +1,5 @@
+from matplotlib.lines import Line2D
+from matplotlib.legend_handler import HandlerTuple
 import os
 
 import cmasher as cmr
@@ -51,8 +53,27 @@ color_cycle = plt.rcParams['axes.prop_cycle'].by_key()['color']
 # color_setups = {'Cyril': color_cycle[0], 'Rastello': color_cycle[2],
 #                 'Jean': color_cycle[1], 'Julien': 'tab:green',
 #                 'Cyril/Marie': 'tab:purple'}
-color_setups = {'Cyril': color_cycle[0], 'Rastello': 'tab:green',
-                'Jean': color_cycle[1], 'Julien': 'k',
-                'Cyril/Marie': 'tab:purple'}
-# color_setups = {'IMFT': color_cycle[0], 'LEGI': color_cycle[1],
-#                 'LEMTA': color_cycle[2], 'NUM': color_cycle[3]}
+# color_setups = {'Cyril': color_cycle[0], 'Rastello': 'tab:green',
+#                 'Jean': color_cycle[1], 'Julien': 'k',
+#                 'Cyril/Marie': 'tab:purple'}
+color_setups = {'Julien': '#823329', 'Jean': '#FE7F2D',
+                'Cyril': '#FCCA46', 'Cyril/Marie': '#619B8A', 'Rastello': '#A1C181'}
+# color_setups = {'Julien': '#264653', 'Jean': '#e76f51',
+#                 'Cyril': '#e9c46a', 'Cyril/Marie': '#f4a261', 'Rastello': '#2a9d8f'}
+
+# %% corresponding legend
+
+# leg_labels = sorted(color_setups.keys())
+# legend_elements = [
+#     Line2D([0], [0], marker='s' if author == 'Julien' else 'o', color=color_setups[author], ls='none') for author in sorted(color_setups.keys())
+# ]
+
+# legend_elements[leg_labels.index('Rastello')] = (
+#     Line2D([0], [0], marker='o', color=color_setups['Rastello'], ls='none'),
+#     Line2D([0], [0], marker='d', color=color_setups['Rastello'], ls='none'),
+#     Line2D([0], [0], marker='*', color=color_setups['Rastello'], ls='none'),
+# )
+
+legend_elements = [
+    Line2D([0], [0], marker='s' if author == 'Julien' else 'o', color=color_setups[author], ls='none', label=author) for author in sorted(color_setups.keys())
+]
