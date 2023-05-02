@@ -117,11 +117,13 @@ for i, d in enumerate(datasets):
     phi = d.variables['phi'][:].data
     if d.author == 'Julien':
         alpha = alpha*180/np.pi
-    if rho_f < 500:
-        H0 = H0/100
-        L0 = L0/100
-        rho_f, rho_p, rho_a = rho_f*1e3, rho_p*1e3, rho_a*1e3
-        diam = diam*1e-6  # grain size, [m]
+        if d.variables['d'].unit == 'mum':
+            diam = diam*1e-6  # grain size, [m]
+        if d.variables['rho_f'].unit == 'g/cm3':
+            rho_f, rho_p, rho_a = rho_f*1e3, rho_p*1e3, rho_a*1e3
+        if d.variables['H0'].unit == 'cm':
+            H0 = H0/100
+            L0 = L0/100
     #
     # Computing variables for adi time
     rho_c = rho_f + phi * (rho_p - rho_f)  # average lock density, [kg/m3]
@@ -172,14 +174,18 @@ for i, d in enumerate(datasets):
     # correct Julien stuff
     if newfile.author == 'Julien':
         newfile.variables['alpha'][:] = newfile.variables['alpha'][:].data*180/np.pi
-    if newfile.variables['H0'][:].data > 1:
-        newfile.variables['H0'][:] = newfile.variables['H0'][:].data/100
-        newfile.variables['L0'][:] = newfile.variables['L0'][:].data/100
-    if newfile.variables['d'][:].data > 1:
-        newfile.variables['d'][:] = newfile.variables['d'][:].data*1e-6
-    if newfile.variables['rho_f'][:].data < 500:
-        for var in ['rho_p', 'rho_f', 'rho_a']:
-            newfile.variables[var][:] = newfile.variables[var][:].data*1e3
+        if newfile.variables['d'].unit == 'mum':
+            newfile.variables['d'][:] = newfile.variables['d'][:].data*1e-6
+            newfile.variables['d'].unit = 'm'
+        if d.variables['rho_f'].unit == 'g/cm3':
+            for var in ['rho_p', 'rho_f', 'rho_a']:
+                newfile.variables[var][:] = newfile.variables[var][:].data*1e3
+                newfile.variables[var].unit = 'kg/m3'
+        if d.variables['H0'].unit == 'cm':
+            for var in ['H0', 'L0', 'W0']:
+                newfile.variables[var][:] = newfile.variables[var][:].data/100
+                newfile.variables[var].unit = 'm'
+
     # other variables
     vs = Stokes_Velocity(diam, mu, rho_p, rho_f, g)  # [m/s]
     create_variable(newfile, 'vs', vs, unit='m/s',
