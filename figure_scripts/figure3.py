@@ -4,6 +4,7 @@ import sys
 
 import matplotlib.pyplot as plt
 import matplotlib.transforms as mtransforms
+from matplotlib.lines import Line2D
 import numpy as np
 import template as tp
 from netCDF4 import Dataset
@@ -47,7 +48,7 @@ ax.set_ylim(bottom=0)
 
 # selected run, non-dimensional
 ax = axarr['(b)']
-runs = [0, 94, 119, 195]
+runs = [0, 158, 94, 196, 209, 201]
 
 for run in runs:
     d = datasets[list_runs.index(os.path.join(
@@ -69,12 +70,29 @@ for run in runs:
     ax.plot(xplot, fitresult.eval(t=xplot),
             color='k', lw=1, ls='--')
 
+# annotations
+ax.annotate(r'', xy=(19.3, 10.3), xycoords='data',
+            xytext=(9, 12), textcoords='data',
+            arrowprops=dict(arrowstyle="<-", shrinkA=0, shrinkB=0,
+                            connectionstyle="angle3,angleA=0,angleB=120"))
+ax.text(15.5, 12, r'$\alpha \nearrow$')
+
+ax.annotate(r'', xy=(29.9, 13.45), xycoords='data',
+            xytext=(36.6, 8.16), textcoords='data',
+            arrowprops=dict(arrowstyle="<-", shrinkA=0, shrinkB=0,
+                            connectionstyle="angle3,angleA=-90,angleB=-20"))
+ax.text(31, 10.4, r'$\mathcal{S}t \nearrow$')
+
+
 ax.set_ylabel(r'Front position, $x_{\rm f}/L_{0}$')
 ax.set_xlabel(r'Time, $t/t_{0}$')
+ax.set_xlim(-1, 40)
+ax.set_ylim(-0.5, 17)
 
 axarr['legend'].axis('off')
-leg = axarr['legend'].legend(handles=tp.legend_elements,
-                             ncol=5, title='Datasets', loc="upper center", borderaxespad=0)
+other_elements = [Line2D([0], [0], color='k', ls='--', label='fit')]
+leg = axarr['legend'].legend(handles=tp.legend_elements + other_elements,
+                             ncol=6, title='Datasets', loc="upper center", borderaxespad=0)
 
 for label, ax in axarr.items():
     if label not in ['legend']:

@@ -20,25 +20,6 @@ def sin2ang(sin):
     return np.degrees(np.arcsin(sin))
 
 
-def mscatter(x, y, ax=None, m=None, **kw):
-    import matplotlib.markers as mmarkers
-    if not ax:
-        ax = plt.gca()
-    sc = ax.scatter(x, y, **kw)
-    if (m is not None) and (len(m) == len(x)):
-        paths = []
-        for marker in m:
-            if isinstance(marker, mmarkers.MarkerStyle):
-                marker_obj = marker
-            else:
-                marker_obj = mmarkers.MarkerStyle(marker)
-            path = marker_obj.get_path().transformed(
-                marker_obj.get_transform())
-            paths.append(path)
-        sc.set_paths(paths)
-    return sc
-
-
 # %% Load data
 path_data = '../data/output_data'
 list_runs = glob.glob(os.path.join(path_data, '*.nc'))
@@ -96,8 +77,8 @@ for label in ['(a)', '(b)']:
         #               for a in alphas[mask]]
         facecolors = [to_rgba(tp.color_setups[author], a)
                       for a in alphas[mask]]
-        mscatter(np.sin(np.radians(alpha[mask])), Y[mask], ax=ax,
-                 edgecolors=edgecolors, label=author, m=markers[mask], facecolors=facecolors)
+        tp.mscatter(np.sin(np.radians(alpha[mask])), Y[mask], ax=ax,
+                    edgecolors=edgecolors, label=author, m=markers[mask], facecolors=facecolors)
     ax.set_xlabel(r'$\sin \alpha$')
     ax.set_xlim(left=-0.012)
 

@@ -77,3 +77,24 @@ color_setups = {'Julien': '#823329', 'Jean': '#FE7F2D',
 legend_elements = [
     Line2D([0], [0], marker='s' if author == 'Julien' else 'o', color=color_setups[author], ls='none', label=author) for author in sorted(color_setups.keys())
 ]
+
+# %% plot functions
+
+
+def mscatter(x, y, ax=None, m=None, **kw):
+    import matplotlib.markers as mmarkers
+    if not ax:
+        ax = plt.gca()
+    sc = ax.scatter(x, y, **kw)
+    if (m is not None) and (len(m) == len(x)):
+        paths = []
+        for marker in m:
+            if isinstance(marker, mmarkers.MarkerStyle):
+                marker_obj = marker
+            else:
+                marker_obj = mmarkers.MarkerStyle(marker)
+            path = marker_obj.get_path().transformed(
+                marker_obj.get_transform())
+            paths.append(path)
+        sc.set_paths(paths)
+    return sc
