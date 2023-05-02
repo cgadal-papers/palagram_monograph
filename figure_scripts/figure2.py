@@ -3,10 +3,14 @@ import os
 import sys
 
 import matplotlib.pyplot as plt
-from matplotlib.lines import Line2D
+import matplotlib.transforms as mtransforms
+from matplotlib.legend_handler import HandlerTuple
 import numpy as np
 import template as tp
 from netCDF4 import Dataset
+
+# plt.rcParams['figure.constrained_layout.hspace'] = 0
+# plt.rcParams['figure.constrained_layout.h_pad'] = 0.0005
 
 
 # %% Load data
@@ -14,34 +18,55 @@ path_data = '../data/output_data'
 list_runs = glob.glob(os.path.join(path_data, '*.nc'))
 datasets = np.array([Dataset(run) for run in list_runs])
 
-# %% mask data
-alpha, phi, rho_p = np.array(
-    [[d.variables['alpha'][:].data, d.variables['phi'][:].data, d.variables['rho_p'][:].data]
-     for d in datasets]).T
+# %% create data vectors
+alpha, phi, St, Re, = np.array([[d.variables['alpha'][:].data, d.variables['phi'][:].data,
+                                d.variables['St'][:].data, d.variables['Re'][:].data]
+                               for d in datasets]).T
 
-# mask = (phi > 0.001) & (phi < 0.6) & (alpha < 70) & (rho_p > 1000)
-mask = np.ones_like(alpha).astype('bool')
+authors = np.array([d.author for d in datasets])
 
-zorder_setups = {'Cyril': -9, 'Rastello': -10,
-                 'Jean': -6, 'Julien': -7, 'Cyril/Marie': -9}
+# %% graphic specifications
+# changing order depending on authors
+author_zorder = ['Cyril', 'Cyril/Marie', 'Jean', 'Rastello', 'Julien']
 
-# %% figure
-fig, ax = plt.subplots(1, 1, constrained_layout=True,
-                       figsize=tp.large_figure_size)
+figsize = (tp.half_figure_width, 2.4*tp.half_figure_width)
+fig, axarr = plt.subplots(4, 1, figsize=figsize, constrained_layout=True,
+                          gridspec_kw={'height_ratios': [0.3, 1, 1, 1]})
 
-for d in datasets[mask]:
-    ax.scatter(d.variables['t'][:].data, d.variables['x_front'][:].data,
-               s=2 if d.author == 'Julien' else 0.3, color=tp.color_setups[d.author],
-               zorder=zorder_setups[d.author], rasterized=True)
+for ax, var in zip(axarr[1:].flatten(), [phi, alpha, St]):
+    for author in author_zorder:
+        mask = (authors == author)
+        marker = 's' if author == 'Julien' else None
+        sc = ax.scatter(Re[mask], var[mask], c=tp.color_setups[author],
+                        label=author, marker=marker)
+        ax.set_xscale('log')
+        ax.set_yscale('log')
 
-ax.set_ylabel('Front position, $x_{f}$ [m]')
-ax.set_xlabel('Time, $t$ [s]')
-ax.set_xlim(0, 100)
-ax.set_ylim(bottom=0)
+axarr[0].axis('off')
+# leg = axarr[0].legend(handles=tp.legend_elements, labels=tp.leg_labels, loc="upper center",
+#                       ncol=3, borderaxespad=0, title='Datasets', mode='expand', handler_map={tuple: HandlerTuple(ndivide=None)})
+leg = axarr[0].legend(handles=tp.legend_elements, loc="upper center",
+                      ncol=3, borderaxespad=0, title='Datasets', mode='expand')
+#
+axarr[1].set_xticks([])
+axarr[2].set_xticks([])
+axarr[3].set_xlabel(r'Reynolds number, $\mathcal{R}e$')
+#
+axarr[1].set_ylabel(r'Volume fraction, $\phi$')
+axarr[2].set_ylabel(r'angle, $\alpha~[^\circ]$')
+axarr[3].set_ylabel(r'Stokes number, $\mathcal{S}t$')
+#
+axarr[2].set_yscale('linear')
+axarr[2].set_ylim(bottom=-1)
 
-legend_elements = [Line2D([0], [0], marker='.', ls='none', color=c, label=key)
-                   for key, c in sorted(tp.color_setups.items())]
-ax.legend(handles=legend_elements)
+for ax, l in zip(axarr[1:].flatten(), 'abcdefgh'):
+    trans = mtransforms.ScaledTranslation(
+        5/72, -5/72, fig.dpi_scale_trans)
+    label = '({})'.format(l)
+    ax.text(0.0, 1.0, label, transform=ax.transAxes + trans, color='k',
+            va='top', ha='left')
+
+fig.align_labels()
 
 fig.savefig(
     '../paper/figures/{}.pdf'.format(sys.argv[0].split(os.sep)[-1].replace('.py', '')), dpi=600)

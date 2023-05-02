@@ -8,8 +8,6 @@ savefig.dpi: 300
 mathtext.fontset: stix
 font.family: serif
 font.serif: StixGeneral
-# text.usetex: True
-# text.latex.preamble : \usepackage{amsmath} \usepackage{amssymb} \usepackage{fontawesome5}
 font.size: 10
 
 # Plot layout
