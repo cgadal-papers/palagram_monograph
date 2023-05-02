@@ -38,8 +38,11 @@ fig, axarr = plt.subplot_mosaic(layout, figsize=(tp.large_figure_width, 0.55*tp.
 ax = axarr['(a)']
 for d in datasets[mask]:
     ax.scatter(d.variables['t'][:].data, d.variables['x_front'][:].data,
-               s=2 if d.author == 'Julien' else 0.3, color=tp.color_setups[d.author],
-               zorder=zorder_setups[d.author], rasterized=True)
+               s=1,
+               color=tp.color_setups[d.author],
+               zorder=zorder_setups[d.author],
+               marker='s' if d.author == 'Julien' else None,
+               rasterized=True)
 
 ax.set_ylabel(r'Front position, $x_{\rm f}$ [m]')
 ax.set_xlabel(r'Time, $t$ [s]')
@@ -48,7 +51,7 @@ ax.set_ylim(bottom=0)
 
 # selected run, non-dimensional
 ax = axarr['(b)']
-runs = [0, 158, 94, 196, 209, 201]
+runs = [0, 158, 94, 197, 210, 202]
 
 for run in runs:
     d = datasets[list_runs.index(os.path.join(
@@ -61,7 +64,9 @@ for run in runs:
     x_axis = d.variables['t'][:].data/t_ad
     y_axis = d.variables['x_front'][:].data/x_ad
     ax.scatter(x_axis, y_axis,
-               color=tp.color_setups[d.author], s=2, rasterized=True)
+               color=tp.color_setups[d.author], s=3,
+               marker='s' if d.author == 'Julien' else None,
+               rasterized=True)
     # plotting fit
     fitresult = load_modelresult(os.path.join(
         path_data, 'fitresult_run_{:03d}.save'.format(run)))
