@@ -4,6 +4,7 @@ import sys
 
 import matplotlib.pyplot as plt
 import matplotlib.transforms as mtransforms
+from matplotlib.lines import Line2D
 import numpy as np
 import template as tp
 from netCDF4 import Dataset
@@ -18,6 +19,10 @@ def ang2sin(ang):
 
 def sin2ang(sin):
     return np.degrees(np.arcsin(sin))
+
+
+def Birman(ang):
+    return -0.1824*np.radians(ang)**2 + 0.2781*np.radians(ang) + 0.4871
 
 
 # %% Load data
@@ -63,6 +68,7 @@ layout = [['legend', 'legend'], ['(a)', '(b)']]
 fig, axarr = plt.subplot_mosaic(layout, figsize=tp.large_figure_size, constrained_layout=True,
                                 gridspec_kw={'height_ratios': [0.001, 1]})
 
+alpha_plot = np.linspace(0, 50, 500)
 for label in ['(a)', '(b)']:
     ax = axarr[label]
     for author in author_zorder:
@@ -76,8 +82,13 @@ for label in ['(a)', '(b)']:
         #               for a in alphas[mask]]
         facecolors = [to_rgba(tp.color_setups[author], a)
                       for a in alphas[mask]]
-        tp.mscatter(np.sin(np.radians(alpha[mask])), Y[mask], ax=ax,
+        tp.mscatter(ang2sin(alpha[mask]), Y[mask], ax=ax,
                     edgecolors=edgecolors, label=author, m=markers[mask], facecolors=facecolors)
+    #
+    fact = 1 if label == '(a)' else np.sqrt(0.1)
+    ax.plot(ang2sin(alpha_plot), fact*Birman(alpha_plot),
+            ls='--', color='k', zorder=-8)
+
     ax.set_xlabel(r'$\sin \alpha$')
     ax.set_xlim(left=-0.012)
 
@@ -88,15 +99,13 @@ axarr['(a)'].set_ylabel(r'Froude number, $\mathcal{F}r$')
 axarr['(b)'].set_ylabel(r'$\sqrt{a}\mathcal{F}r$')
 axarr['(a)'].set_ylim(0, 1.35)
 axarr['(b)'].set_ylim(0, 1.85)
+axarr['(a)'].set_xlim(right=ang2sin(48))
+axarr['(b)'].set_xlim(right=ang2sin(48))
 
 axarr['legend'].axis('off')
-leg = axarr['legend'].legend(handles=tp.legend_elements, loc="upper center", ncol=5,
-                             borderaxespad=0, title='Datasets')
-for lh in leg.legend_handles:
-    lh.set_alpha(1)
-
-axarr['legend'].axis('off')
-leg = axarr['legend'].legend(handles=tp.legend_elements,
+other_elements = [Line2D([0], [0], color='k', ls='--',
+                         label='Birman et al. 2007')]
+leg = axarr['legend'].legend(handles=tp.legend_elements + other_elements,
                              ncol=5, title='Datasets', loc="upper center", borderaxespad=0)
 
 for label, ax in axarr.items():
