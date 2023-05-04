@@ -38,9 +38,9 @@ alpha0 = [1, 7, 15, 45]
 alpha_pad = 1.5
 
 figsize = (tp.large_figure_width, tp.golden*tp.large_figure_width/2)
-fig, axarr = plt.subplots(4, 2, constrained_layout=True,
-                          figsize=figsize, sharex=True)
-for a0, axarr_sub in zip(alpha0, axarr):
+fig, axarr = plt.subplots(4, 3, constrained_layout=True,
+                          figsize=figsize, gridspec_kw={'width_ratios': [0.2, 1, 1]})
+for a0, axarr_sub in zip(alpha0, axarr[:, 1:]):
     mask_alpha = (alpha > a0 - alpha_pad) & (alpha < a0 + alpha_pad)
     for i, (var, ax) in enumerate(zip([Fr, L], axarr_sub.flatten())):
         for author in author_zorder:
@@ -71,6 +71,7 @@ for a0, axarr_sub in zip(alpha0, axarr):
     axarr_sub[1].set_ylabel(r'Dissipation, $\tilde{\lambda}$')
 
     axarr_sub[1].set_xscale('log')
+    axarr_sub[0].set_xscale('log')
     # axarr_sub[1].ticklabel_format(
     #     axis='y', style='sci', scilimits=(0, 1), useMathText=True)
 
@@ -91,8 +92,19 @@ for a0, axarr_sub in zip(alpha0, axarr):
         axarr_sub[1].set_xlabel(r'Stokes number, $\mathcal{S}t/a$')
         axarr_sub[0].set_xlabel(r'Stokes number, $\mathcal{S}t/a$')
 
+xline = 0.8
+for ax, a0 in zip(axarr[:, 0].flatten(), alpha0):
+    ax.set_axis_off()
+    ax.set_xlim([0, 1])
+    ax.set_ylim([0, 1])
+    ax.axvline(x=xline, color='k')
+    ax.text(xline/2, 0.5, r'${:.0f}^\circ$'.format(
+        a0), ha='center', va='center')
 
-for ax, l in zip(axarr.flatten(), 'abcdefgh'):
+axarr[0, 0].axhline(y=0.8, xmax=xline, color='k')
+axarr[0, 0].text(xline/2, 0.83, r'$\alpha~[^\circ]$', ha='center', va='bottom')
+
+for ax, l in zip(axarr[:, 1:].flatten(), 'abcdefgh'):
     trans = mtransforms.ScaledTranslation(
         5/72, -5/72, fig.dpi_scale_trans)
     label = '({})'.format(l)
