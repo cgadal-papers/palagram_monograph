@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex main"] 1683215001 "main.aux" "main.bbl" "main" 1683215756 0
+["bibtex main"] 1683218568 "main.aux" "main.bbl" "main" 1683218569 0
   "./biblio.bib" 1683040233 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2023/texmf-dist/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "main.aux" 1683215755 2828 51e747a3ffe3a0233da5c4a358f3b23b "pdflatex"
+  "main.aux" 1683218569 4419 d0f2e82fffb8e26768dd9420eaa19383 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1683215755 "/home/cyril/Documents/Work/Research/Turbity_Currents/PALAGRAM_MONOGRAPH/paper/main.tex" "main.pdf" "main" 1683215756 0
-  "/home/cyril/Documents/Work/Research/Turbity_Currents/PALAGRAM_MONOGRAPH/paper/main.tex" 1683215672 8150 aba55d633a9d7a146b5c921e51bf1c96 ""
+["pdflatex"] 1683218568 "/home/cyril/Documents/Work/Research/Turbity_Currents/PALAGRAM_MONOGRAPH/paper/main.tex" "main.pdf" "main" 1683218569 0
+  "/home/cyril/Documents/Work/Research/Turbity_Currents/PALAGRAM_MONOGRAPH/paper/main.tex" 1683218567 9726 30bf20c349cfa86c823d3afd510ddd92 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -71,12 +71,12 @@
   "figures//figure1.pdf" 1679932958 1550535 09eb2a26e09146b317f6b17f94389ad2 ""
   "figures//figure2.pdf" 1683214992 41875 d5c4a0560d0392530ef76a8019741a58 ""
   "figures//figure3.pdf" 1683215000 346432 2a4d1f6f5087979d2ac7720e303a1825 ""
-  "figures//figure4.pdf" 1683215754 89271 306f909af6e40bb1ce8a33b6a347e65c ""
+  "figures//figure4.pdf" 1683217845 88894 659339c720f359288fd991658b8553c5 ""
   "figures//figure5.pdf" 1683215715 38576 d6dd06c5acf5172418b063f48731317f ""
   "figures//figure6.pdf" 1683215015 25535 83f37ab608ba9dd1c67ca4e1af8798fe ""
-  "main.aux" 1683215755 2828 51e747a3ffe3a0233da5c4a358f3b23b "pdflatex"
-  "main.bbl" 1683215001 49 0eba253fc001332e731e8aba3f23127b "bibtex main"
-  "main.tex" 1683215672 8150 aba55d633a9d7a146b5c921e51bf1c96 ""
+  "main.aux" 1683218569 4419 d0f2e82fffb8e26768dd9420eaa19383 "pdflatex"
+  "main.bbl" 1683218568 49 0eba253fc001332e731e8aba3f23127b "bibtex main"
+  "main.tex" 1683218567 9726 30bf20c349cfa86c823d3afd510ddd92 ""
   (generated)
   "main.aux"
   "main.log"

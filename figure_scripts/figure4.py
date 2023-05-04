@@ -40,18 +40,17 @@ aspect = H0/L0
 
 # %% graphic specifications
 # changing order depending on authors
-author_zorder = ['Rastello', 'Cyril', 'Cyril/Marie', 'Jean', 'Julien']
+author_zorder = ['Cyril', 'Rastello', 'Cyril/Marie', 'Jean', 'Julien']
 
 # %% masks for plot
-mask_Stokes = (St > 4e-2) & (St < 6e-2)
-# mask_phi = (phi > 0.12) & (phi < 0.18)
-# mask_Stokes = (St < 5.5e-2)
+# mask_Stokes = (St > 4e-2) & (St < 6e-2)
+# mask_Stokes = (St < 6e-2)
 mask_phi = (phi < 0.45)
 
 # %% graphic vector for plots
 alphas = np.ones_like(Fr)
-alphas[(~mask_phi) & (authors == 'Jean')] = 0.2
-alphas[(~mask_Stokes) & (authors != 'Jean')] = 0.2
+# alphas[(~mask_phi | ~mask_Stokes)] = 0.2
+alphas[~mask_phi] = 0.2
 
 markers = np.full_like(Fr, 'o', dtype=str)
 markers[particles == 'Hydrogels'] = '*'

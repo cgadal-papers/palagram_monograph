@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.7)  4 MAY 2023 17:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.7)  4 MAY 2023 18:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -236,15 +236,15 @@ Package caption Info: End \AtBeginDocument code.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(43.36243pt, 527.57014pt, 43.36243pt)
-* v-part:(T,H,B)=(43.36243pt, 708.24513pt, 43.36243pt)
+* h-part:(L,W,R)=(60.6565pt, 492.982pt, 60.65651pt)
+* v-part:(T,H,B)=(56.9055pt, 681.15898pt, 56.9055pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
-* \textwidth=527.57014pt
-* \textheight=708.24513pt
-* \oddsidemargin=-28.90756pt
-* \evensidemargin=-28.90756pt
-* \topmargin=-65.90756pt
+* \textwidth=492.982pt
+* \textheight=681.15898pt
+* \oddsidemargin=-11.6135pt
+* \evensidemargin=-11.6135pt
+* \topmargin=-52.36449pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=10.0pt
@@ -273,40 +273,33 @@ File: ./figures//figure1.pdf Graphic file (type pdf)
 <use ./figures//figure1.pdf>
 Package pdftex.def Info: ./figures//figure1.pdf  used on input line 42.
 (pdftex.def)             Requested size: 492.83981pt x 359.77307pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 43.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 43.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 51.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 51.
 <./figures//figure2.pdf, id=2, 240.02034pt x 576.04884pt>
 File: ./figures//figure2.pdf Graphic file (type pdf)
 <use ./figures//figure2.pdf>
 Package pdftex.def Info: ./figures//figure2.pdf  used on input line 69.
 (pdftex.def)             Requested size: 240.01974pt x 576.04744pt.
-<./figures//figure3.pdf, id=3, 492.84103pt x 271.06255pt>
-File: ./figures//figure3.pdf Graphic file (type pdf)
-<use ./figures//figure3.pdf>
-Package pdftex.def Info: ./figures//figure3.pdf  used on input line 112.
-(pdftex.def)             Requested size: 492.83981pt x 271.06187pt.
 [1{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 {/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Underfull \hbox (badness 10000) in paragraph at lines 117--117
+<./figures//figure3.pdf, id=18, 492.84103pt x 271.06255pt>
+File: ./figures//figure3.pdf Graphic file (type pdf)
+<use ./figures//figure3.pdf>
+Package pdftex.def Info: ./figures//figure3.pdf  used on input line 112.
+(pdftex.def)             Requested size: 492.83981pt x 271.06187pt.
+
+Underfull \hbox (badness 1960) in paragraph at lines 117--117
 []\OT1/cmr/bx/n/14.4 Dimensional anal-y-sis at the
  []
 
-
-Underfull \hbox (badness 2111) in paragraph at lines 117--117
-\OT1/cmr/bx/n/14.4 macro-scopic scale of the cur-
- []
-
-
-Underfull \vbox (badness 3323) has occurred while \output is active []
-
- [2 <./figures//figure1.pdf>]
+[2 <./figures//figure1.pdf>]
 <./figures//figure4.pdf, id=84, 492.84103pt x 304.59251pt>
 File: ./figures//figure4.pdf Graphic file (type pdf)
 <use ./figures//figure4.pdf>
@@ -320,7 +313,7 @@ Package pdftex.def Info: ./figures//figure5.pdf  used on input line 162.
 <./figures//figure6.pdf, id=86, 240.02034pt x 388.36107pt>
 File: ./figures//figure6.pdf Graphic file (type pdf)
 <use ./figures//figure6.pdf>
-Package pdftex.def Info: ./figures//figure6.pdf  used on input line 173.
+Package pdftex.def Info: ./figures//figure6.pdf  used on input line 174.
 (pdftex.def)             Requested size: 240.01974pt x 388.3601pt.
  (./main.bbl
 
@@ -330,15 +323,15 @@ Package natbib Warning: Empty `thebibliography' environment on input line 3.
 
  <./figures//figure6.pdf>] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 4910 strings out of 476017
- 85625 string characters out of 5789775
+ 4915 strings out of 476017
+ 85690 string characters out of 5789775
  1864666 words of memory out of 5000000
- 25343 multiletter control sequences out of 15000+600000
+ 25348 multiletter control sequences out of 15000+600000
  516877 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,6n,63p,1654b,293s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,6n,63p,1654b,350s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (6 pages, 2215311 bytes).
+Output written on main.pdf (6 pages, 2221970 bytes).
 PDF statistics:
  482 PDF objects out of 1000 (max. 8388607)
  145 compressed objects within 2 object streams
