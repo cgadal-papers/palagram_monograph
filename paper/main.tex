@@ -5,6 +5,8 @@
 \usepackage{graphicx, caption}
 \usepackage{authblk}
 \usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{amsmath}
 
 % \usepackage{moreverb,savetrees}
 
@@ -60,60 +62,6 @@ Particle-laden gravity currents (PLGCs) are driven by a mass difference between 
 	\item other effects: lock geometry, non-boussinesq, entrainment, erosion/deposition $\rightarrow$ ignored here
 \end{itemize}
 
-\section*{Methods}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Figure 2
-\begin{figure}
-	\centering
-	% \includegraphics{Figures/Figure_lit_plat/Figure_lit_plat.pdf}
-	\includegraphics{figure2.pdf}
-	\caption{\textbf{Explored parameter space.} Each symbol correspond to a single experimental run.}
-	\label{fig:fig2}
-\end{figure}
-
-
-\subsection{Experimental setups}
-
-Even if the dynamics of PLGCs is associated with several complex processes, a general consequence is observed on the front dynamics, often referred to as the $\mathcal{F}r$ number, and the front shape. Then prediction of the different flow regimes associated with PLGCs shall be entirely included into these observables. In order to characterize the different flow regimes for PLGCs induced by a finite volume of material initially at “rest”, 3 dam-break-type devices have been used to cover a wide range of control parameters, as $\alpha \in [0^o,30^o]$, $\phi\in[0.1\%,20\%]$, $At\in[???]$, $Re\in[???]$, $St\in[???]$, $a\in??$, as specifically defined in section \ref{sec:dimensionlessmap}. These experimental devices are supplemented with Euler-Euler numerical simulations to confirm the relevance of such flow regime description to characterize the dynamics of PLGCs.
-
-\subsection{Datasets}
-
-On these 3 devices, a total of $N$ experiments are presented here, complemented by $N$ numerical simulations using SedFoam (see description below). They are classified into 4 different datasets, described below.
-
-\paragraph{Dataset 1}
-
-Description Dataset LEGI
-
-\paragraph{Dataset 2}
-
-Description Dataset IMFT
-
-\paragraph{Dataset 3}
-
-Description Dataset LEGI/IMFT
-
-\paragraph{Dataset 4}
-
-Description Dataset LEMTA
-
-\paragraph{SedFoam}
-
-Description Dataset SedFoam
-
-\subsection{Fitting procedure and front position analysis}
-
-For each experiment/simulation, we extract the current front position as a function of time (see Fig. \ref{fig:fig3}).
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Figure 3
-\begin{figure*}
-	\centering
-	\includegraphics{figure3.pdf}
-	\caption{(a) Current front position as a function of time for all experimental runs (b) Selected runs plotted in non-dimensional coordinates.}
-	\label{fig:fig3}
-\end{figure*}
-
 \section{Dimensional analysis at the macroscopic scale of the current}
 \label{sec:dimensionlessmap}
 
@@ -141,6 +89,82 @@ Then, the dynamics of the current are characterized by several dimensionless var
 	\displaystyle \mathcal{F}r =\frac{U_c}{U_0},
 \end{equation}
 where $U_c$ is the front velocity of the current. Note that $U_c$ is time-dependent, and so is $\mathcal{F}r$, i.e. that $\mathcal{F}r$ as defined here is not a control parameter. (The Froude number which would be defined as a control parameter for a lock-release configuration would be $Fr\equiv 1$, and is thus not relevant to predict the flow dynamics.)
+
+\section{Methods}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Figure 2
+\begin{figure}
+	\centering
+	% \includegraphics{Figures/Figure_lit_plat/Figure_lit_plat.pdf}
+	\includegraphics{figure2.pdf}
+	\caption{\textbf{Explored parameter space.} Each symbol correspond to a single experimental run.}
+	\label{fig:fig2}
+\end{figure}
+
+
+\subsection{Experimental setups}
+
+Even if the dynamics of PLGCs is associated with several complex processes, a general consequence is observed on the front dynamics, often referred to as the $\mathcal{F}r$ number, and the front shape. Then prediction of the different flow regimes associated with PLGCs shall be entirely included into these observables. In order to characterize the different flow regimes for PLGCs induced by a finite volume of material initially at “rest”, 3 dam-break-type devices have been used to cover a wide range of control parameters, as $\alpha \in [0^o,30^o]$, $\phi\in[0.1\%,20\%]$, $At\in[???]$, $Re\in[???]$, $St\in[???]$, $a\in??$, as specifically defined in section \ref{sec:dimensionlessmap}. These experimental devices are supplemented with Euler-Euler numerical simulations to confirm the relevance of such flow regime description to characterize the dynamics of PLGCs.
+
+\paragraph{Set-up 1}
+
+Specifications of IMFT set-up
+
+\paragraph{Set-up 2}
+
+Specifications of LEGI set-up
+
+\paragraph{Set-up 3}
+
+Specifications of LEMTA set-up
+
+\subsection{Datasets}
+
+On these 3 devices, a total of $N$ experiments are presented here, complemented by $N$ numerical simulations using SedFoam (see description below). They are classified into 4 different datasets, described below.
+
+\paragraph{Dataset 1}
+
+Description Dataset LEGI
+
+\paragraph{Dataset 2}
+
+Description Dataset IMFT
+
+\paragraph{Dataset 3}
+
+Description Dataset LEGI/IMFT
+
+\paragraph{Dataset 4}
+
+Description Dataset LEMTA
+
+\paragraph{SedFoam}
+
+Description Dataset SedFoam
+
+\subsection{Fitting procedure and front position analysis}
+
+For each experimental/numerical run, we extract the current front position as a function of time (see Fig. \ref{fig:fig3}a). A few selected runs are shown on figure~\ref{fig:fig3}b in non-dimensional time coordinates. After a short transient acceleration phase, most currents exhibit at first a constant velocity corresponding to the so-called \emph{slumping} regime. After this, the velocity can decrease, either because of settling induced buoyancy loss, or because the current enters the \emph{inertial} regime.
+
+It can be qualitatively seen that increasing the bottom slope increases the slumping velocity, while increasing the Stokes number shortens the duration of the constant-velocity regime.
+%
+To properly quantify that, we fit all front propagation curves (except Dataset 4) with the following equation:
+
+\begin{equation}
+	\label{eq:fit_eq}
+	\frac{x_{\rm f}}{L_{0}} = x_{i} + \mathcal{F}r \frac{t}{t_{0}} - \frac{\tilde{\lambda}}{2} \left(\frac{t}{t_{0}}\right)^{2},
+\end{equation}
+where $\mathcal{F}r$ corresponds now to the non-dimensional current velocity during the slumping regime, and $\tilde{\lambda}$ to the dissipation. The fit is performed between $t/t_{0} = 5$, to avoid the initial transient phase, and $t/t_{0} = 30$, the transition time from the slumping to the inertial regime~\citep{refs}. Note that $x_{i}$ is kept constant equal to 0 for Dataset 1, 2 and 3, but had to be left free to adjust for the SedFoam simulations \textcolor{red}{comment this}. For runs with strong dissipation ($\tilde{\lambda} > 2 {\times} 10^{-2}$), we add a quartic term to \eqref{eq:fit_eq} to improve the fit quality and obtain a better estimation of $\mathcal{F}r$ and $\tilde{\lambda}$. We checked that our results does not depend on the presence of this quartic term, and that the linear and quadratic ones remain much larger.
+
+For Dataset 4, the time resolution as well as the experiment duration does not allow to extract the dissipation. Therefore, we simply fit the whole available points with a linear function.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Figure 3
+\begin{figure*}
+	\centering
+	\includegraphics{figure3.pdf}
+	\caption{(a) Current front position as a function of time for all experimental runs (b) Selected runs plotted in non-dimensional coordinates.}
+	\label{fig:fig3}
+\end{figure*}
 
 \section{Results}
 
