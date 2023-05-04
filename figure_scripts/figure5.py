@@ -44,7 +44,7 @@ for a0, axarr_sub in zip(alpha0, axarr):
     mask_alpha = (alpha > a0 - alpha_pad) & (alpha < a0 + alpha_pad)
     for i, (var, ax) in enumerate(zip([Fr, L], axarr_sub.flatten())):
         for author in author_zorder:
-            mask = (authors == author) & mask_alpha
+            mask = (authors == author) & mask_alpha & (phi < 0.45)
             marker = 's' if author == 'Julien' else None
             #
             ax.scatter(St[mask]/a[mask], var[mask], c=tp.color_setups[author],

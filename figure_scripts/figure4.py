@@ -46,7 +46,7 @@ author_zorder = ['Rastello', 'Cyril', 'Cyril/Marie', 'Jean', 'Julien']
 mask_Stokes = (St > 4e-2) & (St < 6e-2)
 # mask_phi = (phi > 0.12) & (phi < 0.18)
 # mask_Stokes = (St < 5.5e-2)
-mask_phi = (phi < 0.40)
+mask_phi = (phi < 0.45)
 
 # %% graphic vector for plots
 alphas = np.ones_like(Fr)
