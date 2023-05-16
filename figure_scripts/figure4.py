@@ -97,7 +97,7 @@ for label in ['(a)', '(b)']:
 
 axarr['(a)'].set_ylabel(r'Froude number, $\mathcal{F}r$')
 axarr['(b)'].set_ylabel(r'$\sqrt{a}\mathcal{F}r$')
-axarr['(a)'].set_ylim(0, 1.35)
+axarr['(a)'].set_ylim(0, 1.6)
 axarr['(b)'].set_ylim(0, 1.85)
 axarr['(a)'].set_xlim(right=ang2sin(48))
 axarr['(b)'].set_xlim(right=ang2sin(48))

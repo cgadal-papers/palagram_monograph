@@ -45,7 +45,7 @@ fig, axarr = plt.subplots(2, 1, constrained_layout=True,
 for alpha0, ax in zip(alphas, axarr.flatten()):
     mask_alpha = (alpha > alpha0 - alpha_pad) & (alpha < alpha0 + alpha_pad)
     if alpha0 == 0:
-        axins = ax.inset_axes([0.43, 0.55, 0.55, 0.43])
+        axins = ax.inset_axes([0.43, 0.53, 0.55, 0.45])
         axins.set_ylim(0, 0.8)
         axins.set_xlim(right=0.8)
         axins.set_xlabel('$\phi$', labelpad=0)
@@ -66,7 +66,7 @@ for alpha0, ax in zip(alphas, axarr.flatten()):
     ax.axhspan(moy - std, moy + std, color='k', alpha=0.2, zorder=-10)
     #
     ax.set_ylabel(r'Froude number, $\mathcal{F}r$')
-    ax.set_ylim([0, 1.5])
+    ax.set_ylim([0, 1.6])
 
 ax.set_xlabel(r'Volume fraction, $\phi$')
 ax.set_xscale('log')

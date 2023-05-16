@@ -191,7 +191,7 @@ for i, (ax, ax_label, slope, water_height_fact) in enumerate(zip(axs_sketches.fl
     #
     if ax_label in ['a', 'b']:
         ax.text(bottom_right[0]-0.4*tank_length, 0.75*y.mean(),
-                r'$\theta$', ha='right', va='center')
+                r'$\alpha$', ha='right', va='center')
 
     ax.annotate("", xytext=top_door, xy=top_door+0.4*door_height*slope_vec_up,
                 arrowprops=dict(arrowstyle="-|>", shrinkA=4, shrinkB=0, color='k'))

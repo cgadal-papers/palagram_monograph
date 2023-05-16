@@ -76,7 +76,7 @@ for a0, axarr_sub in zip(alpha0, axarr[:, 1:]):
     #     axis='y', style='sci', scilimits=(0, 1), useMathText=True)
 
     # axarr_sub[0].set_ylim(0, 1.85)
-    axarr_sub[0].set_ylim(0, 1.4)
+    axarr_sub[0].set_ylim(0, 1.6)
     axarr_sub[1].set_ylim(-0.02, 0.07)
     # axarr_sub[1].set_ylim(0.0001, 0.07)
     # axarr_sub[1].set_yscale('log')

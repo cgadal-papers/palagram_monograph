@@ -56,9 +56,9 @@ runs = [0, 158, 94, 197, 210, 202]
 for run in runs:
     d = datasets[list_runs.index(os.path.join(
         path_data, 'run_{:03d}.nc'.format(run)))]
-    print(d.author)
+    # print(d.author)
     #
-    t_ad = d.variables['L0'][:].data/d.variables['u0'][:].data
+    t_ad = d.variables['t0'][:].data
     x_ad = d.variables['L0'][:].data
     #
     x_axis = d.variables['t'][:].data/t_ad

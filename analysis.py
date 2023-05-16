@@ -128,7 +128,7 @@ for i, d in enumerate(datasets):
     # Computing variables for adi time
     rho_c = rho_f + phi * (rho_p - rho_f)  # average lock density, [kg/m3]
     gprime = g*(rho_c - rho_a)/rho_a  # specific gravity
-    u0 = np.sqrt(gprime*H0)
+    u0 = np.sqrt(gprime*H0*np.cos(np.radians(alpha)))
     t_ad = L0/u0
     #
     # #### Fitting front position curves
@@ -196,6 +196,8 @@ for i, d in enumerate(datasets):
                     comments='specific gravity')
     create_variable(newfile, 'u0', u0, unit='m/s',
                     comments='characteristic velocity')
+    create_variable(newfile, 't0', t_ad, unit='s',
+                    comments='characteristic timescale')
     # Non-dimensional numbers
     create_variable(newfile, 'a', H0/d.variables['L0'][:].data, unit='-',
                     comments='lock aspect ratio')
