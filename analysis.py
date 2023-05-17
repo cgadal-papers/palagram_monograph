@@ -1,11 +1,11 @@
-import numpy as np
 import glob
 import os
+import shutil
 
 import numpy as np
-from netCDF4 import Dataset
 from lmfit import Model
 from lmfit.model import save_modelresult
+from netCDF4 import Dataset
 
 
 def create_variable(netcdf_group, name, data, dimensions=None, std=None,
@@ -46,8 +46,10 @@ def determine_fit_props(author, alpha, run, params):
     if author == 'Julien':
         params['xi'].vary = True
         if run == 'run42b_front.nc':
-            t_bounds = [0, 6]
+            t_bounds = [0, 8]
         if run == 'run37_front.nc':
+            t_bounds = [0, 20]
+        if run == 'run42_front.nc':
             t_bounds = [0, 20]
     if author == 'Cyril':
         if run == 'run_012.nc':
@@ -67,6 +69,8 @@ def determine_fit_props(author, alpha, run, params):
 # paths
 input_path = 'data/input_data'
 output_path = 'data/output_data'
+shutil.rmtree(output_path)
+os.makedirs(output_path)
 
 # physical parameters
 g = 9.81  # [m/s2]
@@ -86,7 +90,7 @@ p0 = {'Fr': 0.4, 'xi': 0, 'L': 0, 'c': 0, 'd': 0}
 
 lower_bounds = {'Fr': 0, 'xi': -np.inf,
                 'L': -0.05, 'c': -1e-3, 'd': -1e-4}
-higher_bounds = {'Fr': 1.6, 'xi': np.inf, 'L': 0.1, 'c': 1e-3, 'd': 1e-4}
+higher_bounds = {'Fr': 2, 'xi': np.inf, 'L': 0.1, 'c': 1e-3, 'd': 1e-4}
 
 # set parameter bounds
 for par in params.keys():
@@ -94,7 +98,11 @@ for par in params.keys():
                     max=higher_bounds[par])
 
 # %% Loading data
-list_runs = sorted(glob.glob(os.path.join(input_path, 'runs*/*.nc')))
+list_runs = sorted(glob.glob(os.path.join(input_path, 'runs_CYRIL/*.nc'))) + \
+    sorted(glob.glob(os.path.join(input_path, 'runs_JEAN/*.nc'))) + \
+    sorted(glob.glob(os.path.join(input_path, 'runs_JULIEN2/*.nc'))) + \
+    sorted(glob.glob(os.path.join(input_path, 'runs_MARIE/*.nc')))
+
 datasets = [Dataset(run) for run in list_runs]
 
 # %% Loop over data file and analysis
@@ -118,10 +126,13 @@ for i, d in enumerate(datasets):
     if d.author == 'Julien':
         alpha = alpha*180/np.pi
         if d.variables['d'].unit == 'mum':
+            print(run, '--d')
             diam = diam*1e-6  # grain size, [m]
         if d.variables['rho_f'].unit == 'g/cm3':
+            print(run, '-rho')
             rho_f, rho_p, rho_a = rho_f*1e3, rho_p*1e3, rho_a*1e3
         if d.variables['H0'].unit == 'cm':
+            print(run, '-L0, H0')
             H0 = H0/100
             L0 = L0/100
     #

@@ -31,11 +31,11 @@ def determine_fit_props(author, alpha, run, params):
     if author == 'Julien':
         params['xi'].vary = True
         if run == 'run42b_front.nc':
-            t_bounds = [0, 6]
+            t_bounds = [0, 8]
         if run == 'run37_front.nc':
             t_bounds = [0, 20]
-    # if author == 'Rastello':
-    #     params['xi'].vary = True
+        if run == 'run42_front.nc':
+            t_bounds = [0, 20]
     if author == 'Cyril':
         if run == 'run_012.nc':
             t_bounds[-1] = min(t_bounds[-1], 30)
@@ -70,7 +70,7 @@ p0 = {'Fr': 0.4, 'xi': 0, 'L': 0, 'c': 0, 'd': 0}
 
 lower_bounds = {'Fr': 0, 'xi': -np.inf,
                 'L': -0.05, 'c': -1e-3, 'd': -1e-4}
-higher_bounds = {'Fr': 1.6, 'xi': np.inf, 'L': 0.1, 'c': 1e-3, 'd': 1e-4}
+higher_bounds = {'Fr': 2, 'xi': np.inf, 'L': 0.1, 'c': 1e-3, 'd': 1e-4}
 
 # set parameter bounds
 for par in params.keys():
@@ -82,7 +82,7 @@ SETUPS = {'Cyril': 'IMFT', 'Cyril/Marie': 'LEGI', 'Jean': 'LEMTA',
           'Julien': 'NUM', 'Rastello': 'LEGI'}
 
 # %% Loading data
-list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JULIEN*/*.nc')))
+list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JULIEN2/*.nc')))
 # list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JEAN/*.nc')))
 # list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_MARIE/*.nc')))
 # list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_CYRIL/*.nc')))
@@ -106,7 +106,7 @@ authors = np.array([d.author for d in datasets])
 # mask_runs = (authors == 'Cyril/Marie')
 # mask_runs = np.ones_like(alphas).astype('bool')
 mask_runs = (alphas > 6) & (alphas < 8)
-# mask_runs = (alphas < 3)
+# mask_runs = (alphas > 40)
 # mask_runs = (grains == 'PMMA')
 
 # %% Loop over data file and analysis
@@ -115,6 +115,7 @@ fig_fit, ax = plt.subplots(1, 1, constrained_layout=True)
 
 for i, d in enumerate(datasets[mask_runs]):
     run = list_runs[mask_runs][i].split(os.sep)[-1]
+    # run = list_runs[mask_runs][i].split('input_data')[-1]
     print(run)
     #
     t = d.variables['t'][:].data
@@ -140,6 +141,7 @@ for i, d in enumerate(datasets[mask_runs]):
     # Computing variables for adi time
     rho_c = rho_f + phi * (rho_p - rho_f)  # average lock density, [kg/m3]
     gprime = g*(rho_c - rho_a)/rho_a  # specific gravity
+    # u0 = np.sqrt(gprime*H0*np.cos(np.radians(alpha)))
     u0 = np.sqrt(gprime*H0)
     t_ad = L0/u0
     # if diam > 400e-6:
@@ -154,18 +156,20 @@ for i, d in enumerate(datasets[mask_runs]):
     mask = (t_ok > t_bounds[0]) & (t_ok < t_bounds[1])
     #
     # Make fit
-    if mask.sum() > 5:
-        result = model.fit(x_ok[mask], params, t=t_ok[mask])
+    ax.plot(t/t_ad, x_front/L0, '.-', color='tab:blue', lw=1)
+    method = 'trust-constr'
+    if mask.sum() > 3:
+        result = model.fit(x_ok[mask], params, t=t_ok[mask], method=method)
         L, L_err = result.params['L'].value, result.params['L'].stderr
-        if L > 1.5e-2:
+        if L > 2e-2:
+            print('Quartic')
             params['d'].vary = True
-            result = model.fit(x_ok[mask], params, t=t_ok[mask])
+            result = model.fit(x_ok[mask], params, t=t_ok[mask], method=method)
         r_squared = result.rsquared
         print('author: {}, r2: {:.3f}'.format(d.author, r_squared))
         #
         ax.plot(t_ok[mask], x_ok[mask],
                 lw=10, alpha=0.5, color='tab:orange')
-        ax.plot(t/t_ad, x_front/L0, '.-', color='tab:blue', lw=1)
         ax.plot(t_ok[mask], result.best_fit, color='k', ls='--')
         # print(result.fit_report())
 
