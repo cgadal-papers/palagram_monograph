@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.7)  17 MAY 2023 12:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.7)  17 MAY 2023 16:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -374,17 +374,17 @@ File: ./figures//figure3.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./figures//figure3.pdf  used on input line 164.
 (pdftex.def)             Requested size: 492.83981pt x 271.06187pt.
 [3 <./figures//figure2.pdf>]
-<./figures//figure4.pdf, id=163, 492.84103pt x 304.59251pt>
+<./figures//figure4.pdf, id=150, 492.84103pt x 304.59251pt>
 File: ./figures//figure4.pdf Graphic file (type pdf)
 <use ./figures//figure4.pdf>
 Package pdftex.def Info: ./figures//figure4.pdf  used on input line 177.
 (pdftex.def)             Requested size: 492.83981pt x 304.59175pt.
-<./figures//figure5.pdf, id=164, 492.84103pt x 398.71678pt>
+<./figures//figure5.pdf, id=151, 492.84103pt x 398.71678pt>
 File: ./figures//figure5.pdf Graphic file (type pdf)
 <use ./figures//figure5.pdf>
 Package pdftex.def Info: ./figures//figure5.pdf  used on input line 186.
 (pdftex.def)             Requested size: 492.83981pt x 398.7158pt.
-<./figures//figure6.pdf, id=165, 240.02034pt x 388.36107pt>
+<./figures//figure6.pdf, id=152, 240.02034pt x 388.36107pt>
 File: ./figures//figure6.pdf Graphic file (type pdf)
 <use ./figures//figure6.pdf>
 Package pdftex.def Info: ./figures//figure6.pdf  used on input line 198.
@@ -411,9 +411,9 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  57i,7n,63p,1654b,361s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (7 pages, 2195516 bytes).
+Output written on main.pdf (7 pages, 2226354 bytes).
 PDF statistics:
- 502 PDF objects out of 1000 (max. 8388607)
+ 451 PDF objects out of 1000 (max. 8388607)
  155 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)

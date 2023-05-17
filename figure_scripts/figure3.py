@@ -16,8 +16,10 @@ path_data = '../data/output_data'
 list_runs = sorted(glob.glob(os.path.join(path_data, '*.nc')))
 list_fitresults = sorted(glob.glob(os.path.join(path_data, 'fitresult*')))
 
-datasets = np.array([Dataset(run) for run in list_runs])
+# datasets = np.array([Dataset(run) for run in list_runs])
 
+datasets = np.array([Dataset(run) for run in list_runs if Dataset(
+    run).particle_type != 'saline water'])
 # %% mask data
 alpha, phi, rho_p = np.array(
     [[d.variables['alpha'][:].data, d.variables['phi'][:].data, d.variables['rho_p'][:].data]
@@ -39,9 +41,9 @@ ax = axarr['(a)']
 for d in datasets[mask]:
     ax.scatter(d.variables['t'][:].data, d.variables['x_front'][:].data,
                s=1,
-               color=tp.color_setups[d.author],
+               color=tp.color_datasets[tp.datasets[d.author]],
+               marker=tp.marker_style[d.particle_type],
                zorder=zorder_setups[d.author],
-               marker='s' if d.author == 'Julien' else None,
                rasterized=True)
 
 ax.set_ylabel(r'Front position, $x_{\rm f}$ [m]')
@@ -64,9 +66,8 @@ for run in runs:
     x_axis = d.variables['t'][:].data/t_ad
     y_axis = d.variables['x_front'][:].data/x_ad
     ax.scatter(x_axis, y_axis,
-               color=tp.color_setups[d.author], s=3,
-               marker='s' if d.author == 'Julien' else None,
-               rasterized=True)
+               color=tp.color_datasets[tp.datasets[d.author]], s=3,
+               marker=tp.marker_style[d.particle_type], rasterized=True)
     # plotting fit
     fitresult = load_modelresult(os.path.join(
         path_data, 'fitresult_run_{:03d}.save'.format(run)))
@@ -96,8 +97,8 @@ ax.set_ylim(-0.5, 17)
 
 axarr['legend'].axis('off')
 other_elements = [Line2D([0], [0], color='k', ls='--', label='fit')]
-leg = axarr['legend'].legend(handles=tp.legend_elements + other_elements,
-                             ncol=6, title='Datasets', loc="upper center", borderaxespad=0)
+leg = axarr['legend'].legend(handles=tp.legend_datasets + other_elements,
+                             ncol=5, title='Datasets', loc="upper center", borderaxespad=0)
 
 for label, ax in axarr.items():
     if label not in ['legend']:

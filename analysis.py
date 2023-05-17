@@ -160,6 +160,8 @@ for i, d in enumerate(datasets):
         print('author: {}, r2: {:.3f}'.format(d.author, r_squared))
         Fr, Fr_err = result.params['Fr'].value, result.params['Fr'].stderr
         L, L_err = result.params['L'].value, result.params['L'].stderr
+        if not params['L'].vary:
+            L, L_err = np.nan, np.nan
     else:
         Fr, Fr_err = np.nan, np.nan
         L, L_err = np.nan, np.nan

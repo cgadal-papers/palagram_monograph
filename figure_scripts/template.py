@@ -76,7 +76,7 @@ datset_zorder = {'1': 0, '2': 1, '3': 2, 'SedFoam': 2}
 # )
 
 legend_datasets = [
-    Line2D([0], [0], marker='s' if dataset == 'Sedfoam' else 'o', color=color_datasets[dataset], ls='none', label=dataset) for dataset in sorted(color_datasets.keys())
+    Line2D([0], [0], marker='s' if dataset == 'SedFoam' else 'o', color=color_datasets[dataset], ls='none', label=dataset) for dataset in sorted(color_datasets.keys())
 ]
 
 legend_particles = [
