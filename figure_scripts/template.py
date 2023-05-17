@@ -54,8 +54,11 @@ color_cycle = plt.rcParams['axes.prop_cycle'].by_key()['color']
 datasets = {'Julien': 'SedFoam', 'Jean': '3',
             'Cyril': '1', 'Cyril/Marie': '2', 'Rastello': '2'}
 
-color_datasets = {'SedFoam': '#823329', '3': '#FE7F2D',
-                  '1': '#FCCA46', '2': '#619B8A'}
+# color_datasets = {'SedFoam': '#08415C', '3': '#FE7F2D',
+#                   '1': '#FCCA46', '2': '#83B692'}
+
+color_datasets = {'SedFoam': '#780116', '3': '#FE7F2D',
+                  '1': '#FCCA46', '2': '#83B692'}
 
 marker_style = {'glass beads': 'o', 'silica sand': 'h', 'Hydrogels': '*',
                 'PMMA': 'D', 'polystyren beads': 'X', 'SedFoam': 's'}
