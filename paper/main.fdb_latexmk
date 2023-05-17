@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1684252041 "main.aux" "main.bbl" "main" 1684252533 0
+["bibtex main"] 1684252041 "main.aux" "main.bbl" "main" 1684311697 0
   "./biblio.bib" 1683040233 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2023/texmf-dist/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "main.aux" 1684252533 4782 affc6090d576632d4187a538da69cbb7 "pdflatex"
+  "main.aux" 1684311697 4782 affc6090d576632d4187a538da69cbb7 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1684252532 "/home/cyril/Documents/Work/Research/Turbity_Currents/PALAGRAM_MONOGRAPH/paper/main.tex" "main.pdf" "main" 1684252533 0
+["pdflatex"] 1684311696 "/home/cyril/Documents/Work/Research/Turbity_Currents/PALAGRAM_MONOGRAPH/paper/main.tex" "main.pdf" "main" 1684311697 0
   "/home/cyril/Documents/Work/Research/Turbity_Currents/PALAGRAM_MONOGRAPH/paper/main.tex" 1683226867 11806 e95937ced6c46515b00bdef2356ee3aa ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -85,10 +85,10 @@
   "figures//figure1.pdf" 1684251825 1550558 b8ea7b107beac13410854538e7173323 ""
   "figures//figure2.pdf" 1684251830 42015 1cd679af56ceb7288869ef5d30a165ef ""
   "figures//figure3.pdf" 1684252039 345947 bffbcfc09edb4f3c54fa83d64926afa0 ""
-  "figures//figure4.pdf" 1684252312 89735 c54f42b5bb6b3ee0e98508fc347b708b ""
+  "figures//figure4.pdf" 1684311696 38241 d632ae42995a40f250512db3ab60d7ac ""
   "figures//figure5.pdf" 1684252350 40727 21b61c0ea592542ed7237b6af2e0d718 ""
   "figures//figure6.pdf" 1684252532 25606 6940033fc95c590ee5eb854478465062 ""
-  "main.aux" 1684252533 4782 affc6090d576632d4187a538da69cbb7 "pdflatex"
+  "main.aux" 1684311697 4782 affc6090d576632d4187a538da69cbb7 "pdflatex"
   "main.bbl" 1684252041 49 0eba253fc001332e731e8aba3f23127b "bibtex main"
   "main.tex" 1683226867 11806 e95937ced6c46515b00bdef2356ee3aa ""
   (generated)

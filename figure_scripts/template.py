@@ -47,19 +47,20 @@ cmap_images = cmo.cm.gray
 # cmap_images = cmr.arctic
 
 color_cycle = plt.rcParams['axes.prop_cycle'].by_key()['color']
-# color_setups = {'Cyril': color_cycle[0], 'Rastello': color_cycle[2],
-#                 'Jean': color_cycle[1], 'Julien': color_cycle[5],
-#                 'Cyril/Marie': color_cycle[4]}
-# color_setups = {'Cyril': color_cycle[0], 'Rastello': color_cycle[2],
-#                 'Jean': color_cycle[1], 'Julien': 'tab:green',
-#                 'Cyril/Marie': 'tab:purple'}
-# color_setups = {'Cyril': color_cycle[0], 'Rastello': 'tab:green',
-#                 'Jean': color_cycle[1], 'Julien': 'k',
-#                 'Cyril/Marie': 'tab:purple'}
-color_setups = {'Julien': '#823329', 'Jean': '#FE7F2D',
-                'Cyril': '#FCCA46', 'Cyril/Marie': '#619B8A', 'Rastello': '#A1C181'}
-# color_setups = {'Julien': '#264653', 'Jean': '#e76f51',
-#                 'Cyril': '#e9c46a', 'Cyril/Marie': '#f4a261', 'Rastello': '#2a9d8f'}
+
+# color_setups = {'Julien': '#823329', 'Jean': '#FE7F2D',
+#                 'Cyril': '#FCCA46', 'Cyril/Marie': '#619B8A', 'Rastello': '#A1C181'}
+
+datasets = {'Julien': 'SedFoam', 'Jean': '3',
+            'Cyril': '1', 'Cyril/Marie': '2', 'Rastello': '2'}
+
+color_datasets = {'SedFoam': '#823329', '3': '#FE7F2D',
+                  '1': '#FCCA46', '2': '#619B8A'}
+
+marker_style = {'glass beads': 'o', 'silica sand': 'h', 'Hydrogels': '*',
+                'PMMA': 'D', 'polystyren beads': 'X', 'SedFoam': 's'}
+
+datset_zorder = {'1': 0, '2': 1, '3': 2, 'SedFoam': 2}
 
 # %% corresponding legend
 
@@ -74,8 +75,12 @@ color_setups = {'Julien': '#823329', 'Jean': '#FE7F2D',
 #     Line2D([0], [0], marker='*', color=color_setups['Rastello'], ls='none'),
 # )
 
-legend_elements = [
-    Line2D([0], [0], marker='s' if author == 'Julien' else 'o', color=color_setups[author], ls='none', label=author) for author in sorted(color_setups.keys())
+legend_datasets = [
+    Line2D([0], [0], marker='s' if dataset == 'Sedfoam' else 'o', color=color_datasets[dataset], ls='none', label=dataset) for dataset in sorted(color_datasets.keys())
+]
+
+legend_particles = [
+    Line2D([0], [0], marker=marker_style[particle], markerfacecolor='none', markeredgecolor='k', ls='none', label=particle) for particle in sorted(marker_style.keys())
 ]
 
 # %% plot functions
