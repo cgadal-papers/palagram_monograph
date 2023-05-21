@@ -37,7 +37,9 @@ markers[dataset_idx == 'SedFoam'] = 's'
 
 facecolors = np.vectorize(tp.color_datasets.get)(dataset_idx)
 edgecolors = np.full_like(facecolors, 'k')
-edgecolors[H0/Ha < 0.2] = 'tab:red'
+
+mask_nosuspended = (authors == 'Rastello') & (H0/Ha < 1)
+edgecolors[mask_nosuspended] = 'tab:red'
 
 zorders = np.vectorize(lambda dataset: tp.datset_zorder[dataset])(dataset_idx)
 random_order = np.arange(zorders.size)
@@ -54,7 +56,7 @@ fig, axarr = plt.subplots(4, 3, constrained_layout=True,
                           figsize=figsize, gridspec_kw={'width_ratios': [0.2, 1, 1]})
 for a0, axarr_sub in zip(alpha0, axarr[:, 1:]):
     mask_alpha = (alpha > a0 - alpha_pad) & (alpha < a0 + alpha_pad)
-    mask = (mask_alpha & (phi < 0.45))[plot_idxs]
+    mask = (mask_alpha & (phi < 0.449))[plot_idxs]
     for i, (var, ax) in enumerate(zip([Fr, L], axarr_sub.flatten())):
         tp.mscatter((St/a)[plot_idxs][mask], var[plot_idxs][mask], ax=ax, m=markers[plot_idxs][mask],
                     facecolors=facecolors[plot_idxs][mask], edgecolors=edgecolors[plot_idxs][mask], lw=0.5)
@@ -62,7 +64,7 @@ for a0, axarr_sub in zip(alpha0, axarr[:, 1:]):
         if i == 0:
             moy, std = np.nanmean(
                 var[plot_idxs][mask]), np.nanstd(var[plot_idxs][mask])
-            ax.axhline(moy, color='k', ls=':', zorder=-10)
+            ax.axhline(moy, color='k', ls=':', zorder=-10, lw=1)
             # ax.axhspan(moy - std, moy + std, color='k', alpha=0.2, zorder=-10)
         else:
             ax.axhline(0, color='k', ls=':', zorder=-10, lw=1)
@@ -72,7 +74,7 @@ for a0, axarr_sub in zip(alpha0, axarr[:, 1:]):
                            & mask_alpha)
             moy, std = np.nanmean(
                 var[mask_saline]), np.nanstd(var[mask_saline])
-            ax.axhline(moy, color='k', ls='--', zorder=-10)
+            ax.axhline(moy, color='k', ls='--', zorder=-10, lw=1)
             # ax.axhspan(moy - std, moy + std, color='k', alpha=0.2, zorder=-10)
 
     axarr_sub[0].set_ylabel(r'Froude number, $\mathcal{F}r$')
@@ -81,7 +83,7 @@ for a0, axarr_sub in zip(alpha0, axarr[:, 1:]):
     axarr_sub[1].set_xscale('log')
     axarr_sub[0].set_xscale('log')
 
-    axarr_sub[0].set_ylim(0, 1.6)
+    axarr_sub[0].set_ylim(0, 1.59)
     axarr_sub[1].set_ylim(-0.02, 0.07)
     axarr_sub[1].set_xlim(1.5e-3, 1)
     axarr_sub[0].set_xlim(1.5e-3, 1)

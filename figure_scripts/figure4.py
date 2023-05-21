@@ -43,11 +43,11 @@ authors, particles = np.array([[d.author, d.particle_type,
 
 # %% graphic specifications
 # %% masks for plot
-mask_phi = (phi < 0.45)
+mask_phi = (phi < 0.449)
 
 # %% graphic vector for plots
 alphas = np.ones_like(Fr)
-alphas[~mask_phi] = 0.2
+alphas[~mask_phi] = 0.4
 
 dataset_idx = np.vectorize(tp.datasets.get)(authors)
 
@@ -57,10 +57,10 @@ markers[dataset_idx == 'SedFoam'] = 's'
 facecolors = np.vectorize(tp.color_datasets.get)(dataset_idx)
 facecolors = np.array([to_rgba(c, a) for c, a in zip(facecolors, alphas)])
 
-# edgecolors = np.copy(facecolors)
+mask_nosuspended = (authors == 'Rastello') & (H0/Ha < 1)
 edgecolors = np.array([to_rgba('k', a) for a in alphas])
-edgecolors[H0/Ha < 0.2] = np.array([to_rgba('tab:red', 1)
-                                   for a in alphas[H0/Ha < 0.2]])
+edgecolors[mask_nosuspended] = np.array(
+    [to_rgba('tab:red', 0.4) for a in alphas[mask_nosuspended]])
 
 zorders = np.vectorize(lambda dataset: tp.datset_zorder[dataset])(dataset_idx)
 random_order = np.arange(zorders.size)
@@ -88,7 +88,7 @@ secax = ax.secondary_xaxis('top', functions=(sin2ang, ang2sin))
 secax.set_xlabel(r'angle, $\alpha$ [deg.]')
 
 ax.set_ylabel(r'Froude number, $\mathcal{F}r$')
-ax.set_ylim(0, 1.6)
+ax.set_ylim(0, 1.59)
 ax.set_xlim(right=ang2sin(48))
 
 other_elements = [Line2D([0], [0], color='k', ls='--',

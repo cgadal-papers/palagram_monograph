@@ -38,7 +38,9 @@ markers[dataset_idx == 'SedFoam'] = 's'
 
 facecolors = np.vectorize(tp.color_datasets.get)(dataset_idx)
 edgecolors = np.full_like(facecolors, 'k')
-edgecolors[H0/Ha < 0.2] = 'tab:red'
+
+mask_nosuspended = (authors == 'Rastello') & (H0/Ha < 1)
+edgecolors[mask_nosuspended] = 'tab:red'
 
 zorders = np.vectorize(lambda dataset: tp.datset_zorder[dataset])(dataset_idx)
 random_order = np.arange(zorders.size)
