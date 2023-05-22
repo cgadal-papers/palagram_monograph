@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import matplotlib.transforms as mtransforms
 import numpy as np
 import template as tp
+from matplotlib.colors import to_rgba
 from netCDF4 import Dataset
 
 plt.rcParams['figure.constrained_layout.hspace'] = 0
@@ -32,14 +33,20 @@ a = H0/L0
 # %% graphic specifications
 dataset_idx = np.vectorize(tp.datasets.get)(authors)
 
+mask_phi = (phi < 0.449)
+alphas = np.ones_like(Fr)
+alphas[~mask_phi] = 0.4
+
 markers = np.vectorize(tp.marker_style.get)(particles)
 markers[dataset_idx == 'SedFoam'] = 's'
 
 facecolors = np.vectorize(tp.color_datasets.get)(dataset_idx)
-edgecolors = np.full_like(facecolors, 'k')
+facecolors = np.array([to_rgba(c, a) for c, a in zip(facecolors, alphas)])
 
 mask_nosuspended = (authors == 'Rastello') & (H0/Ha < 1)
-edgecolors[mask_nosuspended] = 'tab:red'
+edgecolors = np.array([to_rgba('k', a) for a in alphas])
+edgecolors[mask_nosuspended] = np.array(
+    [to_rgba('tab:red', 0.4) for a in alphas[mask_nosuspended]])
 
 zorders = np.vectorize(lambda dataset: tp.datset_zorder[dataset])(dataset_idx)
 random_order = np.arange(zorders.size)
@@ -56,14 +63,14 @@ fig, axarr = plt.subplots(4, 3, constrained_layout=True,
                           figsize=figsize, gridspec_kw={'width_ratios': [0.2, 1, 1]})
 for a0, axarr_sub in zip(alpha0, axarr[:, 1:]):
     mask_alpha = (alpha > a0 - alpha_pad) & (alpha < a0 + alpha_pad)
-    mask = (mask_alpha & (phi < 0.449))[plot_idxs]
+    mask = (mask_alpha)[plot_idxs]
     for i, (var, ax) in enumerate(zip([Fr, L], axarr_sub.flatten())):
         tp.mscatter((St/a)[plot_idxs][mask], var[plot_idxs][mask], ax=ax, m=markers[plot_idxs][mask],
                     facecolors=facecolors[plot_idxs][mask], edgecolors=edgecolors[plot_idxs][mask], lw=0.5)
         #
         if i == 0:
             moy, std = np.nanmean(
-                var[plot_idxs][mask]), np.nanstd(var[plot_idxs][mask])
+                var[mask_alpha & mask_phi]), np.nanstd(var[mask_alpha & mask_phi])
             ax.axhline(moy, color='k', ls=':', zorder=-10, lw=1)
             # ax.axhspan(moy - std, moy + std, color='k', alpha=0.2, zorder=-10)
         else:
@@ -85,8 +92,8 @@ for a0, axarr_sub in zip(alpha0, axarr[:, 1:]):
 
     axarr_sub[0].set_ylim(0, 1.59)
     axarr_sub[1].set_ylim(-0.02, 0.07)
-    axarr_sub[1].set_xlim(1.5e-3, 1)
-    axarr_sub[0].set_xlim(1.5e-3, 1)
+    axarr_sub[1].set_xlim(3e-4, 1)
+    axarr_sub[0].set_xlim(3e-4, 1)
     #
     axarr_sub[1].set_yticks([0, 0.03, 0.06])
     #

@@ -3,12 +3,11 @@ import os
 import sys
 
 import matplotlib.pyplot as plt
-from matplotlib.lines import Line2D
 import numpy as np
 import template as tp
-from netCDF4 import Dataset
 from matplotlib.colors import to_rgba
-
+from matplotlib.lines import Line2D
+from netCDF4 import Dataset
 
 plt.rcParams['xtick.top'] = False
 
