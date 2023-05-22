@@ -6,11 +6,17 @@ import matplotlib.pyplot as plt
 import matplotlib.transforms as mtransforms
 import numpy as np
 import template as tp
+from lmfit import Model
 from matplotlib.colors import to_rgba
 from netCDF4 import Dataset
 
 plt.rcParams['figure.constrained_layout.hspace'] = 0
 plt.rcParams['figure.constrained_layout.h_pad'] = 0.0005
+
+
+def lambda_var(x, a, c, th):
+    return np.piecewise(x, [x < th, x >= th], [lambda x: c, lambda x: a*(x - th) + c])
+
 
 # %% Load data
 path_data = '../data/output_data'
@@ -54,9 +60,26 @@ rng = np.random.default_rng(1994)
 rng.shuffle(random_order)
 plot_idxs = np.lexsort((random_order, zorders))
 
-# %% masks for plot
 alpha0 = [0, 7, 15, 45]
 alpha_pad = 1.5
+
+# %% fit for alpha = 7
+
+model = Model(lambda_var)
+params = model.make_params()
+p0 = {'a': 1, 'c': 0, 'th': 1e-2}
+
+for par in params.keys():
+    params[par].set(value=p0[par])
+
+params['th'].vary = False
+params['c'].vary = False
+
+mask_alpha = (alpha > alpha0[1] - alpha_pad) & (alpha < alpha0[1] + alpha_pad)
+
+result = model.fit(L[mask_alpha], params, x=(St/a)[mask_alpha])
+
+# # %% Figure
 
 figsize = (tp.large_figure_width, tp.golden*tp.large_figure_width/2)
 fig, axarr = plt.subplots(4, 3, constrained_layout=True,
@@ -75,6 +98,9 @@ for a0, axarr_sub in zip(alpha0, axarr[:, 1:]):
             # ax.axhspan(moy - std, moy + std, color='k', alpha=0.2, zorder=-10)
         else:
             ax.axhline(0, color='k', ls=':', zorder=-10, lw=1)
+            x_plot = np.logspace(np.log10(1.52e-2), 0, 300)
+            ax.plot(x_plot, result.params['a']*(x_plot - result.params['th']
+                                                ) + result.params['c'], color='k', lw=1, ls='-')
         #
         if a0 == 7:
             mask_saline = ((particles == 'saline water')

@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1684336872 "main.aux" "main.bbl" "main" 1684745739 0
+["bibtex main"] 1684336872 "main.aux" "main.bbl" "main" 1684750646 0
   "./biblio.bib" 1683040233 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2023/texmf-dist/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "main.aux" 1684745739 4782 affc6090d576632d4187a538da69cbb7 "pdflatex"
+  "main.aux" 1684750646 4782 affc6090d576632d4187a538da69cbb7 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1684745739 "/home/cyril/Documents/Work/Research/Turbity_Currents/PALAGRAM_MONOGRAPH/paper/main.tex" "main.pdf" "main" 1684745739 0
+["pdflatex"] 1684750645 "/home/cyril/Documents/Work/Research/Turbity_Currents/PALAGRAM_MONOGRAPH/paper/main.tex" "main.pdf" "main" 1684750646 0
   "/home/cyril/Documents/Work/Research/Turbity_Currents/PALAGRAM_MONOGRAPH/paper/main.tex" 1684687032 11806 e95937ced6c46515b00bdef2356ee3aa ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -86,9 +86,9 @@
   "figures//figure2.pdf" 1684684041 70990 4f05fbda7fe25c177b2cebb0b8dee66b ""
   "figures//figure3.pdf" 1684684041 320590 c040e8539bf247a21a468a8f0cd2e136 ""
   "figures//figure4.pdf" 1684684041 38096 ee25b2c818e7fecce6c8b36599ded381 ""
-  "figures//figure5.pdf" 1684745738 56672 7146db078877541a84837da593fc0239 ""
+  "figures//figure5.pdf" 1684750645 58214 c34b71c29bf06c96dd937b498b42eefe ""
   "figures//figure6.pdf" 1684684041 26723 6455d74087ed819d0367995da7688036 ""
-  "main.aux" 1684745739 4782 affc6090d576632d4187a538da69cbb7 "pdflatex"
+  "main.aux" 1684750646 4782 affc6090d576632d4187a538da69cbb7 "pdflatex"
   "main.bbl" 1684336872 49 0eba253fc001332e731e8aba3f23127b "bibtex main"
   "main.tex" 1684687032 11806 e95937ced6c46515b00bdef2356ee3aa ""
   (generated)
