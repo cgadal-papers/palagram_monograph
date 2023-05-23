@@ -24,11 +24,11 @@ list_runs = glob.glob(os.path.join(path_data, '*.nc'))
 datasets = np.array([Dataset(run) for run in list_runs])
 
 # %% create data vectors
-alpha, phi, St, H0, L0, Fr, L = np.array([[d.variables['alpha'][:].data, d.variables['phi'][:].data,
+alpha, phi, St, H0, L0, Fr, tau = np.array([[d.variables['alpha'][:].data, d.variables['phi'][:].data,
                                            d.variables['St'][:].data, d.variables['H0'][:].data,
                                            d.variables['L0'][:].data, d.variables['Fr'][:].data,
-                                           d.variables['L'][:].data
-                                           ] for d in datasets]).T
+                                           d.variables['tau'][:].data
+                                             ] for d in datasets]).T
 
 Ha = np.array([d.variables['H_a'][:].data if 'H_a' in d.variables.keys()
               else d.variables['H0'][:].data for d in datasets])
@@ -77,7 +77,7 @@ params['c'].vary = False
 
 mask_alpha = (alpha > alpha0[1] - alpha_pad) & (alpha < alpha0[1] + alpha_pad)
 
-result = model.fit(L[mask_alpha], params, x=(St/a)[mask_alpha])
+result = model.fit(1/tau[mask_alpha], params, x=(St/a)[mask_alpha])
 
 # # %% Figure
 
@@ -87,7 +87,7 @@ fig, axarr = plt.subplots(4, 3, constrained_layout=True,
 for a0, axarr_sub in zip(alpha0, axarr[:, 1:]):
     mask_alpha = (alpha > a0 - alpha_pad) & (alpha < a0 + alpha_pad)
     mask = (mask_alpha)[plot_idxs]
-    for i, (var, ax) in enumerate(zip([Fr, L], axarr_sub.flatten())):
+    for i, (var, ax) in enumerate(zip([Fr, 1/tau], axarr_sub.flatten())):
         tp.mscatter((St/a)[plot_idxs][mask], var[plot_idxs][mask], ax=ax, m=markers[plot_idxs][mask],
                     facecolors=facecolors[plot_idxs][mask], edgecolors=edgecolors[plot_idxs][mask], lw=0.5)
         #
@@ -98,10 +98,10 @@ for a0, axarr_sub in zip(alpha0, axarr[:, 1:]):
             # ax.axhspan(moy - std, moy + std, color='k', alpha=0.2, zorder=-10)
         else:
             ax.axhline(0, color='k', ls=':', zorder=-10, lw=1)
-            x_plot = np.logspace(np.log10(1.52e-2), 0, 300)
+            x_plot = np.logspace(np.log10(result.params['th']), 0, 300)
             ax.plot(x_plot, result.params['a']*(x_plot - result.params['th']
                                                 ) + result.params['c'], color='k', lw=1, ls='-')
-        #
+
         if a0 == 7:
             mask_saline = ((particles == 'saline water')
                            & mask_alpha)
@@ -111,13 +111,14 @@ for a0, axarr_sub in zip(alpha0, axarr[:, 1:]):
             # ax.axhspan(moy - std, moy + std, color='k', alpha=0.2, zorder=-10)
 
     axarr_sub[0].set_ylabel(r'Froude number, $\mathcal{F}r$')
-    axarr_sub[1].set_ylabel(r'Attenuation, $\tilde{\lambda}$')
+    axarr_sub[1].set_ylabel(r'Attenuation, $1/\tau$')
 
     axarr_sub[1].set_xscale('log')
+    # axarr_sub[1].set_yscale('log')
     axarr_sub[0].set_xscale('log')
 
     axarr_sub[0].set_ylim(0, 1.59)
-    axarr_sub[1].set_ylim(-0.02, 0.07)
+    axarr_sub[1].set_ylim(-0.005, 0.07)
     axarr_sub[1].set_xlim(3e-4, 1)
     axarr_sub[0].set_xlim(3e-4, 1)
     #
