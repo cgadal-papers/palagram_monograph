@@ -40,7 +40,7 @@ edgecolors = np.full_like(facecolors, 'k')
 mask_nosuspended = (authors == 'Rastello') & (H0/Ha < 1)
 edgecolors[mask_nosuspended] = 'tab:red'
 
-zorders = np.vectorize(lambda dataset: tp.datset_zorder[dataset])(dataset_idx)
+zorders = np.vectorize(lambda dataset: tp.dataset_zorder[dataset])(dataset_idx)
 random_order = np.arange(zorders.size)
 rng = np.random.default_rng(1994)
 rng.shuffle(random_order)

@@ -63,7 +63,8 @@ color_datasets = {'SedFoam': '#780116', '3': '#FE7F2D',
 marker_style = {'glass beads': 'o', 'silica sand': 'h', 'Hydrogels': '*',
                 'PMMA': 'D', 'polystyren beads': 'X', 'SedFoam': 's'}
 
-datset_zorder = {'1': 0, '2': 1, '3': 2, 'SedFoam': 2}
+dataset_zorder = {'1': 0, '2': 1, '3': 2, 'SedFoam': 2}
+dataset_zorder2 = {'1': 0, '2': 2, '3': 2, 'SedFoam': 1}
 
 # %% corresponding legend
 

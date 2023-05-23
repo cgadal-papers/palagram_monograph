@@ -61,7 +61,8 @@ edgecolors = np.array([to_rgba('k', a) for a in alphas])
 edgecolors[mask_nosuspended] = np.array(
     [to_rgba('tab:red', 0.4) for a in alphas[mask_nosuspended]])
 
-zorders = np.vectorize(lambda dataset: tp.datset_zorder[dataset])(dataset_idx)
+zorders = np.vectorize(
+    lambda dataset: tp.dataset_zorder2[dataset])(dataset_idx)
 random_order = np.arange(zorders.size)
 rng = np.random.default_rng(1994)
 rng.shuffle(random_order)

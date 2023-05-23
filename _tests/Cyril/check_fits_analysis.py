@@ -22,7 +22,7 @@ def determine_fit_props(author, alpha, run, params):
     params['L'].vary = True
     params['c'].vary = False
     params['d'].vary = False
-    t_bounds = [5, 30]
+    t_bounds = [5, 25]
     #
     if author == 'Jean':
         t_bounds = [0, 40]
@@ -82,9 +82,9 @@ SETUPS = {'Cyril': 'IMFT', 'Cyril/Marie': 'LEGI', 'Jean': 'LEMTA',
           'Julien': 'NUM', 'Rastello': 'LEGI'}
 
 # %% Loading data
-# list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JULIEN2/*.nc')))
+list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JULIEN2/*.nc')))
 # list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_JEAN/*.nc')))
-list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_MARIE/*.nc')))
+# list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_MARIE/*.nc')))
 # list_runs = np.array(glob.glob(os.path.join(input_path, 'runs_CYRIL/*.nc')))
 datasets = np.array([Dataset(run) for run in list_runs])
 
@@ -95,7 +95,7 @@ authors = np.array([d.author for d in datasets])
 diams = np.array([d.variables['d'][:].data for d in datasets])
 phi = np.array([d.variables['phi'][:].data for d in datasets])
 H0 = np.array([d.variables['H0'][:].data for d in datasets])
-Ha = np.array([d.variables['H_a'][:].data for d in datasets])
+# Ha = np.array([d.variables['H_a'][:].data for d in datasets])
 
 
 authors = np.array([d.author for d in datasets])
@@ -108,9 +108,9 @@ authors = np.array([d.author for d in datasets])
 # mask_runs = (authors == 'Cyril/Marie')
 # mask_runs = np.ones_like(alphas).astype('bool')
 # mask_runs = (alphas > 6) & (alphas < 8)
-# mask_runs = (alphas > 40)
+mask_runs = (alphas > 40)
 # mask_runs = (grains == 'PMMA')
-mask_runs = (H0/Ha < 0.3)
+# mask_runs = (H0/Ha < 0.3)
 # %% Loop over data file and analysis
 
 fig_fit, ax = plt.subplots(1, 1, constrained_layout=True)

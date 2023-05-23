@@ -98,11 +98,7 @@ for par in params.keys():
                     max=higher_bounds[par])
 
 # %% Loading data
-list_runs = sorted(glob.glob(os.path.join(input_path, 'runs_CYRIL/*.nc'))) + \
-    sorted(glob.glob(os.path.join(input_path, 'runs_JEAN/*.nc'))) + \
-    sorted(glob.glob(os.path.join(input_path, 'runs_JULIEN2/*.nc'))) + \
-    sorted(glob.glob(os.path.join(input_path, 'runs_MARIE/*.nc')))
-
+list_runs = sorted(glob.glob(os.path.join(input_path, 'runs*/*.nc')))
 datasets = [Dataset(run) for run in list_runs]
 
 # %% Loop over data file and analysis
