@@ -23,8 +23,8 @@ def create_variable(netcdf_group, name, data, dimensions=None, std=None,
         var.comments = comments
 
 
-def polyFULL(t, Fr, tau, xi, c, d):
-    return xi + Fr*(t - t**2/tau) + c*t**3 + d*t**4
+def polyFULL(t, Fr, lamb, xi, c, d):
+    return xi + Fr*(t - lamb*t**2) + c*t**3 + d*t**4
 
 
 def Stokes_Velocity(d, mu, rho_p, rho_f, g):
@@ -34,14 +34,14 @@ def Stokes_Velocity(d, mu, rho_p, rho_f, g):
 def determine_fit_props(author, alpha, run, params):
     params['xi'].vary = False
     params['Fr'].vary = True
-    params['tau'].vary = True
+    params['lamb'].vary = True
     params['c'].vary = False
     params['d'].vary = False
     t_bounds = [5, 30]
     #
     if author == 'Jean':
         t_bounds = [0, 40]
-        params['tau'].vary = False
+        params['lamb'].vary = False
         params['xi'].vary = True
     if author == 'Julien':
         params['xi'].vary = True
@@ -86,15 +86,15 @@ model = Model(polyFULL)
 params = model.make_params()
 
 # parameter properties (Non dim.)
-p0 = {'Fr': 0.4, 'xi': 0, 'tau': 100, 'c': 0, 'd': 0}
+p0 = {'Fr': 0.4, 'xi': 0, 'lamb': 0, 'c': 0, 'd': 0}
 
 # lower_bounds = {'Fr': 0, 'xi': -np.inf,
 #                 'L': -0.05, 'c': -1e-3, 'd': -1e-4}
 # higher_bounds = {'Fr': 2, 'xi': np.inf, 'L': 0.1, 'c': 1e-3, 'd': 1e-4}
 
 lower_bounds = {'Fr': 0, 'xi': -np.inf,
-                'tau': -np.inf, 'c': -1e-3, 'd': -1e-4}
-higher_bounds = {'Fr': 2, 'xi': np.inf, 'tau': np.inf, 'c': 1e-3, 'd': 1e-4}
+                'lamb': -0.02, 'c': -1e-3, 'd': -1e-4}
+higher_bounds = {'Fr': 2, 'xi': np.inf, 'lamb': 0.2, 'c': 1e-3, 'd': 1e-4}
 
 # set parameter bounds
 for par in params.keys():
@@ -152,19 +152,19 @@ for i, d in enumerate(datasets):
     # Make fit
     if mask.sum() > 5:
         result = model.fit(x_ok[mask], params, t=t_ok[mask])
-        tau, tau_err = result.params['tau'].value, result.params['tau'].stderr
-        # if L > 2e-2:
+        lamb, lamb_err = result.params['lamb'].value, result.params['lamb'].stderr
+        # if lamb > 2e-2:
         #     params['d'].vary = True
         #     result = model.fit(x_ok[mask], params, t=t_ok[mask])
         r_squared = result.rsquared
         print('author: {}, r2: {:.3f}'.format(d.author, r_squared))
         Fr, Fr_err = result.params['Fr'].value, result.params['Fr'].stderr
-        tau, tau_err = result.params['tau'].value, result.params['tau'].stderr
-        if not params['tau'].vary:
-            tau, tau_err = np.nan, np.nan
+        lamb, lamb_err = result.params['lamb'].value, result.params['lamb'].stderr
+        if not params['lamb'].vary:
+            lamb, lamb_err = np.nan, np.nan
     else:
         Fr, Fr_err = np.nan, np.nan
-        tau, tau_err = np.nan, np.nan
+        lamb, lamb_err = np.nan, np.nan
         print('All NaNs')
     #
     # ### Writting corresponding netcdf file
@@ -223,8 +223,8 @@ for i, d in enumerate(datasets):
     # Non-dimensional variables and fit results
     create_variable(newfile, 'Fr', Fr, unit='-', std=Fr_err,
                     comments='Froude number (adi. initial current velocity)')
-    create_variable(newfile, 'tau', tau, unit='-', std=tau_err,
-                    comments='adi. dissipation timescale')
+    create_variable(newfile, 'lamb', lamb, unit='-', std=lamb_err,
+                    comments='adi. attenuation parameter')
 
     # saving and closing netcdf file
     newfile.close()
