@@ -8,6 +8,7 @@ import template as tp
 from matplotlib.colors import to_rgba
 from matplotlib.lines import Line2D
 from netCDF4 import Dataset
+from models import Birman
 
 plt.rcParams['xtick.top'] = False
 
@@ -18,10 +19,6 @@ def ang2sin(ang):
 
 def sin2ang(sin):
     return np.degrees(np.arcsin(sin))
-
-
-def Birman(ang):
-    return -0.1824*np.radians(ang)**2 + 0.2781*np.radians(ang) + 0.4871
 
 
 # %% Load data
