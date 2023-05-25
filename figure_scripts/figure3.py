@@ -16,20 +16,14 @@ path_data = '../data/output_data'
 list_runs = sorted(glob.glob(os.path.join(path_data, '*.nc')))
 list_fitresults = sorted(glob.glob(os.path.join(path_data, 'fitresult*')))
 
-# datasets = np.array([Dataset(run) for run in list_runs])
+datasets = np.array([Dataset(run) for run in list_runs])
 
-datasets = np.array([Dataset(run) for run in list_runs if Dataset(
-    run).particle_type != 'saline water'])
 # %% mask data
-alpha, phi, rho_p = np.array(
-    [[d.variables['alpha'][:].data, d.variables['phi'][:].data, d.variables['rho_p'][:].data]
-     for d in datasets]).T
-
-# mask = (phi > 0.001) & (phi < 0.6) & (alpha < 70) & (rho_p > 1000)
-mask = np.ones_like(alpha).astype('bool')
+particles = np.array([d.particle_type for d in datasets]).T
+mask = particles != 'saline water'
 
 zorder_setups = {'Cyril': -9, 'Rastello': -10,
-                 'Jean': -6, 'Julien': -7, 'Cyril/Marie': -9}
+                 'Jean': -6, 'Julien': -7, 'Cyril/Marie': -10}
 
 # %% figure
 layout = [['legend', 'legend'], ['(a)', '(b)']]
@@ -53,11 +47,11 @@ ax.set_ylim(bottom=0)
 
 # selected run, non-dimensional
 ax = axarr['(b)']
-runs = [0, 158, 94, 197, 210, 202]
+i_runs = [0, 158, 94, 197, 210, 202]
 
-for run in runs:
+for i in i_runs:
     d = datasets[list_runs.index(os.path.join(
-        path_data, 'run_{:03d}.nc'.format(run)))]
+        path_data, 'run_{:03d}.nc'.format(i)))]
     # print(d.author)
     #
     t_ad = d.variables['t0'][:].data
@@ -70,7 +64,7 @@ for run in runs:
                marker=tp.marker_style[d.particle_type], rasterized=True)
     # plotting fit
     fitresult = load_modelresult(os.path.join(
-        path_data, 'fitresult_run_{:03d}.save'.format(run)))
+        path_data, 'fitresult_run_{:03d}.save'.format(i)))
     xplot = np.linspace(
         fitresult.userkws['t'].min(), fitresult.userkws['t'].max(), 500)
     ax.plot(xplot, fitresult.eval(t=xplot),

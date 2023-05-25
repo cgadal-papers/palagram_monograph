@@ -8,6 +8,8 @@ import template as tp
 from matplotlib.colors import to_rgba
 from matplotlib.lines import Line2D
 from netCDF4 import Dataset
+from models import Birman, Froude, Krieger_viscosity
+
 
 plt.rcParams['xtick.top'] = False
 
@@ -18,10 +20,6 @@ def ang2sin(ang):
 
 def sin2ang(sin):
     return np.degrees(np.arcsin(sin))
-
-
-def Birman(ang):
-    return -0.1824*np.radians(ang)**2 + 0.2781*np.radians(ang) + 0.4871
 
 
 # %% Load data
@@ -61,12 +59,18 @@ edgecolors = np.array([to_rgba('k', a) for a in alphas])
 edgecolors[mask_nosuspended] = np.array(
     [to_rgba('tab:red', 0.4) for a in alphas[mask_nosuspended]])
 
-zorders = np.vectorize(lambda dataset: tp.datset_zorder[dataset])(dataset_idx)
+zorders = np.vectorize(
+    lambda dataset: tp.dataset_zorder2[dataset])(dataset_idx)
 random_order = np.arange(zorders.size)
 rng = np.random.default_rng(1994)
 rng.shuffle(random_order)
 plot_idxs = np.lexsort((random_order, zorders))
 
+# %% theory
+phi_m = 0.585
+alpha_plot = np.linspace(0, 50, 500)
+eta = 0
+Fr_th = Froude(alpha_plot, eta, 7e4)
 
 # %% figure
 fig, ax = plt.subplots(1, 1, figsize=tp.large_figure_size,
@@ -76,9 +80,11 @@ fig, ax = plt.subplots(1, 1, figsize=tp.large_figure_size,
 tp.mscatter(ang2sin(alpha)[plot_idxs], Fr[plot_idxs], ax=ax, m=markers[plot_idxs],
             facecolors=facecolors[plot_idxs], edgecolors=edgecolors[plot_idxs], lw=0.5)
 
-alpha_plot = np.linspace(0, 50, 500)
-ax.plot(ang2sin(alpha_plot), Birman(alpha_plot),
-        ls='--', color='k', zorder=-8)
+line_birman, = ax.plot(ang2sin(alpha_plot), Birman(alpha_plot),
+                       ls='--', color='k', zorder=-8, lw=1, label='Birman et al. 2007')
+
+line_theory, = ax.plot(ang2sin(alpha_plot), Fr_th,
+                       ls='-', color='k', zorder=-8, lw=1, label='eq. (?)')
 
 ax.set_xlabel(r'$\sin \alpha$')
 ax.set_xlim(left=-0.012)
@@ -90,8 +96,7 @@ ax.set_ylabel(r'Froude number, $\mathcal{F}r$')
 ax.set_ylim(0, 1.59)
 ax.set_xlim(right=ang2sin(48))
 
-other_elements = [Line2D([0], [0], color='k', ls='--',
-                         label='Birman et al. 2007')]
+other_elements = [line_birman, line_theory]
 leg1 = ax.legend(handles=tp.legend_datasets +
                  other_elements, ncol=2, title='Datasets')
 leg2 = ax.legend(handles=tp.legend_particles, ncol=2,
