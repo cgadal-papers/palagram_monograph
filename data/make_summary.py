@@ -7,6 +7,8 @@ from netCDF4 import Dataset
 path_data = './output_data'
 list_runs = sorted(glob.glob(os.path.join(path_data, '*.nc')))
 
+file = '../dataset_summary.csv'
+
 for i, run in enumerate(list_runs):
     d = Dataset(run)
     attributes = sorted(d.__dict__.keys())
@@ -19,7 +21,7 @@ for i, run in enumerate(list_runs):
                             for par in variables]
                         )
         line = ','.join(column_heads) + '\n'
-        with open('dataset_summary.csv', 'w') as the_file:
+        with open(file, 'w') as the_file:
             the_file.write(line)
             for i in range(2):
                 the_file.write('\n')
@@ -29,5 +31,5 @@ for i, run in enumerate(list_runs):
                     for var in var_save]
                    )
     line = ','.join(line_values) + '\n'
-    with open('dataset_summary.csv', 'a') as the_file:
+    with open(file, 'a') as the_file:
         the_file.write(line)
