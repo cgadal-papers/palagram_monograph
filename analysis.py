@@ -93,7 +93,7 @@ p0 = {'Fr': 0.4, 'xi': 0, 'lamb': 0, 'c': 0, 'd': 0}
 # higher_bounds = {'Fr': 2, 'xi': np.inf, 'L': 0.1, 'c': 1e-3, 'd': 1e-4}
 
 lower_bounds = {'Fr': 0, 'xi': -np.inf,
-                'lamb': -0.02, 'c': -1e-3, 'd': -1e-4}
+                'lamb': -0.1, 'c': -1e-3, 'd': -1e-4}
 higher_bounds = {'Fr': 2, 'xi': np.inf, 'lamb': 0.2, 'c': 1e-3, 'd': 1e-4}
 
 # set parameter bounds
@@ -153,9 +153,9 @@ for i, d in enumerate(datasets):
     if mask.sum() > 5:
         result = model.fit(x_ok[mask], params, t=t_ok[mask])
         lamb, lamb_err = result.params['lamb'].value, result.params['lamb'].stderr
-        # if lamb > 2e-2:
-        #     params['d'].vary = True
-        #     result = model.fit(x_ok[mask], params, t=t_ok[mask])
+        if lamb > 1.2e-2:
+            params['d'].vary = True
+            result = model.fit(x_ok[mask], params, t=t_ok[mask])
         r_squared = result.rsquared
         print('author: {}, r2: {:.3f}'.format(d.author, r_squared))
         Fr, Fr_err = result.params['Fr'].value, result.params['Fr'].stderr
