@@ -1,8 +1,6 @@
 from matplotlib.lines import Line2D
-from matplotlib.legend_handler import HandlerTuple
 import os
 
-import cmasher as cmr
 import cmocean as cmo
 import matplotlib.pyplot as plt
 import matplotlib.style as style

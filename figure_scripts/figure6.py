@@ -7,6 +7,7 @@ import matplotlib.transforms as mtransforms
 import numpy as np
 import template as tp
 from netCDF4 import Dataset
+from models import Froude, Krieger_viscosity
 
 plt.rcParams['figure.constrained_layout.hspace'] = 0
 plt.rcParams['figure.constrained_layout.h_pad'] = 0.005
@@ -46,6 +47,12 @@ rng = np.random.default_rng(1994)
 rng.shuffle(random_order)
 plot_idxs = np.lexsort((random_order, zorders))
 
+# %% theory
+phi_m = 0.585
+phi_plot = np.logspace(-3, phi_m, 200)
+eta = Krieger_viscosity(phi_plot, phi_m)
+Fr_th = Froude(0, eta, 7e4)
+
 # %% masks for plot
 alphas = [0, 45]
 alpha_pad = 1.5
@@ -71,8 +78,12 @@ for alpha0, ax in zip(alphas, axarr.flatten()):
     ax.set_ylabel(r'Froude number, $\mathcal{F}r$')
     ax.set_ylim([0, 1.59])
 
+axarr[0].plot(phi_plot, Fr_th, ls='-', color='k')
+axins.plot(phi_plot, Fr_th, ls='-', color='k')
+
 ax.set_xlabel(r'Volume fraction, $\phi$')
 ax.set_xscale('log')
+ax.set_xlim([0.0035, 1.2])
 
 for ax, l in zip(axarr.flatten(), 'ab'):
     trans = mtransforms.ScaledTranslation(
