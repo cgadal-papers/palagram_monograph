@@ -78,7 +78,6 @@ for alpha0, ax in zip(alphas, axarr.flatten()):
     ax.set_ylabel(r'Froude number, $\mathcal{F}r$')
     ax.set_ylim([0, 1.59])
 
-
 axarr[0].plot(phi_plot, Fr_th, ls='-', color='k')
 axins.plot(phi_plot, Fr_th, ls='-', color='k')
 
