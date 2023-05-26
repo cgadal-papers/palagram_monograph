@@ -24,7 +24,7 @@ def create_variable(netcdf_group, name, data, dimensions=None, std=None,
 
 
 def polyFULL(t, Fr, lamb, xi, c, d):
-    return xi + Fr*(t - lamb*t**2) + c*t**3 + d*t**4
+    return xi + Fr*(t - lamb*t**2 + c*t**3 + d*t**4)
 
 
 def Stokes_Velocity(d, mu, rho_p, rho_f, g):
@@ -88,13 +88,8 @@ params = model.make_params()
 # parameter properties (Non dim.)
 p0 = {'Fr': 0.4, 'xi': 0, 'lamb': 0, 'c': 0, 'd': 0}
 
-# lower_bounds = {'Fr': 0, 'xi': -np.inf,
-#                 'L': -0.05, 'c': -1e-3, 'd': -1e-4}
-# higher_bounds = {'Fr': 2, 'xi': np.inf, 'L': 0.1, 'c': 1e-3, 'd': 1e-4}
-
-lower_bounds = {'Fr': 0, 'xi': -np.inf,
-                'lamb': -0.1, 'c': -1e-3, 'd': -1e-4}
-higher_bounds = {'Fr': 2, 'xi': np.inf, 'lamb': 0.2, 'c': 1e-3, 'd': 1e-4}
+lower_bounds = {'Fr': 0, 'xi': -np.inf, 'lamb': -0.02, 'c': -1e-2, 'd': -1e-4}
+higher_bounds = {'Fr': 2, 'xi': np.inf, 'lamb': 0.1, 'c': 1e-2, 'd': 1e-4}
 
 # set parameter bounds
 for par in params.keys():
@@ -153,7 +148,7 @@ for i, d in enumerate(datasets):
     if mask.sum() > 5:
         result = model.fit(x_ok[mask], params, t=t_ok[mask])
         lamb, lamb_err = result.params['lamb'].value, result.params['lamb'].stderr
-        if lamb > 1.2e-2:
+        if lamb > 1e-2:
             params['d'].vary = True
             result = model.fit(x_ok[mask], params, t=t_ok[mask])
         r_squared = result.rsquared

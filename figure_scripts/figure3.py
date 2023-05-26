@@ -20,7 +20,7 @@ datasets = np.array([Dataset(run) for run in list_runs])
 
 # %% mask data
 particles = np.array([d.particle_type for d in datasets]).T
-mask = particles != 'saline water'
+mask = (particles != 'saline water')
 
 zorder_setups = {'Cyril': -9, 'Rastello': -10,
                  'Jean': -6, 'Julien': -7, 'Cyril/Marie': -10}

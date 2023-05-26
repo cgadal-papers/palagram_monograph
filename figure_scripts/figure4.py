@@ -6,10 +6,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import template as tp
 from matplotlib.colors import to_rgba
-from matplotlib.lines import Line2D
+from models import Birman, Froude
 from netCDF4 import Dataset
-from models import Birman, Froude, Krieger_viscosity
-
 
 plt.rcParams['xtick.top'] = False
 
