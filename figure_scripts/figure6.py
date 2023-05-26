@@ -51,7 +51,8 @@ plot_idxs = np.lexsort((random_order, zorders))
 phi_m = 0.585
 phi_plot = np.logspace(-3, phi_m, 200)
 eta = Krieger_viscosity(phi_plot, phi_m)
-Fr_th = Froude(0, eta, 7e4)
+Fr_th0 = Froude(0, eta, 7e4)
+Fr_th45 = Froude(45, eta, 7e4)
 
 # %% masks for plot
 alphas = [0, 45]
@@ -78,8 +79,9 @@ for alpha0, ax in zip(alphas, axarr.flatten()):
     ax.set_ylabel(r'Froude number, $\mathcal{F}r$')
     ax.set_ylim([0, 1.59])
 
-axarr[0].plot(phi_plot, Fr_th, ls='-', color='k')
-axins.plot(phi_plot, Fr_th, ls='-', color='k')
+axarr[0].plot(phi_plot, Fr_th0, ls='-', color='k')
+axins.plot(phi_plot, Fr_th0, ls='-', color='k')
+axarr[1].plot(phi_plot, Fr_th45, ls='-', color='k')
 
 ax.set_xlabel(r'Volume fraction, $\phi$')
 ax.set_xscale('log')
