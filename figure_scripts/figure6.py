@@ -83,6 +83,9 @@ axarr[0].plot(phi_plot, Fr_th0, ls='-', color='k')
 axins.plot(phi_plot, Fr_th0, ls='-', color='k')
 axarr[1].plot(phi_plot, Fr_th45, ls='-', color='k')
 
+axarr[0].axvline(tp.phi_c, ls=':', lw=1, color='k')
+axins.axvline(tp.phi_c, ls=':', lw=1, color='k')
+
 ax.set_xlabel(r'Volume fraction, $\phi$')
 ax.set_xscale('log')
 ax.set_xlim([0.0035, 1.2])

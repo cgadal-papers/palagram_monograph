@@ -38,7 +38,7 @@ authors, particles = np.array([[d.author, d.particle_type,
 
 # %% graphic specifications
 # %% masks for plot
-mask_phi = (phi < 0.449)
+mask_phi = (phi < tp.phi_c)
 
 # %% graphic vector for plots
 alphas = np.ones_like(Fr)

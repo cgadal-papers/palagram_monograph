@@ -39,7 +39,7 @@ a = H0/L0
 # %% graphic specifications
 dataset_idx = np.vectorize(tp.datasets.get)(authors)
 
-mask_phi = (phi < 0.449)
+mask_phi = (phi < tp.phi_c)
 alphas = np.ones_like(Fr)
 alphas[~mask_phi] = 0.4
 

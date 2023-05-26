@@ -9,7 +9,7 @@ def Birman(ang):
 
 # %% energetic bilan model (extension of Gadal et al. 2023)
 
-def Froude(theta, eta, Re, Fr0=0.5, a=1, r=1, Cd=0.4, Re_c=500, A=4):
+def Froude(theta, eta, Re, Fr0=0.5, a=1, r=1, Cd=0.4, Re_c=500, S=0.25):
     """
     Calculate $Fr = U_c/u_0$, with $u_0 = \sqrt{\cos\theta\delta_\rho g h_0/rho_c}$ using an energetic bilan similar to that of Gadal et al. 2023. 
 
@@ -31,8 +31,8 @@ def Froude(theta, eta, Re, Fr0=0.5, a=1, r=1, Cd=0.4, Re_c=500, A=4):
         Drag coefficient, by default 0.4
     Re_c : scalar, array_like
         Critical Reynolds number, by default 500
-    A : scalar, array_like
-        Slope effect coefficient, by default 4
+    S : scalar, array_like
+        Slope effect coefficient, by default 0.25
 
     Returns
     -------
@@ -42,7 +42,7 @@ def Froude(theta, eta, Re, Fr0=0.5, a=1, r=1, Cd=0.4, Re_c=500, A=4):
     drag = (1 + Cd*a/r)
     viscous = eta*(Re_c/Re)*a/r
     Fr = (np.sqrt(viscous**2 + Fr0**2*drag *
-          (1 + A*np.tan(np.radians(theta)))) - viscous)/drag
+          (1 + np.tan(np.radians(theta))/S)) - viscous)/drag
     return Fr
 
 # %% Viscosity models

@@ -85,8 +85,12 @@ legend_particles = [
     Line2D([0], [0], marker=marker_style[particle], markerfacecolor='none', markeredgecolor='k', ls='none', label=particle) for particle in sorted(marker_style.keys())
 ]
 
-# %% plot functions
+# %% variables
 
+phi_c = 0.45
+
+
+# %% plot functions
 
 def mscatter(x, y, ax=None, m=None, **kw):
     import matplotlib.markers as mmarkers
