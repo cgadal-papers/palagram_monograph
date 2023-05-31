@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.7)  22 MAY 2023 14:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.7)  31 MAY 2023 17:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -158,40 +158,53 @@ LaTeX Info: Redefining \Relbar on input line 971.
 \mathdisplay@stack=\toks23
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/sttools/cuted.sty
+Package: cuted 2021/10/04 v2.0 Mixing onecolumn and twocolumn modes
+\At@ViperColsBreak=\toks24
+\preCutedStrip=\toks25
+\postCutedStrip=\toks26
+\cuted@@tempbox@a=\box53
+\cuted@@tempbox@c=\box54
+\cuted@@tempbox@var=\box55
+\hold@viper=\box56
+\@viper=\box57
+\cuted@@varbox@a=\box58
+\cuted@@varbox@c=\box59
+\cuted@@tempdim@spread=\dimen160
+\cuted@@tempdim@a=\dimen161
+\cuted@@tempdim@b=\dimen162
+\ht@hold@viper=\dimen163
+\ht@viper=\dimen164
+\var@@pagediscards@ht=\dimen165
+\stripsep=\skip57
+\viper@penalty=\count277
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2021/11/30 v1.9d multicolumn formatting (FMi)
-\c@tracingmulticols=\count277
+\c@tracingmulticols=\count278
 
 
 Package multicol Warning: May not work with the twocolumn option on input line 143.
 
-\mult@box=\box53
-\multicol@leftmargin=\dimen160
-\c@unbalance=\count278
-\c@collectmore=\count279
-\doublecol@number=\count280
-\multicoltolerance=\count281
-\multicolpretolerance=\count282
-\full@width=\dimen161
-\page@free=\dimen162
-\premulticols=\dimen163
-\postmulticols=\dimen164
-\multicolsep=\skip57
-\multicolbaselineskip=\skip58
-\partial@page=\box54
-\last@line=\box55
-\maxbalancingoverflow=\dimen165
-\mult@rightbox=\box56
-\mult@grightbox=\box57
-\mult@firstbox=\box58
-\mult@gfirstbox=\box59
-\@tempa=\box60
-\@tempa=\box61
-\@tempa=\box62
-\@tempa=\box63
-\@tempa=\box64
-\@tempa=\box65
-\@tempa=\box66
+\mult@box=\box60
+\multicol@leftmargin=\dimen166
+\c@unbalance=\count279
+\c@collectmore=\count280
+\doublecol@number=\count281
+\multicoltolerance=\count282
+\multicolpretolerance=\count283
+\full@width=\dimen167
+\page@free=\dimen168
+\premulticols=\dimen169
+\postmulticols=\dimen170
+\multicolsep=\skip58
+\multicolbaselineskip=\skip59
+\partial@page=\box61
+\last@line=\box62
+\maxbalancingoverflow=\dimen171
+\mult@rightbox=\box63
+\mult@grightbox=\box64
+\mult@firstbox=\box65
+\mult@gfirstbox=\box66
 \@tempa=\box67
 \@tempa=\box68
 \@tempa=\box69
@@ -221,15 +234,22 @@ Package multicol Warning: May not work with the twocolumn option on input line 1
 \@tempa=\box93
 \@tempa=\box94
 \@tempa=\box95
-\c@minrows=\count283
-\c@columnbadness=\count284
-\c@finalcolumnbadness=\count285
-\last@try=\dimen166
-\multicolovershoot=\dimen167
-\multicolundershoot=\dimen168
-\mult@nat@firstbox=\box96
-\colbreak@box=\box97
-\mc@col@check@num=\count286
+\@tempa=\box96
+\@tempa=\box97
+\@tempa=\box98
+\@tempa=\box99
+\@tempa=\box100
+\@tempa=\box101
+\@tempa=\box102
+\c@minrows=\count284
+\c@columnbadness=\count285
+\c@finalcolumnbadness=\count286
+\last@try=\dimen172
+\multicolovershoot=\dimen173
+\multicolundershoot=\dimen174
+\mult@nat@firstbox=\box103
+\colbreak@box=\box104
+\mc@col@check@num=\count287
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (/usr/local/texlive/2023/texmf-dist/tex/generic/iftex/ifvtex.sty
@@ -237,52 +257,52 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
  (/usr/local/texlive/2023/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
-\Gm@cnth=\count287
-\Gm@cntv=\count288
-\c@Gm@tempcnt=\count289
-\Gm@bindingoffset=\dimen169
-\Gm@wd@mp=\dimen170
-\Gm@odd@mp=\dimen171
-\Gm@even@mp=\dimen172
-\Gm@layoutwidth=\dimen173
-\Gm@layoutheight=\dimen174
-\Gm@layouthoffset=\dimen175
-\Gm@layoutvoffset=\dimen176
-\Gm@dimlist=\toks24
+\Gm@cnth=\count288
+\Gm@cntv=\count289
+\c@Gm@tempcnt=\count290
+\Gm@bindingoffset=\dimen175
+\Gm@wd@mp=\dimen176
+\Gm@odd@mp=\dimen177
+\Gm@even@mp=\dimen178
+\Gm@layoutwidth=\dimen179
+\Gm@layoutheight=\dimen180
+\Gm@layouthoffset=\dimen181
+\Gm@layoutvoffset=\dimen182
+\Gm@dimlist=\toks27
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-03-30 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count290
-\l__pdf_internal_box=\box98
+\l__color_backend_stack_int=\count291
+\l__pdf_internal_box=\box105
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
  (/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count291
-\scratchdimen=\dimen177
-\scratchbox=\box99
-\nofMPsegments=\count292
-\nofMParguments=\count293
-\everyMPshowfont=\toks25
-\MPscratchCnt=\count294
-\MPscratchDim=\dimen178
-\MPnumerator=\count295
-\makeMPintoPDFobject=\count296
-\everyMPtoPDFconversion=\toks26
+\scratchcounter=\count292
+\scratchdimen=\dimen183
+\scratchbox=\box106
+\nofMPsegments=\count293
+\nofMParguments=\count294
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count295
+\MPscratchDim=\dimen184
+\MPnumerator=\count296
+\makeMPintoPDFobject=\count297
+\everyMPtoPDFconversion=\toks29
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -327,132 +347,212 @@ Package caption Info: End \AtBeginDocument code.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-Package natbib Warning: Citation `Hopfinger1983' on page 1 undefined on input line 51.
+Package natbib Warning: Citation `Hopfinger1983' on page 1 undefined on input line 73.
 
 
-Package natbib Warning: Citation `Simpson1999' on page 1 undefined on input line 51.
+Package natbib Warning: Citation `Simpson1999' on page 1 undefined on input line 73.
 
 
-Package natbib Warning: Citation `Dufek2016' on page 1 undefined on input line 51.
+Package natbib Warning: Citation `Dufek2016' on page 1 undefined on input line 73.
 
 
-Package natbib Warning: Citation `Hacker1996' on page 1 undefined on input line 51.
+Package natbib Warning: Citation `Hacker1996' on page 1 undefined on input line 73.
 
 
-Package natbib Warning: Citation `Shin2004' on page 1 undefined on input line 51.
+Package natbib Warning: Citation `Shin2004' on page 1 undefined on input line 73.
 
 
-Package natbib Warning: Citation `Nogueira2014' on page 1 undefined on input line 51.
+Package natbib Warning: Citation `Nogueira2014' on page 1 undefined on input line 73.
 
 
-Package natbib Warning: Citation `Rottman1983' on page 1 undefined on input line 51.
+Package natbib Warning: Citation `Rottman1983' on page 1 undefined on input line 73.
 
 
-Package natbib Warning: Citation `Marino2005' on page 1 undefined on input line 51.
+Package natbib Warning: Citation `Marino2005' on page 1 undefined on input line 73.
 
 
-Package natbib Warning: Citation `Hogg2006' on page 1 undefined on input line 51.
+Package natbib Warning: Citation `Hogg2006' on page 1 undefined on input line 73.
 
 
-Package natbib Warning: Citation `??' on page 1 undefined on input line 62.
+Package natbib Warning: Citation `??' on page 1 undefined on input line 84.
 
 
-Package natbib Warning: Citation `Benjamin1968' on page 1 undefined on input line 63.
+Package natbib Warning: Citation `Benjamin1968' on page 1 undefined on input line 85.
 
 
-Package natbib Warning: Citation `Benjamin1968' on page 1 undefined on input line 65.
+Package natbib Warning: Citation `Benjamin1968' on page 1 undefined on input line 87.
 
 
-Package natbib Warning: Citation `Huppert1980' on page 1 undefined on input line 65.
+Package natbib Warning: Citation `Huppert1980' on page 1 undefined on input line 87.
 
 [1{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 {/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 
-Package natbib Warning: Citation `???' on page 2 undefined on input line 67.
+Package natbib Warning: Citation `???' on page 2 undefined on input line 89.
 
 
-Package natbib Warning: Citation `Rottman1983' on page 2 undefined on input line 82.
+Package natbib Warning: Citation `Rottman1983' on page 2 undefined on input line 105.
 
 
-Package natbib Warning: Citation `Birman2007' on page 2 undefined on input line 101.
+Package natbib Warning: Citation `Birman2007' on page 2 undefined on input line 124.
 
 
-Package natbib Warning: Citation `???' on page 2 undefined on input line 101.
+Package natbib Warning: Citation `???' on page 2 undefined on input line 124.
 
 
-Package natbib Warning: Citation `Birman2007' on page 2 undefined on input line 110.
+Package natbib Warning: Citation `Birman2007' on page 2 undefined on input line 133.
 
 
-Package natbib Warning: Citation `???' on page 2 undefined on input line 110.
+Package natbib Warning: Citation `???' on page 2 undefined on input line 133.
 
-<./figures/figure1.pdf, id=21, 492.84103pt x 359.77396pt>
+<./figures/figure1.pdf, id=22, 492.84103pt x 359.77396pt>
 File: ./figures/figure1.pdf Graphic file (type pdf)
 <use ./figures/figure1.pdf>
-Package pdftex.def Info: ./figures/figure1.pdf  used on input line 115.
+Package pdftex.def Info: ./figures/figure1.pdf  used on input line 138.
 (pdftex.def)             Requested size: 492.83981pt x 359.77307pt.
 
-Package natbib Warning: Citation `Hopfinger1983' on page 2 undefined on input line 123.
+Package natbib Warning: Citation `Hopfinger1983' on page 2 undefined on input line 146.
 
 
-Package natbib Warning: Citation `Middleton1993' on page 2 undefined on input line 123.
+Package natbib Warning: Citation `Middleton1993' on page 2 undefined on input line 146.
 
 
-Package natbib Warning: Citation `Kneller2000' on page 2 undefined on input line 123.
+Package natbib Warning: Citation `Kneller2000' on page 2 undefined on input line 146.
 
 
-Package natbib Warning: Citation `Meiburg2010' on page 2 undefined on input line 123.
+Package natbib Warning: Citation `Meiburg2010' on page 2 undefined on input line 146.
 
 
-Package natbib Warning: Citation `wells2021' on page 2 undefined on input line 123.
+Package natbib Warning: Citation `wells2021' on page 2 undefined on input line 146.
 
 [2]
-Underfull \hbox (badness 1960) in paragraph at lines 136--136
+
+Package natbib Warning: Citation `Schneider???' on page 3 undefined on input line 156.
+
+
+Underfull \hbox (badness 1960) in paragraph at lines 160--160
 []\OT1/cmr/bx/n/14.4 Dimensional anal-y-sis at the
  []
 
-<./figures/figure2.pdf, id=25, 240.02034pt x 576.04884pt>
+<./figures/figure2.pdf, id=26, 240.02034pt x 576.04884pt>
 File: ./figures/figure2.pdf Graphic file (type pdf)
 <use ./figures/figure2.pdf>
-Package pdftex.def Info: ./figures/figure2.pdf  used on input line 142.
+Package pdftex.def Info: ./figures/figure2.pdf  used on input line 166.
 (pdftex.def)             Requested size: 240.01974pt x 576.04744pt.
 
-Package natbib Warning: Citation `Bonometti2011' on page 3 undefined on input line 162.
+Underfull \vbox (badness 6493) has occurred while \output is active []
+
+ [3 <./figures/figure1.pdf>]
+
+Package natbib Warning: Citation `Bonometti2011' on page 4 undefined on input line 187.
 
 
-Package natbib Warning: Citation `???' on page 3 undefined on input line 162.
+Package natbib Warning: Citation `???' on page 4 undefined on input line 187.
 
-[3 <./figures/figure1.pdf>] [4 <./figures/figure2.pdf>]
-<./figures/figure3.pdf, id=153, 492.84103pt x 271.06255pt>
+[4 <./figures/figure2.pdf>]
+
+Package natbib Warning: Citation `chauchat2017' on page 5 undefined on input line 223.
+
+
+Package natbib Warning: Citation `bonamy2023' on page 5 undefined on input line 223.
+
+
+Package natbib Warning: Citation `cheng2016' on page 5 undefined on input line 223.
+
+
+Package natbib Warning: Citation `chauchat2022' on page 5 undefined on input line 223.
+
+
+Package natbib Warning: Citation `mathieu2021' on page 5 undefined on input line 223.
+
+
+Package natbib Warning: Citation `mathieu2022' on page 5 undefined on input line 223.
+
+
+Package natbib Warning: Citation `nagel2020' on page 5 undefined on input line 223.
+
+
+Package natbib Warning: Citation `tsai2022' on page 5 undefined on input line 223.
+
+
+Package natbib Warning: Citation `salimi2021a' on page 5 undefined on input line 223.
+
+
+Package natbib Warning: Citation `salimi2021b' on page 5 undefined on input line 223.
+
+
+Package natbib Warning: Citation `montella2021' on page 5 undefined on input line 223.
+
+
+Package natbib Warning: Citation `montella2023' on page 5 undefined on input line 223.
+
+
+Package natbib Warning: Citation `chauchat2017' on page 5 undefined on input line 223.
+
+
+Underfull \hbox (badness 1102) in paragraph at lines 239--240
+\OT1/cmr/m/n/10 buoyant fluid-particle mix-ture made of polystyrene
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 243--244
+
+ []
+
+<./figures/figure3.pdf, id=158, 492.84103pt x 271.06255pt>
 File: ./figures/figure3.pdf Graphic file (type pdf)
 <use ./figures/figure3.pdf>
-Package pdftex.def Info: ./figures/figure3.pdf  used on input line 222.
+Package pdftex.def Info: ./figures/figure3.pdf  used on input line 254.
 (pdftex.def)             Requested size: 492.83981pt x 271.06187pt.
 
+Package natbib Warning: Citation `refs' on page 6 undefined on input line 272.
 
-Package natbib Warning: Citation `refs' on page 5 undefined on input line 238.
 
-<./figures/figure4.pdf, id=154, 492.84103pt x 304.59251pt>
+Package natbib Warning: Citation `Gadal2023' on page 6 undefined on input line 286.
+
+
+Package natbib Warning: Citation `Cantero2007' on page 6 undefined on input line 286.
+
+[6]
+Overfull \hbox (7.30429pt too wide) detected at line 290
+[][] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 A\OT1/cmr/m/n/10 ^^A\OML/cmm/m/it/10 ^^Zg [] h[] \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ^^@[]\OML/cmm/m/it/10 C[]^^Z[]u[][];
+ []
+
+
+Package natbib Warning: Citation `Cantero2007' on page 7 undefined on input line 291.
+
+<./figures/figure4.pdf, id=163, 492.84103pt x 304.59251pt>
 File: ./figures/figure4.pdf Graphic file (type pdf)
 <use ./figures/figure4.pdf>
-Package pdftex.def Info: ./figures/figure4.pdf  used on input line 250.
+Package pdftex.def Info: ./figures/figure4.pdf  used on input line 300.
 (pdftex.def)             Requested size: 492.83981pt x 304.59175pt.
-<./figures/figure5.pdf, id=155, 492.84103pt x 398.71678pt>
+<./figures/figure5.pdf, id=164, 492.84103pt x 398.71678pt>
 File: ./figures/figure5.pdf Graphic file (type pdf)
 <use ./figures/figure5.pdf>
-Package pdftex.def Info: ./figures/figure5.pdf  used on input line 259.
+Package pdftex.def Info: ./figures/figure5.pdf  used on input line 310.
 (pdftex.def)             Requested size: 492.83981pt x 398.7158pt.
-[5]
-<./figures/figure6.pdf, id=160, 240.02034pt x 388.36107pt>
+[7 <./figures/figure3.pdf>]
+<./figures/figure6.pdf, id=229, 240.02034pt x 388.36107pt>
 File: ./figures/figure6.pdf Graphic file (type pdf)
 <use ./figures/figure6.pdf>
-Package pdftex.def Info: ./figures/figure6.pdf  used on input line 286.
+Package pdftex.def Info: ./figures/figure6.pdf  used on input line 338.
 (pdftex.def)             Requested size: 240.01974pt x 388.3601pt.
 
-Underfull \vbox (badness 2035) has occurred while \output is active []
 
- (./main.bbl
+Package natbib Warning: Citation `krieger1959mechanism' on page 8 undefined on input line 358.
+
+
+Package natbib Warning: Citation `boyer2011unifying' on page 8 undefined on input line 363.
+
+
+Package natbib Warning: Citation `stickel2005fluid' on page 8 undefined on input line 365.
+
+
+Package natbib Warning: Citation `boyer2011unifying' on page 8 undefined on input line 365.
+
+[8 <./figures/figure4.pdf>] (./main.bbl
 
 Package natbib Warning: Empty `thebibliography' environment on input line 3.
 
@@ -460,23 +560,25 @@ Package natbib Warning: Empty `thebibliography' environment on input line 3.
 
 Package natbib Warning: There were undefined citations.
 
-[6 <./figures/figure3.pdf>] [7 <./figures/figure4.pdf>] [8 <./figures/figure5.pdf>] [9
+[9
+
+] [10 <./figures/figure5.pdf>] [11
 
 
  <./figures/figure6.pdf>] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 5239 strings out of 476017
- 85277 string characters out of 5789775
- 1872666 words of memory out of 5000000
- 25657 multiletter control sequences out of 15000+600000
- 518698 words of font info for 54 fonts, out of 8000000 for 9000
+ 5351 strings out of 476017
+ 87155 string characters out of 5789775
+ 1871666 words of memory out of 5000000
+ 25763 multiletter control sequences out of 15000+600000
+ 519376 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,7n,63p,1263b,348s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (9 pages, 2260752 bytes).
+ 57i,19n,63p,2044b,408s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on main.pdf (11 pages, 2346896 bytes).
 PDF statistics:
- 462 PDF objects out of 1000 (max. 8388607)
- 162 compressed objects within 2 object streams
+ 486 PDF objects out of 1000 (max. 8388607)
+ 175 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
