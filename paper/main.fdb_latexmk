@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1685547386 "main.aux" "main.bbl" "main" 1685547387 0
+["bibtex main"] 1685631401 "main.aux" "main.bbl" "main" 1685631402 0
   "./biblio.bib" 1683040233 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2023/texmf-dist/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "main.aux" 1685547387 6787 ec732eaf8f2337afe446caf7bcb447df "pdflatex"
+  "main.aux" 1685631401 6787 aafd69bb70c82bd9582940018c694165 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1685547386 "/home/cyril/Documents/Work/Research/Turbity_Currents/PALAGRAM_MONOGRAPH/paper/main.tex" "main.pdf" "main" 1685547387 0
+["pdflatex"] 1685631401 "/home/cyril/Documents/Work/Research/Turbity_Currents/PALAGRAM_MONOGRAPH/paper/main.tex" "main.pdf" "main" 1685631402 0
   "/home/cyril/Documents/Work/Research/Turbity_Currents/PALAGRAM_MONOGRAPH/paper/main.tex" 1685547385 39542 38768a9bc952de1b10c132c587c149e2 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -86,14 +86,14 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1680858274 4622752 02d70c555fb1ccbaa0b6f1f330ce9b3b ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1680858324 7885174 16139c41cd571b42bb3e8bfcc49476aa ""
   "/usr/local/texlive/2023/texmf.cnf" 1680858269 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
-  "figures/figure1.pdf" 1684684041 1550558 b8ea7b107beac13410854538e7173323 ""
+  "figures/figure1.pdf" 1685631399 1601035 9a2eb540af563178e270c43412df0f9f ""
   "figures/figure2.pdf" 1685026032 71543 e63befc1e4dba0c9348bf5e4cacbbaa5 ""
   "figures/figure3.pdf" 1685026039 361107 c8fff699f1c20ed9a54c1a38f2a04e8c ""
   "figures/figure4.pdf" 1685112637 40056 3e83a5d9293ecc771bbaacb31fbeccc8 ""
   "figures/figure5.pdf" 1685112646 58505 f2d0238d05ae3284e7e8921a963d581c ""
   "figures/figure6.pdf" 1685112652 27521 7a52840235b7bfe193d8bf0717e48105 ""
-  "main.aux" 1685547387 6787 ec732eaf8f2337afe446caf7bcb447df "pdflatex"
-  "main.bbl" 1685547386 49 0eba253fc001332e731e8aba3f23127b "bibtex main"
+  "main.aux" 1685631401 6787 aafd69bb70c82bd9582940018c694165 "pdflatex"
+  "main.bbl" 1685631401 49 0eba253fc001332e731e8aba3f23127b "bibtex main"
   "main.tex" 1685547385 39542 38768a9bc952de1b10c132c587c149e2 ""
   (generated)
   "main.aux"

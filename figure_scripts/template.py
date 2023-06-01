@@ -41,6 +41,7 @@ rcParams['figure.figsize'] = large_figure_size
 
 # cmap_images = cmo.cm.ice
 cmap_images = cmo.cm.gray
+cmap_images2 = cmo.cm.gray_r
 # cmap_images = cmo.cm.dense_r
 # cmap_images = cmr.arctic
 

@@ -11,8 +11,8 @@ from matplotlib.path import Path
 
 plt.rcParams['figure.constrained_layout.hspace'] = 0
 plt.rcParams['figure.constrained_layout.wspace'] = 0
-plt.rcParams['figure.constrained_layout.h_pad'] = 0
-plt.rcParams['figure.constrained_layout.w_pad'] = 0
+plt.rcParams['figure.constrained_layout.h_pad'] = 0.005
+plt.rcParams['figure.constrained_layout.w_pad'] = 0.005
 
 
 def sind(x):
@@ -57,16 +57,15 @@ water_height_facts = [0.89, 1, 0.89]  # proportion of tank height
 width_ratios = tank_length*cosd(SLOPES) + np.abs(tank_height*sind(SLOPES))
 
 
-figsize = (tp.large_figure_width, 0.73*tp.large_figure_width)
-fig = plt.figure(constrained_layout=True, figsize=figsize)
+figsize = (tp.large_figure_width, 0.84*tp.large_figure_width)
+fig = plt.figure(figsize=figsize, layout='compressed')
 
-subfigs = fig.subfigures(2, 1, height_ratios=(1, 1.32), hspace=0.005)
-axs_sketches = subfigs[0].subplots(
-    1, 3, width_ratios=width_ratios, gridspec_kw={'wspace': 0.02})
-subfigures_images = subfigs[1].subfigures(
-    1, 3, width_ratios=width_ratios)
+subfigs = fig.subfigures(2, 1, height_ratios=(0.364, 0.636), hspace=0.005)
 
 # %%%%%%% Sketches
+
+axs_sketches = subfigs[0].subplots(
+    1, 3, width_ratios=width_ratios, gridspec_kw={'wspace': 0.02})
 
 ax_labels = ['a', 'b', 'c']
 for i, (ax, ax_label, slope, water_height_fact) in enumerate(zip(axs_sketches.flatten(),
@@ -215,14 +214,19 @@ for i, (ax, ax_label, slope, water_height_fact) in enumerate(zip(axs_sketches.fl
             r'$L_{0}$', ha='center', va='top')
 
 # %%%%%%% experimental images
+subfigures_images = subfigs[1].subfigures(
+    2, 1, height_ratios=(0.77, 0.20), hspace=0.022)
+
+subfigures_images_top = subfigures_images[0].subfigures(
+    1, 3, width_ratios=width_ratios)
 
 # ## IMFT (sand80m_H19/run03)
 path_imgs = 'src/images_figure1/IMFT'
 images = [plt.imread(img) for img in sorted(
     glob.glob(os.path.join(path_imgs, '*.tif')))]
 
-axs_IMFT = subfigures_images[0].subplots(
-    len(images), 1, gridspec_kw={'hspace': 0.032})
+axs_IMFT = subfigures_images_top[0].subplots(
+    len(images), 1, gridspec_kw={'hspace': 0.03})
 
 for ax, img in zip(axs_IMFT, images):
     ax.imshow(img[100:, :150:-1], cmap=tp.cmap_images, vmax=2e4)
@@ -234,8 +238,8 @@ path_imgs = 'src/images_figure1/LEGI'
 images = [plt.imread(img) for img in sorted(
     glob.glob(os.path.join(path_imgs, '*.tif')))]
 
-img_sizes = [240, 480, 950]
-axs_LEGI = subfigures_images[1].subplots(
+img_sizes = [225, 490, 950]
+axs_LEGI = subfigures_images_top[1].subplots(
     len(images), 1, height_ratios=img_sizes, gridspec_kw={'hspace': 0.02})
 
 for ax, img, size in zip(axs_LEGI, images, img_sizes):
@@ -248,17 +252,38 @@ path_imgs = 'src/images_figure1/LEMTA'
 images = [plt.imread(img) for img in sorted(
     glob.glob(os.path.join(path_imgs, '*.tiff')))]
 
-axs_LEMTA = subfigures_images[2].subplots(
-    len(images), 1, gridspec_kw={'hspace': 0.032})
+axs_LEMTA = subfigures_images_top[2].subplots(
+    len(images), 1, gridspec_kw={'hspace': 0.03})
 
 for ax, img in zip(axs_LEMTA, images):
     ax.imshow(img, cmap=tp.cmap_images, vmax=5.5e4)
     ax.set_xticks([])
     ax.set_yticks([])
 
+# ## SEDFoam
+path_imgs = 'src/images_figure1/SEDFOAM'
+data = np.load(os.path.join(
+    path_imgs, 'run07_snpachots_extracts.npy'), allow_pickle=True).item()
+
+X, Y = np.meshgrid(data['x'], data['y'])
+
+axs_SEDFOAM = subfigures_images[1].subplots(
+    2, 5, width_ratios=[0.0001, 1, 1, 1, 0.0001], gridspec_kw={'hspace': 0.01, 'wspace': 0.03})
+for ax, arr_phi in zip(axs_SEDFOAM[:, 1:-1].flatten(), data['phi']):
+    ax.pcolormesh(X.T, Y.T, arr_phi,
+                  cmap=tp.cmap_images2, vmax=0.025, rasterized=True)
+    ax.set_aspect('equal')
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+for ax in axs_SEDFOAM[:, 0].flatten():
+    ax.set_axis_off()
+for ax in axs_SEDFOAM[:, -1].flatten():
+    ax.set_axis_off()
+
 letters = 'abcdefghijklmnopqrstuvwxyz'
 axs = np.concatenate(
-    [axs_sketches.flatten(), axs_IMFT.flatten(), axs_LEGI.flatten(), axs_LEMTA.flatten()])
+    [axs_sketches.flatten(), axs_IMFT.flatten(), axs_LEGI.flatten(), axs_LEMTA.flatten(), axs_SEDFOAM[:, 1:-1].flatten()])
 
 for l, ax in zip(letters[:3], axs[:3]):
     trans_base = mtransforms.blended_transform_factory(
@@ -271,10 +296,11 @@ for l, ax in zip(letters[:3], axs[:3]):
 
 for l, ax in zip(letters[3:], axs[3:]):
     trans = mtransforms.ScaledTranslation(
-        3/72, -3/72, fig.dpi_scale_trans)
+        -3/72, -3/72, fig.dpi_scale_trans)
     label = '({})'.format(l)
-    ax.text(0.0, 1.0, label, transform=ax.transAxes + trans, color='k',
-            va='top', ha='left', bbox=dict(facecolor='w', edgecolor='none', alpha=0.8, pad=2.2))
+    ax.text(1.0, 1.0, label, transform=ax.transAxes + trans, color='k',
+            va='top', ha='right', bbox=dict(facecolor='w', edgecolor='none', alpha=0.8, pad=2.2))
+
 
 # plt.show()
 fig.savefig(
