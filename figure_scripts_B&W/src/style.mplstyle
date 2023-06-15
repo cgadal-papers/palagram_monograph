@@ -1,0 +1,24 @@
+# Figure properties
+
+figure.figsize: 4.68504, 4.68504
+savefig.dpi: 300
+
+# Font properties
+
+mathtext.fontset: stix
+font.family: serif
+font.serif: StixGeneral
+font.size: 10
+
+# Plot layout
+
+xtick.direction: in
+ytick.direction: in
+ytick.right: True
+xtick.top: True
+
+# layout properties
+figure.constrained_layout.h_pad: 0.015
+figure.constrained_layout.hspace: 0.05
+figure.constrained_layout.wspace: 0.05
+figure.constrained_layout.w_pad: 0.015
