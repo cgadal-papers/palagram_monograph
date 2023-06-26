@@ -50,40 +50,32 @@ color_cycle = plt.rcParams['axes.prop_cycle'].by_key()['color']
 # color_setups = {'Julien': '#823329', 'Jean': '#FE7F2D',
 #                 'Cyril': '#FCCA46', 'Cyril/Marie': '#619B8A', 'Rastello': '#A1C181'}
 
-datasets = {'Julien': 'SedFoam', 'Jean': '3',
+datasets = {'Julien': '4', 'Jean': '3',
             'Cyril': '1', 'Cyril/Marie': '2', 'Rastello': '2'}
 
 # color_datasets = {'SedFoam': '#08415C', '3': '#FE7F2D',
 #                   '1': '#FCCA46', '2': '#83B692'}
 
-color_datasets = {'SedFoam': '#780116', '3': '#FE7F2D',
+color_datasets = {'4': '#780116', '3': '#FE7F2D',
                   '1': '#FCCA46', '2': '#83B692'}
 
 marker_style = {'glass beads': 'o', 'silica sand': 'h', 'Hydrogels': '*',
                 'PMMA': 'D', 'polystyren beads': 'X', 'SedFoam': 's'}
 
-dataset_zorder = {'1': 0, '2': 1, '3': 2, 'SedFoam': 2}
-dataset_zorder2 = {'1': 0, '2': 2, '3': 2, 'SedFoam': 1}
+legend_names = {'glass beads': 'glass beads', 'silica sand': 'silica sand', 'Hydrogels': 'hydrogels',
+                'PMMA': 'PMMA', 'polystyren beads': 'polystyren beads', 'SedFoam': 'simulations'}
+
+dataset_zorder = {'1': 0, '2': 1, '3': 2, '4': 2}
+dataset_zorder2 = {'1': 0, '2': 2, '3': 2, '4': 1}
 
 # %% corresponding legend
-
-# leg_labels = sorted(color_setups.keys())
-# legend_elements = [
-#     Line2D([0], [0], marker='s' if author == 'Julien' else 'o', color=color_setups[author], ls='none') for author in sorted(color_setups.keys())
-# ]
-
-# legend_elements[leg_labels.index('Rastello')] = (
-#     Line2D([0], [0], marker='o', color=color_setups['Rastello'], ls='none'),
-#     Line2D([0], [0], marker='d', color=color_setups['Rastello'], ls='none'),
-#     Line2D([0], [0], marker='*', color=color_setups['Rastello'], ls='none'),
-# )
 
 legend_datasets = [
     Line2D([0], [0], marker='s' if dataset == 'SedFoam' else 'o', color=color_datasets[dataset], ls='none', label=dataset) for dataset in sorted(color_datasets.keys())
 ]
 
 legend_particles = [
-    Line2D([0], [0], marker=marker_style[particle], markerfacecolor='none', markeredgecolor='k', ls='none', label=particle) for particle in sorted(marker_style.keys())
+    Line2D([0], [0], marker=marker_style[particle], markerfacecolor='none', markeredgecolor='k', ls='none', label=legend_names[particle]) for particle in sorted(marker_style.keys())
 ]
 
 # %% variables
