@@ -33,7 +33,7 @@ authors, particles = np.array([[d.author, d.particle_type,
 dataset_idx = np.vectorize(tp.datasets.get)(authors)
 
 markers = np.vectorize(tp.marker_style.get)(particles)
-markers[dataset_idx == 'SedFoam'] = 's'
+markers[dataset_idx == '4'] = 's'
 
 facecolors = np.array([tp.color_datasets_BW[d] for d in dataset_idx])
 edgecolors = np.array(['k' for d in dataset_idx])

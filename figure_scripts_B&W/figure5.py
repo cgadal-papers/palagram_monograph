@@ -44,7 +44,7 @@ alphas = np.ones_like(Fr)
 alphas[~mask_phi] = 0.4
 
 markers = np.vectorize(tp.marker_style.get)(particles)
-markers[dataset_idx == 'SedFoam'] = 's'
+markers[dataset_idx == '4'] = 's'
 
 facecolors = np.array([tp.color_datasets_BW[d] for d in dataset_idx])
 facecolors = np.array([to_rgba(c, a) for c, a in zip(facecolors, alphas)])
