@@ -34,7 +34,7 @@ Ha = np.array([d.variables['H_a'][:].data if 'H_a' in d.variables.keys()
 dataset_idx = np.vectorize(tp.datasets.get)(authors)
 
 markers = np.vectorize(tp.marker_style.get)(particles)
-markers[dataset_idx == 'SedFoam'] = 's'
+markers[dataset_idx == '4'] = 's'
 
 # facecolors = np.vectorize(tp.color_datasets_BW.get)(dataset_idx)
 # edgecolors = np.full_like(facecolors, 'k')

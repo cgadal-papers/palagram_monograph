@@ -36,7 +36,7 @@ for d in datasets[mask]:
     ax.scatter(d.variables['t'][:].data, d.variables['x_front'][:].data,
                s=1,
                color=tp.color_datasets_BW[tp.datasets[d.author]],
-               marker=tp.marker_style[d.particle_type],
+               marker=tp.marker_style[d.particle_type] if d.author != 'Julien' else 's',
                zorder=zorder_setups[d.author],
                rasterized=True)
 
@@ -61,7 +61,7 @@ for i in i_runs:
     y_axis = d.variables['x_front'][:].data/x_ad
     ax.scatter(x_axis, y_axis,
                color=tp.color_datasets_BW[tp.datasets[d.author]], s=3,
-               marker=tp.marker_style[d.particle_type], rasterized=True)
+               marker=tp.marker_style[d.particle_type] if d.author != 'Julien' else 's', rasterized=True)
     # plotting fit
     fitresult = load_modelresult(os.path.join(
         path_data, 'fitresult_run_{:03d}.save'.format(i)))
