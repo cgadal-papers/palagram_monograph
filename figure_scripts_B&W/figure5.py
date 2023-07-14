@@ -77,7 +77,7 @@ params['c'].vary = False
 
 mask_alpha = (alpha > alpha0[1] - alpha_pad) & (alpha < alpha0[1] + alpha_pad)
 
-result = model.fit(lamb[mask_alpha], params, x=(St/a)[mask_alpha])
+result = model.fit(lamb[mask_alpha], params, x=(St)[mask_alpha])
 
 # # %% Figure
 
@@ -88,7 +88,7 @@ for a0, axarr_sub in zip(alpha0, axarr[:, 1:]):
     mask_alpha = (alpha > a0 - alpha_pad) & (alpha < a0 + alpha_pad)
     mask = (mask_alpha)[plot_idxs]
     for i, (var, ax) in enumerate(zip([Fr, lamb], axarr_sub.flatten())):
-        tp.mscatter((St/a)[plot_idxs][mask], var[plot_idxs][mask], ax=ax, m=markers[plot_idxs][mask],
+        tp.mscatter((St)[plot_idxs][mask], var[plot_idxs][mask], ax=ax, m=markers[plot_idxs][mask],
                     facecolors=facecolors[plot_idxs][mask], edgecolors=edgecolors[plot_idxs][mask], lw=0.5)
         #
         if i == 0:
@@ -128,8 +128,8 @@ for a0, axarr_sub in zip(alpha0, axarr[:, 1:]):
         axarr_sub[0].set_xticklabels([])
         axarr_sub[1].set_xticklabels([])
     else:
-        axarr_sub[1].set_xlabel(r'Stokes number, $\mathcal{S}t/a$')
-        axarr_sub[0].set_xlabel(r'Stokes number, $\mathcal{S}t/a$')
+        axarr_sub[1].set_xlabel(r'Stokes number, $\mathcal{S}t$')
+        axarr_sub[0].set_xlabel(r'Stokes number, $\mathcal{S}t$')
 
 xline = 0.8
 for ax, a0 in zip(axarr[:, 0].flatten(), alpha0):

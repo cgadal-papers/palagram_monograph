@@ -207,13 +207,16 @@ for i, d in enumerate(datasets):
     create_variable(newfile, 't0', t_ad, unit='s',
                     comments='characteristic timescale')
     # Non-dimensional numbers
-    create_variable(newfile, 'a', H0/d.variables['L0'][:].data, unit='-',
+    a = H0/d.variables['L0'][:].data
+    create_variable(newfile, 'a', a, unit='-',
                     comments='lock aspect ratio')
     create_variable(newfile, 'Re', u0*H0*rho_c/mu, unit='-',
                     comments='Reynolds number')
     create_variable(newfile, 'At', (rho_c - rho_a)/rho_a, unit='-',
                     comments='Atwood number')
-    create_variable(newfile, 'St', vs/u0, unit='-',
+    create_variable(newfile, 'S', vs/u0, unit='-',
+                    comments='Settling number')
+    create_variable(newfile, 'St', (1/a)*(vs/u0), unit='-',
                     comments='Stokes number')
     # Non-dimensional variables and fit results
     create_variable(newfile, 'Fr', Fr, unit='-', std=Fr_err,

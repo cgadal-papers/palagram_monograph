@@ -79,10 +79,10 @@ tp.mscatter(ang2sin(alpha)[plot_idxs], Fr[plot_idxs], ax=ax, m=markers[plot_idxs
             facecolors=facecolors[plot_idxs], edgecolors=edgecolors[plot_idxs], lw=0.5)
 
 line_birman, = ax.plot(ang2sin(alpha_plot), Birman(alpha_plot),
-                       ls='--', color='k', zorder=-8, lw=1, label='Birman et al. 2007')
+                       ls='--', color='k', zorder=-8, lw=1, label='simulations of\nBirman et al. 2007')
 
 line_theory, = ax.plot(ang2sin(alpha_plot), Fr_th,
-                       ls='-', color='k', zorder=-8, lw=1, label='eq. (?)')
+                       ls='-', color='k', zorder=-8, lw=1, label='eq. (15)')
 
 ax.set_xlabel(r'$\sin \alpha$')
 ax.set_xlim(left=-0.012)
