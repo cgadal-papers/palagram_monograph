@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.7)  1 JUN 2023 16:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.7)  21 JUL 2023 15:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/cyril/Documents/Work/Research/Turbity_Currents/PALAGRAM_MONOGRAPH/paper/main.tex
-(/home/cyril/Documents/Work/Research/Turbity_Currents/PALAGRAM_MONOGRAPH/paper/main.tex
+**/home/cyril/Documents/Work/Research/Projects/Turbity_Currents/palagram_monograph/paper/main.tex
+(/home/cyril/Documents/Work/Research/Projects/Turbity_Currents/palagram_monograph/paper/main.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-03-30> (/usr/local/texlive/2023/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
@@ -276,20 +276,20 @@ File: l3backend-pdftex.def 2023-03-30 L3 backend support: PDF output (pdfTeX)
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
  (/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count292
@@ -347,245 +347,109 @@ Package caption Info: End \AtBeginDocument code.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-Package natbib Warning: Citation `Hopfinger1983' on page 1 undefined on input line 73.
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
-Package natbib Warning: Citation `Simpson1999' on page 1 undefined on input line 73.
-
-
-Package natbib Warning: Citation `Dufek2016' on page 1 undefined on input line 73.
-
-
-Package natbib Warning: Citation `Hacker1996' on page 1 undefined on input line 73.
-
-
-Package natbib Warning: Citation `Shin2004' on page 1 undefined on input line 73.
-
-
-Package natbib Warning: Citation `Nogueira2014' on page 1 undefined on input line 73.
-
-
-Package natbib Warning: Citation `Rottman1983' on page 1 undefined on input line 73.
-
-
-Package natbib Warning: Citation `Marino2005' on page 1 undefined on input line 73.
-
-
-Package natbib Warning: Citation `Hogg2006' on page 1 undefined on input line 73.
-
-
-Package natbib Warning: Citation `??' on page 1 undefined on input line 84.
-
-
-Package natbib Warning: Citation `Benjamin1968' on page 1 undefined on input line 85.
-
-
-Package natbib Warning: Citation `Benjamin1968' on page 1 undefined on input line 87.
-
-
-Package natbib Warning: Citation `Huppert1980' on page 1 undefined on input line 87.
-
-[1{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
-
-
-{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-
-Package natbib Warning: Citation `???' on page 2 undefined on input line 89.
-
-
-Package natbib Warning: Citation `Rottman1983' on page 2 undefined on input line 105.
-
-
-Package natbib Warning: Citation `Birman2007' on page 2 undefined on input line 124.
-
-
-Package natbib Warning: Citation `???' on page 2 undefined on input line 124.
-
-
-Package natbib Warning: Citation `Birman2007' on page 2 undefined on input line 133.
-
-
-Package natbib Warning: Citation `???' on page 2 undefined on input line 133.
-
-<./figures/figure1.pdf, id=22, 492.84103pt x 413.98647pt>
+] [2]
+<./figures/figure1.pdf, id=23, 492.84103pt x 413.98647pt>
 File: ./figures/figure1.pdf Graphic file (type pdf)
 <use ./figures/figure1.pdf>
-Package pdftex.def Info: ./figures/figure1.pdf  used on input line 138.
+Package pdftex.def Info: ./figures/figure1.pdf  used on input line 135.
 (pdftex.def)             Requested size: 492.83981pt x 413.98544pt.
 
-Package natbib Warning: Citation `Hopfinger1983' on page 2 undefined on input line 146.
-
-
-Package natbib Warning: Citation `Middleton1993' on page 2 undefined on input line 146.
-
-
-Package natbib Warning: Citation `Kneller2000' on page 2 undefined on input line 146.
-
-
-Package natbib Warning: Citation `Meiburg2010' on page 2 undefined on input line 146.
-
-
-Package natbib Warning: Citation `wells2021' on page 2 undefined on input line 146.
-
-[2]
-
-Package natbib Warning: Citation `Schneider???' on page 3 undefined on input line 156.
-
-
-Underfull \hbox (badness 1960) in paragraph at lines 160--160
-[]\OT1/cmr/bx/n/14.4 Dimensional anal-y-sis at the
+Underfull \hbox (badness 1616) in paragraph at lines 154--158
+\OT1/cmr/m/n/10 Note that such tran-si-tion shall dis-ap-pear for the
  []
 
-<./figures/figure2.pdf, id=26, 240.02034pt x 576.04884pt>
-File: ./figures/figure2.pdf Graphic file (type pdf)
-<use ./figures/figure2.pdf>
-Package pdftex.def Info: ./figures/figure2.pdf  used on input line 166.
-(pdftex.def)             Requested size: 240.01974pt x 576.04744pt.
-[3 <./figures/figure1.pdf>]
 
-Package natbib Warning: Citation `Bonometti2011' on page 4 undefined on input line 187.
+Underfull \vbox (badness 1635) has occurred while \output is active []
 
+ [3] [4 <./figures/figure1.pdf>]
+Underfull \hbox (badness 3792) in paragraph at lines 187--188
+ \OT1/cmr/bx/n/10 Two-fluid model[] \OT1/cmr/m/n/10 A two-fluid model, Sed-Foam
+ []
 
-Package natbib Warning: Citation `???' on page 4 undefined on input line 187.
-
-[4 <./figures/figure2.pdf>]
-
-Package natbib Warning: Citation `chauchat2017' on page 5 undefined on input line 223.
-
-
-Package natbib Warning: Citation `bonamy2023' on page 5 undefined on input line 223.
-
-
-Package natbib Warning: Citation `cheng2016' on page 5 undefined on input line 223.
-
-
-Package natbib Warning: Citation `chauchat2022' on page 5 undefined on input line 223.
-
-
-Package natbib Warning: Citation `mathieu2021' on page 5 undefined on input line 223.
-
-
-Package natbib Warning: Citation `mathieu2022' on page 5 undefined on input line 223.
-
-
-Package natbib Warning: Citation `nagel2020' on page 5 undefined on input line 223.
-
-
-Package natbib Warning: Citation `tsai2022' on page 5 undefined on input line 223.
-
-
-Package natbib Warning: Citation `salimi2021a' on page 5 undefined on input line 223.
-
-
-Package natbib Warning: Citation `salimi2021b' on page 5 undefined on input line 223.
-
-
-Package natbib Warning: Citation `montella2021' on page 5 undefined on input line 223.
-
-
-Package natbib Warning: Citation `montella2023' on page 5 undefined on input line 223.
-
-
-Package natbib Warning: Citation `chauchat2017' on page 5 undefined on input line 223.
-
-[5]
-Underfull \hbox (badness 1102) in paragraph at lines 239--240
+[5{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+Underfull \hbox (badness 1102) in paragraph at lines 210--211
 \OT1/cmr/m/n/10 buoyant fluid-particle mix-ture made of polystyrene
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 243--244
-
+Underfull \hbox (badness 1005) in paragraph at lines 216--216
+[]\OT1/cmr/bx/n/14.4 Macroscopic cur-rent de-scrip-
  []
 
-<./figures/figure3.pdf, id=176, 492.84103pt x 271.06255pt>
+<./figures/figure2.pdf, id=113, 240.02034pt x 576.04884pt>
+File: ./figures/figure2.pdf Graphic file (type pdf)
+<use ./figures/figure2.pdf>
+Package pdftex.def Info: ./figures/figure2.pdf  used on input line 224.
+(pdftex.def)             Requested size: 240.01974pt x 576.04744pt.
+<./figures/figure3.pdf, id=114, 492.84103pt x 271.06255pt>
 File: ./figures/figure3.pdf Graphic file (type pdf)
 <use ./figures/figure3.pdf>
-Package pdftex.def Info: ./figures/figure3.pdf  used on input line 254.
+Package pdftex.def Info: ./figures/figure3.pdf  used on input line 261.
 (pdftex.def)             Requested size: 492.83981pt x 271.06187pt.
+[6] [7 <./figures/figure2.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Package natbib Warning: Citation `refs' on page 6 undefined on input line 272.
+ [8 <./figures/figure3.pdf>]
+Overfull \hbox (4.48463pt too wide) detected at line 306
+[][] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 A\OT1/cmr/m/n/10 ^^A\OML/cmm/m/it/10 ^^Zg [] h[] \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ^^@[]\OML/cmm/m/it/10 c[]^^Z[]u[][];
+ []
 
+<./figures/figure4.pdf, id=244, 492.84103pt x 304.59251pt>
+File: ./figures/figure4.pdf Graphic file (type pdf)
+<use ./figures/figure4.pdf>
+Package pdftex.def Info: ./figures/figure4.pdf  used on input line 320.
+(pdftex.def)             Requested size: 492.83981pt x 304.59175pt.
+<./figures/figure5.pdf, id=245, 492.84103pt x 398.71678pt>
+File: ./figures/figure5.pdf Graphic file (type pdf)
+<use ./figures/figure5.pdf>
+Package pdftex.def Info: ./figures/figure5.pdf  used on input line 330.
+(pdftex.def)             Requested size: 492.83981pt x 398.7158pt.
+<./figures/figure6.pdf, id=246, 240.02034pt x 388.36107pt>
+File: ./figures/figure6.pdf Graphic file (type pdf)
+<use ./figures/figure6.pdf>
+Package pdftex.def Info: ./figures/figure6.pdf  used on input line 354.
+(pdftex.def)             Requested size: 240.01974pt x 388.3601pt.
 
-Underfull \vbox (badness 1270) has occurred while \output is active []
+Underfull \vbox (badness 2726) has occurred while \output is active []
 
- [6]
-
-Package natbib Warning: Citation `Gadal2023' on page 7 undefined on input line 286.
-
-
-Package natbib Warning: Citation `Cantero2007' on page 7 undefined on input line 286.
-
-
-Overfull \hbox (7.30429pt too wide) detected at line 290
-[][] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 A\OT1/cmr/m/n/10 ^^A\OML/cmm/m/it/10 ^^Zg [] h[] \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ^^@[]\OML/cmm/m/it/10 C[]^^Z[]u[][];
+ [9]
+<figures/figure7.pdf, id=250, 492.84103pt x 118.88708pt>
+File: figures/figure7.pdf Graphic file (type pdf)
+<use figures/figure7.pdf>
+Package pdftex.def Info: figures/figure7.pdf  used on input line 392.
+(pdftex.def)             Requested size: 492.83981pt x 118.88678pt.
+ [10 <./figures/figure4.pdf>]
+Underfull \hbox (badness 6741) in paragraph at lines 452--459
+\OT1/cmr/m/n/10 We thank Jean-Dominique Bar-ron (IMFT) and
  []
 
 
-Package natbib Warning: Citation `Cantero2007' on page 7 undefined on input line 291.
+Underfull \hbox (badness 2443) in paragraph at lines 461--462
+\OT1/cmr/m/n/10 Na-tional Re-search Agency Grants, ANR-19-CE30-
+ []
 
-<./figures/figure4.pdf, id=180, 492.84103pt x 304.59251pt>
-File: ./figures/figure4.pdf Graphic file (type pdf)
-<use ./figures/figure4.pdf>
-Package pdftex.def Info: ./figures/figure4.pdf  used on input line 300.
-(pdftex.def)             Requested size: 492.83981pt x 304.59175pt.
-<./figures/figure5.pdf, id=181, 492.84103pt x 398.71678pt>
-File: ./figures/figure5.pdf Graphic file (type pdf)
-<use ./figures/figure5.pdf>
-Package pdftex.def Info: ./figures/figure5.pdf  used on input line 310.
-(pdftex.def)             Requested size: 492.83981pt x 398.7158pt.
-[7 <./figures/figure3.pdf>]
-<./figures/figure6.pdf, id=247, 240.02034pt x 388.36107pt>
-File: ./figures/figure6.pdf Graphic file (type pdf)
-<use ./figures/figure6.pdf>
-Package pdftex.def Info: ./figures/figure6.pdf  used on input line 338.
-(pdftex.def)             Requested size: 240.01974pt x 388.3601pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
+(./main.bbl [11] [12]) [13] [14 <./figures/figure5.pdf>] [15
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [8 <./figures/figure4.pdf>]
-
-Package natbib Warning: Citation `krieger1959mechanism' on page 9 undefined on input line 358.
-
-
-Package natbib Warning: Citation `boyer2011unifying' on page 9 undefined on input line 363.
-
-
-Package natbib Warning: Citation `stickel2005fluid' on page 9 undefined on input line 365.
-
-
-Package natbib Warning: Citation `boyer2011unifying' on page 9 undefined on input line 365.
-
-(./main.bbl
-
-Package natbib Warning: Empty `thebibliography' environment on input line 3.
-
-)
-
-Package natbib Warning: There were undefined citations.
-
-[9
-
-] [10 <./figures/figure5.pdf>] [11
-
-
- <./figures/figure6.pdf>] (./main.aux) ) 
+ <./figures/figure6.pdf>] [16 <./figures/figure7.pdf>] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 5351 strings out of 476017
- 87155 string characters out of 5789775
- 1871666 words of memory out of 5000000
- 25763 multiletter control sequences out of 15000+600000
+ 5514 strings out of 476017
+ 90370 string characters out of 5789775
+ 1876666 words of memory out of 5000000
+ 25924 multiletter control sequences out of 15000+600000
  519376 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,19n,63p,2044b,408s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,22n,63p,2196b,408s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (11 pages, 2402136 bytes).
+Output written on main.pdf (16 pages, 2581939 bytes).
 PDF statistics:
- 504 PDF objects out of 1000 (max. 8388607)
- 181 compressed objects within 2 object streams
+ 519 PDF objects out of 1000 (max. 8388607)
+ 194 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

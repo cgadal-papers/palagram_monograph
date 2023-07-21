@@ -1,3 +1,248 @@
 \begin{thebibliography}{}
 
+\bibitem[Adduce et~al., 2012]{Adduce2012}
+Adduce, C., Sciortino, G., and Proietti, S. (2012).
+\newblock Gravity {Currents} {Produced} by {Lock} {Exchanges}: {Experiments} and {Simulations} with a {Two}-{Layer} {Shallow}-{Water} {Model} with {Entrainment}.
+\newblock {\em Journal of Hydraulic Engineering}, 138(2):111--121.
+
+\bibitem[Benjamin, 1968]{Benjamin1968}
+Benjamin, T.~B. (1968).
+\newblock Gravity currents and related phenomena.
+\newblock {\em Journal of fluid mechanics}, 31(2):209--248.
+
+\bibitem[Birman et~al., 2007]{Birman2007}
+Birman, V., Battandier, B., Meiburg, E., and Linden, P. (2007).
+\newblock Lock-exchange flows in sloping channels.
+\newblock {\em Journal of Fluid Mechanics}, 577:53--77.
+
+\bibitem[Bonamy et~al., 2023]{bonamy2023}
+Bonamy, C., Chauchat, J., Hsu, T.-J., Puig-Montella, E., Chassagne, R., Mathieu, A., Cheng, Z., Nagel, T., Salimi-Tarazouj, A., Tsai, B., and Higuera, P. (2023).
+\newblock sedfoam.
+
+\bibitem[Bonnecaze et~al., 1993]{bonnecaze1993particle}
+Bonnecaze, R.~T., Huppert, H.~E., and Lister, J.~R. (1993).
+\newblock Particle-driven gravity currents.
+\newblock {\em Journal of Fluid Mechanics}, 250:339--369.
+
+\bibitem[Bonometti et~al., 2011]{Bonometti2011}
+Bonometti, T., Ungarish, M., and Balachandar, S. (2011).
+\newblock A numerical investigation of high-reynolds-number constant-volume non-boussinesq density currents in deep ambient.
+\newblock {\em Journal of fluid mechanics}, 673:574--602.
+
+\bibitem[Bougouin and Lacaze, 2022]{Bougouin2022}
+Bougouin, A. and Lacaze, L. (2022).
+\newblock From inertial to viscous slumping: Numerical and experimental insights of a transient intermediate regime.
+\newblock {\em Physical Review Fluids}, 7(9):094803.
+
+\bibitem[Boyer et~al., 2011]{boyer2011unifying}
+Boyer, F., Guazzelli, {\'E}., and Pouliquen, O. (2011).
+\newblock Unifying suspension and granular rheology.
+\newblock {\em Physical review letters}, 107(18):188301.
+
+\bibitem[Cantero et~al., 2007]{Cantero2007}
+Cantero, M.~I., Lee, J.~R., Balachandar, S., and Garcia, M.~H. (2007).
+\newblock On the front velocity of gravity currents.
+\newblock {\em Journal of Fluid Mechanics}, 586:1--39.
+
+\bibitem[Chauchat et~al., 2017]{chauchat2017}
+Chauchat, J., Cheng, Z., Nagel, T., Bonamy, C., and Hsu, T.-J. (2017).
+\newblock Sedfoam-2.0: a 3-d two-phase flow numerical model for sediment transport.
+\newblock {\em Geoscientific Model Development}, 10(12):4367--4392.
+
+\bibitem[Chauchat et~al., 2022]{chauchat2022}
+Chauchat, J., Hurther, D., Revil-Baudard, T., Cheng, Z., and Hsu, T.-J. (2022).
+\newblock Controversial turbulent schmidt number value in particle-laden boundary layer flows.
+\newblock {\em Phys. Rev. Fluids}, 7:014307.
+
+\bibitem[Cheng et~al., 2017]{cheng2016}
+Cheng, Z., Hsu, T.-J., and Calantoni, J. (2017).
+\newblock Sedfoam: A multi-dimensional eulerian two-phase model for sediment transport and its application to momentary bed failure.
+\newblock {\em Coastal Engineering}, 119:32--50.
+
+\bibitem[Chowdhury and Testik, 2011]{Chowdhury2011}
+Chowdhury, M.~R. and Testik, F.~Y. (2011).
+\newblock {Laboratory testing of mathematical models for high-concentration fluid mud turbidity currents}.
+\newblock {\em Ocean Engineering}, 38(1):256--270.
+
+\bibitem[Dufek, 2016]{Dufek2016}
+Dufek, J. (2016).
+\newblock The fluid mechanics of pyroclastic density currents.
+\newblock {\em Annual Review of Fluid Mechanics}, 48:459--485.
+
+\bibitem[Gadal et~al., 2022]{Gadal2023}
+Gadal, C., Mercier, M., and Lacaze, L. (2022).
+\newblock Slumping regime in lock-release turbidity currents.
+\newblock {\em arXiv preprint arXiv:2301.00192}.
+
+\bibitem[Hacker et~al., 1996]{Hacker1996}
+Hacker, J., Linden, P., and Dalziel, S. (1996).
+\newblock Mixing in lock-release gravity currents.
+\newblock {\em Dynamics of Atmospheres and Oceans}, 24(1-4):183--195.
+
+\bibitem[Harris et~al., 2020]{Harris2020}
+Harris, C.~R., Millman, K.~J., van~der Walt, S.~J., Gommers, R., Virtanen, P., Cournapeau, D., Wieser, E., Taylor, J., Berg, S., Smith, N.~J., et~al. (2020).
+\newblock Array programming with numpy.
+\newblock {\em Nature}, 585:357--362.
+
+\bibitem[Hogg, 2006]{Hogg2006}
+Hogg, A.~J. (2006).
+\newblock Lock-release gravity currents and dam-break flows.
+\newblock {\em Journal of Fluid Mechanics}, 569:61--87.
+
+\bibitem[Hogg and Woods, 2001]{Hogg2001}
+Hogg, A.~J. and Woods, A.~W. (2001).
+\newblock The transition from inertia-to bottom-drag-dominated motion of turbulent gravity currents.
+\newblock {\em Journal of Fluid Mechanics}, 449:201--224.
+
+\bibitem[Hopfinger, 1983]{Hopfinger1983}
+Hopfinger, E. (1983).
+\newblock Snow avalanche motion and related phenomena.
+\newblock {\em Annual review of fluid mechanics}, 15(1):47--76.
+
+\bibitem[Hunter, 2007]{Hunter2007}
+Hunter, J.~D. (2007).
+\newblock Matplotlib: A 2d graphics environment.
+\newblock {\em Computing in science \& engineering}, 9:90--95.
+
+\bibitem[Huppert and Simpson, 1980]{Huppert1980}
+Huppert, H.~E. and Simpson, J.~E. (1980).
+\newblock The slumping of gravity currents.
+\newblock {\em Journal of Fluid Mechanics}, 99(4):785--799.
+
+\bibitem[Kneller and Buckee, 2000]{Kneller2000}
+Kneller, B. and Buckee, C. (2000).
+\newblock The structure and fluid mechanics of turbidity currents: a review of some recent studies and their geological implications.
+\newblock {\em Sedimentology}, 47:62--94.
+
+\bibitem[Krieger and Dougherty, 1959]{krieger1959mechanism}
+Krieger, I.~M. and Dougherty, T.~J. (1959).
+\newblock A mechanism for non-newtonian flow in suspensions of rigid spheres.
+\newblock {\em Transactions of the Society of Rheology}, 3(1):137--152.
+
+\bibitem[Marino et~al., 2005]{Marino2005}
+Marino, B., Thomas, L., and Linden, P. (2005).
+\newblock The front condition for gravity currents.
+\newblock {\em Journal of Fluid Mechanics}, 536:49--78.
+
+\bibitem[Mathieu et~al., 2021]{mathieu2021}
+Mathieu, A., Chauchat, J., Bonamy, C., Balarac, G., and Hsu, T.-J. (2021).
+\newblock A finite-size correction model for two-fluid large-eddy simulation of particle-laden boundary layer flow.
+\newblock {\em Journal of Fluid Mechanics}, 913:A26.
+
+\bibitem[Mathieu et~al., 2022]{mathieu2022}
+Mathieu, A., Cheng, Z., Chauchat, J., Bonamy, C., and Hsu, T.-J. (2022).
+\newblock Numerical investigation of unsteady effects in oscillatory sheet flows.
+\newblock {\em Journal of Fluid Mechanics}, 943:A7.
+
+\bibitem[Maxworthy and Nokes, 2007]{Maxworthy2007}
+Maxworthy, T. and Nokes, R. (2007).
+\newblock Experiments on gravity currents propagating down slopes. part 1. the release of a fixed volume of heavy fluid from an enclosed lock into an open channel.
+\newblock {\em Journal of Fluid Mechanics}, 584:433--453.
+
+\bibitem[Meiburg and Kneller, 2010]{Meiburg2010}
+Meiburg, E. and Kneller, B. (2010).
+\newblock {Turbidity currents and their deposits}.
+\newblock {\em Annual Review of Fluid Mechanics}, 42(1):135--156.
+
+\bibitem[Middleton, 1993]{Middleton1993}
+Middleton, G.~V. (1993).
+\newblock Sediment deposition from turbidity currents.
+\newblock {\em Annual review of earth and planetary sciences}, 21(1):89--114.
+
+\bibitem[Montellà et~al., 2023]{montella2023}
+Montellà, E., Chauchat, J., Bonamy, C., Weĳ, D., Keetels, G.~H., and Hsu, T.~J. (2023).
+\newblock Numerical investigation of mode failures in submerged granular columns (submitted).
+\newblock {\em Flow}, -:0.
+
+\bibitem[Montellà et~al., 2021]{montella2021}
+Montellà, E., Chauchat, J., Chareyre, B., Bonamy, C., and Hsu, T. (2021).
+\newblock A two-fluid model for immersed granular avalanches with dilatancy effects.
+\newblock {\em Journal of Fluid Mechanics}, 925:A13.
+
+\bibitem[Nagel et~al., 2020]{nagel2020}
+Nagel, T., Chauchat, J., Bonamy, C., Liu, X., Cheng, Z., and Hsu, T.-J. (2020).
+\newblock Three-dimensional scour simulations with a two-phase flow model.
+\newblock {\em Advances in Water Resources}, 138:103544.
+
+\bibitem[Nogueira et~al., 2014]{Nogueira2014}
+Nogueira, H.~I., Adduce, C., Alves, E., and Franca, M.~J. (2014).
+\newblock Dynamics of the head of gravity currents.
+\newblock {\em Environmental Fluid Mechanics}, 14:519--540.
+
+\bibitem[Ottolenghi et~al., 2016]{Ottolenghi2016}
+Ottolenghi, L., Adduce, C., Inghilesi, R., Armenio, V., and Roman, F. (2016).
+\newblock {Entrainment and mixing in unsteady gravity currents}.
+\newblock {\em Journal of Hydraulic Research}, 54(5):541--557.
+
+\bibitem[Richardson and Zaki, 1954]{richardson1954}
+Richardson, J.~F. and Zaki, W.~N. (1954).
+\newblock Sedimentation and fluidization: Part i.
+\newblock {\em Trans. Instn. Chem. Engrs}, 32.
+
+\bibitem[Rottman and Simpson, 1983]{Rottman1983}
+Rottman, J.~W. and Simpson, J.~E. (1983).
+\newblock Gravity currents produced by instantaneous releases of a heavy fluid in a rectangular channel.
+\newblock {\em Journal of Fluid Mechanics}, 135:95--110.
+
+\bibitem[Salimi-Tarazouj et~al., 2021a]{salimi2021b}
+Salimi-Tarazouj, A., Hsu, T.-J., Traykovski, P., and Chauchat, J. (2021a).
+\newblock Eulerian two-phase model reveals the importance of wave period in ripple evolution and equilibrium geometry.
+\newblock {\em Journal of Geophysical Research: Earth Surface}, 126(7):e2021JF006132.
+\newblock e2021JF006132 2021JF006132.
+
+\bibitem[Salimi-Tarazouj et~al., 2021b]{salimi2021a}
+Salimi-Tarazouj, A., Hsu, T.-J., Traykovski, P., Cheng, Z., and Chauchat, J. (2021b).
+\newblock A numerical study of onshore ripple migration using a eulerian two-phase model.
+\newblock {\em Journal of Geophysical Research: Oceans}, 126(2):e2020JC016773.
+
+\bibitem[Schiller and Naumann, 1933]{schiller1933}
+Schiller, L. and Naumann, A. (1933).
+\newblock Uber die {G}rundlegenden {B}erechungen bei der {S}chwerkraftaufbereitung.
+\newblock {\em Ver. Deut. Ing.}, 77.
+
+\bibitem[Schneider et~al., 2023]{Schneider2023}
+Schneider, J., Dossmann, Y., Farges, O., Regnier, M., and de~Richter, S.~K. (2023).
+\newblock Investigation of particle laden gravity currents using the light attenuation technique.
+\newblock {\em Experiments in Fluids}, 64(2).
+
+\bibitem[Sher and Woods, 2015]{Sher2015}
+Sher, D. and Woods, A.~W. (2015).
+\newblock {Gravity currents: Entrainment, stratification and self-similarity}.
+\newblock {\em Journal of Fluid Mechanics}, 784(0):130--162.
+
+\bibitem[Shin et~al., 2004]{Shin2004}
+Shin, J., Dalziel, S., and Linden, P. (2004).
+\newblock Gravity currents produced by lock exchange.
+\newblock {\em Journal of Fluid Mechanics}, 521:1--34.
+
+\bibitem[Simpson, 1999]{Simpson1999}
+Simpson, J.~E. (1999).
+\newblock {\em Gravity currents: In the environment and the laboratory}.
+\newblock Cambridge university press.
+
+\bibitem[Stickel and Powell, 2005]{stickel2005fluid}
+Stickel, J.~J. and Powell, R.~L. (2005).
+\newblock Fluid mechanics and rheology of dense suspensions.
+\newblock {\em Annu. Rev. Fluid Mech.}, 37:129--149.
+
+\bibitem[Tsai et~al., 2022]{tsai2022}
+Tsai, B., Mathieu, A., Montell{\`a}, E.~P., Hsu, T.-J., and Chauchat, J. (2022).
+\newblock An eulerian two-phase flow model investigation on scour onset and backfill of a 2d pipeline.
+\newblock {\em European Journal of Mechanics - B/Fluids}, 91:10--26.
+
+\bibitem[Ungarish, 2009]{Ungarish2009}
+Ungarish, M. (2009).
+\newblock {\em An introduction to gravity currents and intrusions}.
+\newblock CRC press.
+
+\bibitem[Virtanen et~al., 2020]{Virtanen2020}
+Virtanen, P., Gommers, R., Oliphant, T.~E., Haberland, M., Reddy, T., Cournapeau, D., Burovski, E., Peterson, P., Weckesser, W., Bright, J., et~al. (2020).
+\newblock Scipy 1.0: fundamental algorithms for scientific computing in python.
+\newblock {\em Nature methods}, 17:261--272.
+
+\bibitem[Wells and Dorrell, 2021]{wells2021}
+Wells, M.~G. and Dorrell, R.~M. (2021).
+\newblock Turbulence processes within turbidity currents.
+\newblock {\em Annual Review of Fluid Mechanics}, 53:59--83.
+
 \end{thebibliography}
