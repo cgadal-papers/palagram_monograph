@@ -8,7 +8,6 @@ import numpy as np
 import template as tp
 from matplotlib.colors import to_rgba
 from matplotlib.path import Path
-from template import to_grayscale
 
 plt.rcParams['figure.constrained_layout.hspace'] = 0
 plt.rcParams['figure.constrained_layout.wspace'] = 0
@@ -32,12 +31,13 @@ def Rotation_matrix(theta):
 # ## Sketches parameters
 # colors
 # color_water = 'aliceblue'
-color_water = to_grayscale('lightcyan')
+color_water = 'lightcyan'
 # color_water_salt = 'lightgreen'
-color_water_salt = 0.9*to_grayscale('#F3F7D4')
-color_sed = to_grayscale('peru')
+color_water_salt = '#F3F7D4'
+color_sed = 'peru'
 color_walls = 'k'
 alpha_water = 1
+color_mixing = 'grey'
 
 # dimension parameters
 tank_height = 45  # cm
@@ -174,6 +174,12 @@ for i, (ax, ax_label, slope, water_height_fact) in enumerate(zip(axs_sketches.fl
     # ax.scatter(xsed[ysed < water_height], ysed[ysed <
     #            water_height], color=color_sed, s=0.7)
 
+    # # ## mixing
+    # ax.plot([bottom_mixing[0], top_mixing[0]], [
+    #         bottom_mixing[1], top_mixing[1]], color=color_mixing)
+    # ax.plot([bottom_left_mixing[0], bottom_right_mixing[0]],
+    #         [bottom_left_mixing[1], bottom_right_mixing[1]], color=color_mixing, lw=2)
+
     # ## annotations
     ax.plot([bottom_right[0], bottom_right[0]-0.4*tank_length],
             [bottom_right[1], bottom_right[1]], ls='--', color='k')
@@ -298,4 +304,4 @@ for l, ax in zip(letters[3:], axs[3:]):
 
 # plt.show()
 fig.savefig(
-    '../paper/figures_B&W/{}.pdf'.format(sys.argv[0].split(os.sep)[-1].replace('.py', '')), dpi=400)
+    '../{}.pdf'.format(sys.argv[0].split(os.sep)[-1].replace('.py', '')), dpi=400)

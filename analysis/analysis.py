@@ -3,6 +3,7 @@ import os
 import shutil
 
 import numpy as np
+import formatting_parameters as fp
 from lmfit import Model
 from lmfit.model import save_modelresult
 from netCDF4 import Dataset
@@ -67,18 +68,14 @@ def determine_fit_props(author, alpha, run, params):
 
 # %% Variable definition
 # paths
-input_path = 'data/input_data'
-output_path = 'data/output_data'
+input_path = '../data/input_data'
+output_path = '../data/output_data'
 shutil.rmtree(output_path)
 os.makedirs(output_path)
 
 # physical parameters
 g = 9.81  # [m/s2]
 mu = 1e-3  # [kg/m/s]
-
-# other
-SETUPS = {'Cyril': 'IMFT', 'Cyril/Marie': 'LEGI', 'Jean': 'LEMTA',
-          'Julien': 'NUM', 'Rastello': 'LEGI'}
 
 # %% fit objects definition
 # model object creation
@@ -166,7 +163,6 @@ for i, d in enumerate(datasets):
     path_dataset = os.path.join(output_path, 'run_{:03d}.nc'.format(i))
     # creating netcdf file and groups
     newfile = Dataset(path_dataset, "w", format="NETCDF4")
-    newfile.setup = SETUPS[d.author]
     if not hasattr(d, 'run_oldID'):
         newfile.run_oldID = '{} -- {}'.format(d.author, run)
     # copy input data
@@ -179,7 +175,7 @@ for i, d in enumerate(datasets):
         create_variable(
             newfile, name, d.variables[name][:], dimensions=variable.dimensions, type=variable.datatype)
         newfile[name].setncatts(d[name].__dict__)  # copy variable attributes
-    # correct Julien stuff
+    # correct Julien Chauchat stuff
     if newfile.author == 'Julien':
         newfile.variables['alpha'][:] = newfile.variables['alpha'][:].data*180/np.pi
         if newfile.variables['d'].unit == 'mum':
@@ -193,7 +189,10 @@ for i, d in enumerate(datasets):
             for var in ['H0', 'L0', 'W0']:
                 newfile.variables[var][:] = newfile.variables[var][:].data/100
                 newfile.variables[var].unit = 'm'
-
+    # attributes
+    newfile.setup = fp.SETUPS[d.author]
+    newfile.author = fp.AUTHORS[d.author]
+    newfile.dataset = fp.DATASETS[d.author]
     # other variables
     vs = Stokes_Velocity(diam, mu, rho_p, rho_f, g)  # [m/s]
     create_variable(newfile, 'vs', vs, unit='m/s',

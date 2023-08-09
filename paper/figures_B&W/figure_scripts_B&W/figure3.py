@@ -12,7 +12,7 @@ from lmfit.model import load_modelresult
 
 
 # %% Load data
-path_data = '../data/output_data'
+path_data = '../../../data/output_data'
 list_runs = sorted(glob.glob(os.path.join(path_data, '*.nc')))
 list_fitresults = sorted(glob.glob(os.path.join(path_data, 'fitresult*')))
 
@@ -104,4 +104,4 @@ for label, ax in axarr.items():
 fig.align_labels()
 
 fig.savefig(
-    '../paper/figures_B&W/{}.pdf'.format(sys.argv[0].split(os.sep)[-1].replace('.py', '')), dpi=600)
+    '../{}.pdf'.format(sys.argv[0].split(os.sep)[-1].replace('.py', '')), dpi=600)

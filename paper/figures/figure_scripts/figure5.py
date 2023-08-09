@@ -19,7 +19,7 @@ def lambda_var(x, a, c, th):
 
 
 # %% Load data
-path_data = '../data/output_data'
+path_data = '../../../data/output_data'
 list_runs = glob.glob(os.path.join(path_data, '*.nc'))
 datasets = np.array([Dataset(run) for run in list_runs])
 
@@ -46,13 +46,13 @@ alphas[~mask_phi] = 0.4
 markers = np.vectorize(tp.marker_style.get)(particles)
 markers[dataset_idx == '4'] = 's'
 
-facecolors = np.array([tp.color_datasets_BW[d] for d in dataset_idx])
+facecolors = np.vectorize(tp.color_datasets.get)(dataset_idx)
 facecolors = np.array([to_rgba(c, a) for c, a in zip(facecolors, alphas)])
 
 mask_nosuspended = (authors == 'Rastello') & (H0/Ha < 1)
 edgecolors = np.array([to_rgba('k', a) for a in alphas])
 edgecolors[mask_nosuspended] = np.array(
-    [to_rgba(tp.to_grayscale('tab:red'), 0.4) for a in alphas[mask_nosuspended]])
+    [to_rgba('tab:red', 0.4) for a in alphas[mask_nosuspended]])
 
 zorders = np.vectorize(lambda dataset: tp.dataset_zorder[dataset])(dataset_idx)
 random_order = np.arange(zorders.size)
@@ -151,4 +151,4 @@ for ax, l in zip(axarr[:, 1:].flatten(), 'abcdefgh'):
             va='top', ha='left')
 
 fig.savefig(
-    '../paper/figures_B&W/{}.pdf'.format(sys.argv[0].split(os.sep)[-1].replace('.py', '')), dpi=600)
+    '../{}.pdf'.format(sys.argv[0].split(os.sep)[-1].replace('.py', '')), dpi=600)

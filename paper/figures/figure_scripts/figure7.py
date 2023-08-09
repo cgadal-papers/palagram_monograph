@@ -22,4 +22,4 @@ ax.set_xticks([])
 ax.set_yticks([])
 
 fig.savefig(
-    '../paper/figures/{}.pdf'.format(sys.argv[0].split(os.sep)[-1].replace('.py', '')), dpi=600)
+    '../{}.pdf'.format(sys.argv[0].split(os.sep)[-1].replace('.py', '')), dpi=600)

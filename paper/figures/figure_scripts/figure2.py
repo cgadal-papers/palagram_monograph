@@ -13,7 +13,7 @@ from netCDF4 import Dataset
 
 
 # %% Load data
-path_data = '../data/output_data'
+path_data = '../../../data/output_data'
 list_runs = glob.glob(os.path.join(path_data, '*.nc'))
 datasets = np.array([Dataset(run) for run in list_runs if Dataset(
     run).particle_type != 'saline water'])
@@ -36,13 +36,11 @@ dataset_idx = np.vectorize(tp.datasets.get)(authors)
 markers = np.vectorize(tp.marker_style.get)(particles)
 markers[dataset_idx == '4'] = 's'
 
-# facecolors = np.vectorize(tp.color_datasets_BW.get)(dataset_idx)
-# edgecolors = np.full_like(facecolors, 'k')
-facecolors = np.array([tp.color_datasets_BW[d] for d in dataset_idx])
-edgecolors = np.array(['k' for d in dataset_idx])
+facecolors = np.vectorize(tp.color_datasets.get)(dataset_idx)
+edgecolors = np.full_like(facecolors, 'k')
 
 mask_nosuspended = (authors == 'Rastello') & (H0/Ha < 1)
-edgecolors[mask_nosuspended] = tp.to_grayscale('tab:red')[0]
+edgecolors[mask_nosuspended] = 'tab:red'
 
 zorders = np.vectorize(lambda dataset: tp.dataset_zorder[dataset])(dataset_idx)
 random_order = np.arange(zorders.size)
@@ -92,4 +90,4 @@ for ax, l in zip(axarr[2:].flatten(), 'abcdefgh'):
 fig.align_labels()
 
 fig.savefig(
-    '../paper/figures_B&W/{}.pdf'.format(sys.argv[0].split(os.sep)[-1].replace('.py', '')), dpi=600)
+    '../{}.pdf'.format(sys.argv[0].split(os.sep)[-1].replace('.py', '')), dpi=600)

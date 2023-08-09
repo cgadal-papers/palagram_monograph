@@ -12,15 +12,15 @@ This repository contains the data and codes associated with the PALAGRAM consort
   │       └─── ... : NETCDF files
   │   └───output_data: processed data output by analysis.py (also contains input_data)
   │       └─── ... : NETCDF files
-  └───figure_scripts: contains figure scripts that reads data in data/output_data and writes figures in paper/figures 
-  │   └─── ... : python scripts
   └───paper: contains source files for article
   │   └───figures: contains source figures
   │       └─── ... : PDF files
+  │       └─── figure_scripts: contains figure scripts that reads data in data/output_data and writes figures in paper/figures
+  │            └─── *.py : python scripts for figures
   │   └─── ... : various files (.tex, .bib, ...)
-  └───_tests: contains test scripts, etc ...
-  │   └─── ... : various files
-  └───analysis.py: analysis code, that reads input_data and writes output_data
+  │   └─── main.pdf : article preprint
+  └───analysis:
+      └───analysis.py: analysis code, that reads input_data and writes output_data
 
   ```
 
