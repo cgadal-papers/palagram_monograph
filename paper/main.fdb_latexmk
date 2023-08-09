@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1689946380 "main.aux" "main.bbl" "main" 1689946381 0
+["bibtex main"] 1689946380 "main.aux" "main.bbl" "main" 1691596557 0
   "./biblio.bib" 1689946377 26166 1f6b6a05b7b6af49bd6d22940f75e227 ""
   "/usr/local/texlive/2023/texmf-dist/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "main.aux" 1689946381 11119 a3edf1bc248495c7a47130a6f30e5c78 "pdflatex"
+  "main.aux" 1691596556 11119 a3edf1bc248495c7a47130a6f30e5c78 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1689946380 "/home/cyril/Documents/Work/Research/Projects/Turbity_Currents/palagram_monograph/paper/main.tex" "main.pdf" "main" 1689946381 0
+["pdflatex"] 1691596555 "/home/cyril/Documents/Work/Research/Projects/Turbity_Currents/palagram_monograph/paper/main.tex" "main.pdf" "main" 1691596557 0
   "/home/cyril/Documents/Work/Research/Projects/Turbity_Currents/palagram_monograph/paper/main.tex" 1689946355 56157 ba9ead5fb18356e0ce8dc9b1e09f2f7a ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -87,13 +87,13 @@
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1680858324 7885174 16139c41cd571b42bb3e8bfcc49476aa ""
   "/usr/local/texlive/2023/texmf.cnf" 1680858269 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
   "figures/figure1.pdf" 1689945895 1601035 9a2eb540af563178e270c43412df0f9f ""
-  "figures/figure2.pdf" 1689945895 71360 13fdc1f6e14ee34d5ec41d971d1a9609 ""
+  "figures/figure2.pdf" 1691596555 71360 dc66d0afd2f18b0cfc7d41ff6761a490 ""
   "figures/figure3.pdf" 1689945895 306198 7b5024fc673ef3d0af43c806775d357a ""
   "figures/figure4.pdf" 1689945895 39524 ac50c53402c505583339d4bce044cae6 ""
   "figures/figure5.pdf" 1689945895 58049 b6552a4cda0594bdfffd08ea4af1055e ""
   "figures/figure6.pdf" 1689945895 27521 926015db4745e5a9e70669281c36efab ""
   "figures/figure7.pdf" 1689945895 203444 30dfdf9ccaac5582c4eb409ca85b7fe8 ""
-  "main.aux" 1689946381 11119 a3edf1bc248495c7a47130a6f30e5c78 "pdflatex"
+  "main.aux" 1691596556 11119 a3edf1bc248495c7a47130a6f30e5c78 "pdflatex"
   "main.bbl" 1689946380 11678 0c2449b4b26e001df41820c6bebffa60 "bibtex main"
   "main.tex" 1689946355 56157 ba9ead5fb18356e0ce8dc9b1e09f2f7a ""
   (generated)

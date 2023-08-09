@@ -73,7 +73,7 @@ Variables can sometimes possess the following attributes:
 In addition, the `analysis/analysis.py` script is used to generate the aforementioned NetCDF files from the original ones in `data/input_data`. The folder `paper` contains all source files of the article preprint, including Python codes to generate the article figures from the NetCDF files.
 Finally, the CSV file 'dataset_summary.csv' offers a summary of all runs and corresponding experimental parameters, allowing for easier access to the data.
 
-OpenData License: licence-ouverte-v2.0
+OpenData License: creative-common-attribution-v4.0
 
 
 
