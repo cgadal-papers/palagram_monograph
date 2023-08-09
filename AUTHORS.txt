@@ -1,0 +1,29 @@
+Project: LOCK_PLGC_MONOGRAPH
+
+List of authors:
+
+ - Cyril Gadal <laurent.lacaze@imft.fr> Institut de Mécanique des Fluides de Toulouse (IMFT), Université de Toulouse, CNRS, Toulouse, France
+
+ - Jean Schneider <jean.schneider@univ-lorraine.fr> Laboratoire Énergies et Mécanique Théorique et Appliquée (LEMTA), Université de Lorraine, CNRS, 54500, Nancy, France
+
+ - Cyrille Bonamy <cyrille.bonamy@univ-grenoble-alpes.fr> Univ. Grenoble Alpes, CNRS, Grenoble INP, LEGI, 38000 Grenoble, France
+
+ - Julien Chauchat <julien.chauchat@univ-grenoble-alpes.fr> Univ. Grenoble Alpes, CNRS, Grenoble INP, LEGI, 38000 Grenoble, France
+
+ - Yvan Dossmann <yvan.dossmann@univ-lorraine.fr> Laboratoire Énergies et Mécanique Théorique et Appliquée (LEMTA), Université de Lorraine, CNRS, 54500, Nancy, France
+
+ - Sebastien Kiesgen De Richter <sebastien.kiesgen@univ-lorraine.fr> Laboratoire Énergies et Mécanique Théorique et Appliquée (LEMTA), Université de Lorraine, CNRS, 54500, Nancy, France
+
+ - Matthieu Mercier <matthieu.mercier@imft.fr> Institut de Mécanique des Fluides de Toulouse (IMFT), Université de Toulouse, CNRS, Toulouse, France
+
+ - Florence Naaim <florence.naaim@inrae.fr> Univ. Grenoble Alpes, INRAE, CNRS, IRD, Grenoble INP, IGE, 38000 Grenoble, France
+
+ - Marie Rastello <marie.rastello@univ-grenoble-alpes.fr> Univ. Grenoble Alpes, CNRS, Grenoble INP, LEGI, 38000 Grenoble, France
+
+ - Laurent Lacaze <cyril.gadal@imft.fr> Institut de Mécanique des Fluides de Toulouse (IMFT), Université de Toulouse, CNRS, Toulouse, France
+
+
+----
+Automatically generated file by project-meta.
+
+

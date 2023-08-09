@@ -76,6 +76,7 @@ os.makedirs(output_path)
 # physical parameters
 g = 9.81  # [m/s2]
 mu = 1e-3  # [kg/m/s]
+L1values = {'1': 1.40, '2': 3.5, '3': 1.3, 'SedFoam': np.nan}
 
 # %% fit objects definition
 # model object creation
@@ -111,7 +112,7 @@ for i, d in enumerate(datasets):
     L0 = d.variables['L0'][:].data        # lock characteristic width, [m]
     rho_p = d.variables['rho_p'][:].data  # particle velocity, [kg/m3]
     rho_f = d.variables['rho_f'][:].data  # lock fluid density, [kg/m3]
-    rho_a = d.variables['rho_a'][:].data  # ambiant fluid density, [kg/m3]
+    rho_a = d.variables['rho_a'][:].data  # ambient fluid density, [kg/m3]
     alpha = d.variables['alpha'][:].data  # bottom slope, [deg.]
     diam = d.variables['d'][:].data  # grain size, [m]
     phi = d.variables['phi'][:].data
@@ -172,9 +173,11 @@ for i, d in enumerate(datasets):
             name, (len(dimension) if not dimension.isunlimited() else None))
     newfile.label = 'run_{:03d}.nc'.format(i)
     for name, variable in d.variables.items():  # variables
-        create_variable(
-            newfile, name, d.variables[name][:], dimensions=variable.dimensions, type=variable.datatype)
-        newfile[name].setncatts(d[name].__dict__)  # copy variable attributes
+        if name not in ['v_s', 'L_1']:
+            create_variable(
+                newfile, name, d.variables[name][:], dimensions=variable.dimensions, type=variable.datatype)
+            # copy variable attributes
+            newfile[name].setncatts(d[name].__dict__)
     # correct Julien Chauchat stuff
     if newfile.author == 'Julien':
         newfile.variables['alpha'][:] = newfile.variables['alpha'][:].data*180/np.pi
@@ -189,6 +192,10 @@ for i, d in enumerate(datasets):
             for var in ['H0', 'L0', 'W0']:
                 newfile.variables[var][:] = newfile.variables[var][:].data/100
                 newfile.variables[var].unit = 'm'
+        if 'H_a' not in d.variables.keys():
+            create_variable(newfile, 'H_a', newfile.variables['H0'][:].data, unit='m',
+                            comments='particle Stokes velocity')
+
     # attributes
     newfile.setup = fp.SETUPS[d.author]
     newfile.author = fp.AUTHORS[d.author]
@@ -205,6 +212,11 @@ for i, d in enumerate(datasets):
                     comments='characteristic velocity')
     create_variable(newfile, 't0', t_ad, unit='s',
                     comments='characteristic timescale')
+    create_variable(newfile, 'L_1', L1values[fp.SETUPS[d.author]], unit='s')
+    for key in ['T_a', 'T_f', 'nu_a', 'nu_f']:
+        if key not in newfile.variables.keys():
+            create_variable(newfile, key, np.nan, unit='deg.')
+
     # Non-dimensional numbers
     a = H0/d.variables['L0'][:].data
     create_variable(newfile, 'a', a, unit='-',
@@ -222,6 +234,26 @@ for i, d in enumerate(datasets):
                     comments='Froude number (adi. initial current velocity)')
     create_variable(newfile, 'lamb', lamb, unit='-', std=lamb_err,
                     comments='adi. attenuation parameter')
+    # Adding comments to variables
+    newfile['H0'].comments = 'initial heavy fluid height inside the lock'
+    newfile['H_a'].comments = 'ambient fluid height outside the lock'
+    newfile['L0'].comments = 'streamwise lock length'
+    newfile['L_1'].comments = 'streamwise tank length after the lock'
+    newfile['T_a'].comments = 'ambient temperature'
+    newfile['T_f'].comments = 'heavy fluid temperature inside the lock'
+    newfile['W0'].comments = 'crossstream lock width'
+    newfile['alpha'].comments = 'bottom slope'
+    newfile['d'].comments = 'particle diameter'
+    newfile['nu_a'].comments = 'ambient viscosity'
+    newfile['nu_f'].comments = 'heavy fluid lock viscosity'
+    newfile['phi'].comments = 'initial particle volume fraction inside the lock'
+    newfile['rho_a'].comments = 'ambient fluid density'
+    newfile['rho_c'].comments = 'heavy fluid mix density inside the lock'
+    newfile['rho_p'].comments = 'particle density'
+    newfile['t'].comments = 'time vector'
+    newfile['t0'].comments = 'characteristic timescale, t0 = L0/u0'
+    newfile['u0'].comments = 'characteristic velocity scale, u0 = sqrt(gprime*H0)'
+    newfile['x_front'].comments = 'front position vector'
 
     # saving and closing netcdf file
     newfile.close()
