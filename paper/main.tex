@@ -1,4 +1,5 @@
-\documentclass[twocolumn]{article}
+% \documentclass[twocolumn]{article}
+\documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{natbib}
 \usepackage{graphicx, caption}
@@ -11,14 +12,8 @@
 \usepackage{multicol}
 \usepackage[textwidth=492.982pt, top=2cm, bottom=2cm]{geometry}
 
-\newcommand*{\cyril}{\textcolor{ForestGreen}}
-\newcommand*{\marie}{\textcolor{Cyan}}
-\newcommand*{\julien}{\textcolor{Brown}}
-\newcommand*{\yvan}{\textcolor{Blue}}
-
-\definecolor{jeanc}{RGB}{253,129,43}
-\newcommand*{\jean}{\textcolor{jeanc}}
-
+\usepackage{setspace}
+\doublespacing
 
 \graphicspath{{./figures}{./}}
 
@@ -47,30 +42,23 @@ et Appliquée (LEMTA), Université de Lorraine, CNRS, 54500, Nancy, France}
 \affil[3]{Univ. Grenoble Alpes, CNRS, Grenoble INP, LEGI, 38000 Grenoble, France}
 \affil[4]{Univ. Grenoble Alpes, INRAE, CNRS, IRD, Grenoble INP, IGE, 38000 Grenoble, France}
 
-\date{{\it\color{red}Deadline: May 31$^{st}$ - repoussé (mi juillet ou EuroMech?)}}
 
 \begin{document}
 
-\twocolumn[
+\maketitle
 
-	\maketitle
+\begin{abstract}
 
-	\begin{abstract}
+	Particle-laden gravity currents (PLGCs) are driven by the mass difference between a heavy fluid-particle mixture and a lighter ambient liquid. They often occur in natural and industrial situations, among which a typical situation is the release of a finite volume. Here, we focus on such `dam-break' situations, which are studied using lock-release devices at the laboratory scale.
+	%
+	The objective of the present chapter is to provide a description at the macroscopic scale of the early moments of the flow, namely the \emph{slumping regime}, with respect to the relevant dimensionless parameters. For this, we combine a total of 288 runs from three different lock-release devices and from two-fluids numerical simulations, which allow us to cover a large range of particle types (size and density), volume fractions, bottom slopes and geometries.
+	%
+	By tracking the front propagation through time, we extract the dimensionless slumping velocity $\mathcal{F}r$ and dimensionless characteristic slumping duration $\tau$, on which we base our description.
+	%
+	Our results show that the slumping velocity increases with the bottom slope, but decreases with the particle volume fraction when the latter exceeds a critical value. However, it remains independent of particle settling processes, which on the other hand affects the slumping duration. Hence, above a critical threshold, $\tau$ decreases as the ratio between the settling velocity and characteristic current velocity increases. For all these regimes, we derive scalings and energetic balances that reproduce the observed trends. The latter comparison confirms the role of initial energy transfer from the initial state towards the slumping phase on the resulting dynamics. This initial process and its characterisation remain crucial to prescribe relevant initial conditions for large-scale predictive modelling.
 
-		Particle-laden gravity currents (PLGCs) are driven by the mass difference between a heavy fluid-particle mixture and a lighter ambient liquid. They often occur in natural and industrial situations, among which a typical situation is the release of a finite volume. Here, we focus on such `dam-break' situations, which are studied using lock-release devices at the laboratory scale.
-		%
-		The objective of the present chapter is to provide a description at the macroscopic scale of the early moments of the flow, namely the \emph{slumping regime}, with respect to the relevant dimensionless parameters. For this, we combine a total of 288 runs from three different lock-release devices and from two-fluids numerical simulations, which allow us to cover a large range of particle types (size and density), volume fractions, bottom slopes and geometries.
-		%
-		By tracking the front propagation through time, we extract the dimensionless slumping velocity $\mathcal{F}r$ and dimensionless characteristic slumping duration $\tau$, on which we base our description.
-		%
-		Our results show that the slumping velocity increases with the bottom slope, but decreases with the particle volume fraction when the latter exceeds a critical value. However, it remains independent of particle settling processes, which on the other hand affects the slumping duration. Hence, above a critical threshold, $\tau$ decreases as the ratio between the settling velocity and characteristic current velocity increases. For all these regimes, we derive scalings and energetic balances that reproduce the observed trends. The latter comparison confirms the role of initial energy transfer from the initial state towards the slumping phase on the resulting dynamics. This initial process and its characterisation remain crucial to prescribe relevant initial conditions for large-scale predictive modelling.
+\end{abstract}
 
-	\end{abstract}
-
-	\vspace{0.3cm}
-	{\it \color{red}REMINDER: Word limit of about 10,000 per article, plus 7 figures.}\\
-	\vspace{0.3cm}
-]
 
 \section{Introduction}
 \label{sec:intro}
