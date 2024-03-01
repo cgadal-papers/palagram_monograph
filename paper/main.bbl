@@ -261,10 +261,17 @@ Tsai, B., Mathieu, A., Montell{\`a}, E.~P., Hsu, T.-J., and Chauchat, J.
   backfill of a 2d pipeline.
 \newblock {\em European Journal of Mechanics - B/Fluids}, 91:10--26.
 
-\bibitem[Ungarish, 2009]{Ungarish2009}
-Ungarish, M. (2009).
-\newblock {\em An introduction to gravity currents and intrusions}.
-\newblock CRC press.
+\bibitem[Ungarish, 2020]{ungarish2020gravity}
+Ungarish, M. (2020).
+\newblock {\em Gravity Currents and Intrusions: Analysis and Prediction},
+  volume~1.
+\newblock World Scientific.
+
+\bibitem[Ungarish and Zemach, 2005]{Ungarish2005}
+Ungarish, M. and Zemach, T. (2005).
+\newblock On the slumping of high {Reynolds} number gravity currents in
+  two-dimensional and axisymmetric configurations.
+\newblock {\em European Journal of Mechanics - B/Fluids}, 24(1):71--90.
 
 \bibitem[Virtanen et~al., 2020]{Virtanen2020}
 Virtanen, P., Gommers, R., Oliphant, T.~E., Haberland, M., Reddy, T.,

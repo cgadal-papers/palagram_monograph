@@ -12,11 +12,10 @@
 \usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
 
 \usepackage[dvipsnames]{xcolor}
-\newcommand{\xx}{\textcolor{WildStrawberry}}
-\newcommand{\pc}{\textcolor{ForestGreen}}
-\newcommand{\cg}{\textcolor{Mulberry}}
-\newcommand{\new}{\textcolor{blue}}
-\newcommand{\todo}{\textcolor{red}}
+\newcommand{\julien}{\textcolor{WildStrawberry}}
+\newcommand{\laurent}{\textcolor{ForestGreen}}
+\newcommand{\tocheck}{\textcolor{Mulberry}}
+\newcommand{\marie}{\textcolor{red}}
 
 \newcommand{\MinorReply}[3]{\filbreak\noindent
 \textbf{Referee:}
@@ -57,15 +56,15 @@ Please find below a detailed reply to each of the comments and questions by the 
 }{}
 
 \begin{itemize}
-    \item \MinorReply{Introduction}{The literature, although rich, lacks a number of contributions of some importance, mainly because they are themselves experimental. See, for example, the work of Zemach et al. 2017, which deals with some more complex configurations, with non-rectangular geometry, with stratified fluid, possibly in the partial depth lock release configuration. The various contributions should be catalogued and described in an appropriate way.}{}
+    \item \MinorReply{Introduction}{The literature, although rich, lacks a number of contributions of some importance, mainly because they are themselves experimental. See, for example, the work of Zemach et al. 2017, which deals with some more complex configurations, with non-rectangular geometry, with stratified fluid, possibly in the partial depth lock release configuration. The various contributions should be catalogued and described in an appropriate way.}{The introduction has been rewritten according to various comments of the referees and other readers. Some references have been added. Note that we can not provide an extensive catalog of the complete literature related gravity currents in such an introduction, bound to have a reasonable length. \tocheck{TO DO.}}
 
-    \item \MinorReply{Figure 1}{the q-v panels look out of place and the sequence is horizontal while the experiments are vertical. It is recommended that they be placed in a separate figure.}{}
+    \item \MinorReply{Figure 1}{the q-v panels look out of place and the sequence is horizontal while the experiments are vertical. It is recommended that they be placed in a separate figure.}{\tocheck{There are already many figures compared to the text length. As this is properly described in the caption, we prefer to leave it as one figure presenting all configurations.}}
 
-    \item \MinorReply{Figure 3a}{Figure 3a is not meaningful due to the large amount of data shown. It is advisable to scale it down in dimensionless form, as is done in Figure 3b for 'selected runs', which should be specified.}{}
+    \item \MinorReply{Figure 3a}{Figure 3a is not meaningful due to the large amount of data shown. It is advisable to scale it down in dimensionless form, as is done in Figure 3b for 'selected runs', which should be specified.}{\tocheck{Do we do it?}}
 
-    \item \MinorReply{Figure 3b}{the alpha symbol is flanked by an arrow which appears to be meaningless. I assume that the arrow should be reversed.}{}
+    \item \MinorReply{Figure 3b}{the alpha symbol is flanked by an arrow which appears to be meaningless. I assume that the arrow should be reversed.}{\tocheck{The upward arrow flanking the alpha symbol means that alpha is increasing. We prefer to leave it this way.}}
 
-    \item \MinorReply{References}{the book by Ungarish should be better updated to the last edition.}{}
+    \item \MinorReply{References}{the book by Ungarish should be better updated to the last edition.}{Done.}
 \end{itemize}
 
 
@@ -76,18 +75,18 @@ Please find below a detailed reply to each of the comments and questions by the 
 \MajorReply{This is generally a good contribution with a lot of interesting results. The following are few comments the authors might want to make use.}{}
 
 \begin{itemize}
-    \item \MinorReply{Line 64}{Line 64 is unclear}{}
-    \item \MinorReply{Line 78}{The sentence starting in line 78 is too convoluted. Needs restructuring.}{}
-    \item \MinorReply{Line 102}{what does it mean by $h_c$ can have different scaling?}{}
-    \item \MinorReply{Lines 104--107}{It is unclear what the authors mean gt detachment. Also “similarly” may need to change to “similar”}{}
-    \item \MinorReply{Section 1.1}{gives several different expressions for $X_t$. Some clarification as to where each apply will be useful.}{}
+    \item \MinorReply{Line 64}{Line 64 is unclear}{Done.}
+    \item \MinorReply{Line 78}{The sentence starting in line 78 is too convoluted. Needs restructuring.}{Done.}
+    \item \MinorReply{Line 102}{what does it mean by $h_c$ can have different scaling?}{The two scalings are explained in the two following sentences.}
+    \item \MinorReply{Lines 104--107}{It is unclear what the authors mean gt detachment. Also “similarly” may need to change to “similar”}{\laurent{laurent}. Je serai pour enlever le scaling des colonnes lourdes non-Boussinesq. C'est pas clair pour moi, et je pense que ce que l'on dit est faux : dans un dam-break de courant de gravité Bussinesq, on a le courant qui reste attaché à la colonne au début tout en ayant $h_{\rm c} \propto H_{0}$.}
+    \item \MinorReply{Section 1.1}{gives several different expressions for $X_t$. Some clarification as to where each apply will be useful.}{The physical process associated to each of the expression of $X_{t}$ is clearly stated each time. Hence, each expression applies when this process dominates the other. Characterizing these transitions is exactly one of the purposes of the data presented here. This is now specified in the text. \tocheck{TO DO}.}
     \item \MinorReply{Lines 133-134}{where do length and time scale of particles play a role?}{}
-    \item \MinorReply{Line211-212}{what does it mean 2D vertical and turbulence averaged? Are these 2D RANS simulations? Are the 2 coordinates horizontal, since vertical is averaged?}{}
-    \item \MinorReply{In figure 2}{the color of the symbols outline must be the same. Otherwise it is hard to relate to the color legend}{}
-    \item \MinorReply{figure 2}{some of the volume fraction data goes to 1.    }{}
+    \item \MinorReply{Line 211-212}{what does it mean 2D vertical and turbulence averaged? Are these 2D RANS simulations? Are the 2 coordinates horizontal, since vertical is averaged?}{\julien{julien}}
+    \item \MinorReply{In figure 2}{the color of the symbols outline must be the same. Otherwise it is hard to relate to the color legend}{The color of the outline of the symbols is used to show the difference between two different kinds of runs, as explained in the caption. We prefer to leave it this way.}
+    \item \MinorReply{figure 2}{some of the volume fraction data goes to 1.}{\marie{marie}}
     \item \MinorReply{}{Curve fits with such a large data scatter, requires some justification}{}
-    \item \MinorReply{Line 461}{even even}{}
-    \item \MinorReply{Line 466}{This should be an important….}{}
+    \item \MinorReply{Line 461}{even even}{Done.}
+    \item \MinorReply{Line 466}{This should be an important….}{Done.}
 \end{itemize}
 
 \end{document}
