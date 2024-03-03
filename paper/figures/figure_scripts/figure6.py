@@ -68,7 +68,7 @@ plot_idxs = np.lexsort((random_order, zorders))
 phi_m = 0.585
 phi_plot = np.logspace(-3, phi_m, 200)
 eta = Krieger_viscosity(phi_plot, phi_m)
-Fr_th0 = Froude(0, eta, 7e4)
+Fr_th0 = Froude(0, eta, 7e4, Cd=0.02, Fr0=0.45)
 Fr_th45 = Froude(45, eta, 7e4)
 
 # %% masks for plot

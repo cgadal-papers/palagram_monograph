@@ -281,6 +281,13 @@ In the following, we fit all front propagation curves (except for dataset 3) wit
 \subsection{Influence of the bottom slope, $\alpha$}
 \label{sec:influence_slope}
 
+\begin{figure*}
+	\centering
+	\includegraphics{figure4.pdf}
+	\caption{\textbf{Influence of the bottom slope} on the current Froude number. Plain symbols correspond to $\phi < 0.45$, while transparent symbols are for $\phi \geq 0.45$ (see section~\ref{sec:influence_phi} for details on the influence of $\phi$). The black plain line indicates the prediction of \eqref{eq:Fr_th} for $Fr_{0} = 0.45$, $C_{\text D} = 0.02$ and $S = 0.25$. The black dashed line indicates the fit to the data from the numerical simulation of \citet{Birman2007} for saline homogeneous gravity currents.}
+	\label{fig:fig4}
+\end{figure*}
+
 In this section, we focus on the influence of the bottom slope $\alpha$ on the current dynamics. Hence, figure~\ref{fig:fig4} shows the dimensionless front velocity $\mathcal{F}r$ as a function of $\alpha$ for the entire set of experiments.
 
 Despite the scatter in our experimental points, $\mathcal{F}r$ clearly exhibits an increasing trend with $\alpha$. Note however that the exact shape of this trend remains unclear, especially close to $\alpha=0^\circ$, where the various datasets may suggest slightly different trends. Note also the large scatter at $\alpha=45^\circ$, mostly related to experimental data points with $\phi > 0.45$ (transparent markers) and a settled initial condition (red-edged markers, see description of dataset 2 in section~\ref{sec:datasets}).
@@ -289,33 +296,26 @@ Such evolution of $\mathcal{F}r$ with $\alpha$ has only been reported few studie
 
 It shall be noted that this dependency of the slumping velocity on the bottom slope exists despite the slumping equilibrium being unmodified by the presence of a slope-induced acceleration (see section~\ref{sec:intro} for details). As suggested in \citet{Gadal2023}, the latter acceleration may instead affect the complicated dynamics of the early transient acceleration phase, involving strong vertical motions and significant interfacial friction \citep{Cantero2007}.
 %
-One can write an energetic balance between the initial state and the end of this early acceleration phase \citep{Gadal2023}
+One can write an energetic balance for the entire current between its initial state and the end of this early acceleration phase \citep{Gadal2023}
 \begin{equation}
 	\label{eq:energetic_balance}
 	\left[\frac{1}{2}\rho_{0}u_{\text c}^{2} - B \Delta\rho g \sin\alpha L\right] - A \Delta\rho g \cos\alpha h_{0} =  - \frac{1}{2}c_{\text d}\rho_{0}u_{\text c}^{2} \frac{L}{h_{0}},
 \end{equation}
-where $A$, $B$ and $c_{\text d}$ are scaling constants, and $L$ accounts for the alongslope distance over which the current moves during this phase. \citet{Cantero2007} found it to be independent of the lock aspect ratio or initial buoyancy, $L = 0.3 h_{0}$. Hence, we use here $L = D h_{0}$ with $D$ constant, which results in
+where $A$ and $B$ are scaling constants, $c_{\text d}$ is a drag coefficient typically on the order of $10^{-2}$ -- $10^{-3}$ \citep{hogg2004effects}, and $L$ accounts for the alongslope distance over which the current moves during this phase. \citet{Cantero2007} found it to be independent of the lock aspect ratio or initial buoyancy, $L = 0.3 h_{0}$. Hence, we use here $L = D h_{0}$ with $D$ constant, which results in
 \begin{equation}
 	\label{eq:Fr_th}
 	\mathcal{F}r = \frac{U_{\text c}}{U_0} = \frac{Fr_0}{\sqrt{1 + C_{\text D}}} \sqrt{1 + \frac{\tan\alpha}{S}},
 \end{equation}
-where $Fr_0$, $C_{\text D}$ and $S$ are new constants depending on $A$, $B$, $c_{\text d}$ and $D$. As shown in Fig.~\ref{fig:fig4}, this simple model is able to reproduce the observed variation of the dimensionless velocity in the bottom slope in the range [$5^\circ$, $35^\circ$].
+where $Fr_0$, $C_{\text D}$ and $S$ are new constants depending on $A$, $B$, $c_{\text d}$ and $D$. Note that $C_{\rm d}$ has little influence if $c_{\text d}$ is kept within the reasonable values mentioned previously, and $Fr_0$ is strongly restricted by the values in $\theta = 0^\circ$, such that the only truly adjustable parameter is $S$. As shown in Fig.~\ref{fig:fig4}, this simple dimensional model is able to reproduce the observed variation of the dimensionless velocity in the bottom slope in the range [$5^\circ$, $35^\circ$] while keeping the scaling constants within reasonable values.
 %
 For $\alpha < 5^\circ$, experimental data points are significantly scattered, and \eqref{eq:Fr_th} almost systematically overpredicts the $\mathcal{F}r$ values. A plausible explanation for this discrepancy could be the difference in the width-to-depth ratio of the flumes (and associated wall dissipation) and in aspect ratios of the lock, which are not addressed in the energetic balance leading to \eqref{eq:Fr_th}.
 %
 For $\alpha > 35^\circ$, the measured dimensionless velocities ($\mathcal{F}r$) slowly stand above equation (\ref{eq:Fr_th}) curve. In this region of large slope angles, the equilibrium between the forces likely becomes a lot more in favor of the so-called slope effect than the pressure gradient. Consequently, the scaling constants may have to be adapted to this major change in the influence of the forces.
 
-\begin{figure*}[ht]
-	\centering
-	\includegraphics{figure4.pdf}
-	\caption{\textbf{Influence of the bottom slope} on the current Froude number. Plain symbols correspond to $\phi < 0.45$, while transparent symbols are for $\phi \geq 0.45$ (see section~\ref{sec:influence_phi} for details on the influence of $\phi$). The black plain line indicates the prediction of \eqref{eq:Fr_th} for $Fr_{0} = 0.5$, $C_{\text D} = 0.4$ and $S = 0.25$. The black dashed line indicates the fit to the data from the numerical simulation of \citet{Birman2007} for saline homogeneous gravity currents.}
-	\label{fig:fig4}
-\end{figure*}
-
 \subsection{Influence of the Stokes number, $\mathcal{S}t$}
 \label{sec:influence_stokes}
 
-\begin{figure*}[ht]
+\begin{figure*}
 	\centering
 	\includegraphics{figure5.pdf}
 	\caption{\textbf{Influence of particle settling.} Current Froude number $\mathcal{F}r$ and attenuation $1/\tau$ as a function of the ratio between the Stokes number and the lock aspect-ratio, for different ranges of bottom slopes. Plain symbols correspond to $\phi < 0.45$, while transparent symbols are for $\phi \geq 0.45$ (see section~\ref{sec:influence_phi} for details on the influence of $\phi$). Dotted lines mark either the average of points with $\phi < 0.45$ (a, c, e, g) or the 0 baseline (b, d, f, h). On (e, f), the dashed line indicates the average value for homogeneous saline currents ($St \equiv 0$) of dataset 1. On (b, d, f, h), the black line is $1/\tau = 0.27 (St - 0.015)$.}
@@ -342,7 +342,7 @@ For larger slopes, our experiments do not allow us to discriminate the influence
 \begin{figure}
 	\centering
 	\includegraphics{figure6.pdf}
-	\caption{\textbf{Influence of particle volume fraction.} Current Froude number as a function of the initial particle volume fraction for (a) $\alpha \approx 0^\circ$, and (b) $\alpha \approx 45^\circ$. The inset in (a) shows the plot in linear scale. The black line indicates the prediction of \eqref{eq:Fr_th_eta} for $Fr_{0} = 0.5$, $C_{\text D} = 0.4$, $S = 0.25$ and $Re_{\text c} = 500$.}
+	\caption{\textbf{Influence of particle volume fraction.} Current Froude number as a function of the initial particle volume fraction for (a) $\alpha \approx 0^\circ$, and (b) $\alpha \approx 45^\circ$. The inset in (a) shows the plot in linear scale. The black line indicates the prediction of \eqref{eq:Fr_th_eta} for $Fr_{0} = 0.45$, $C_{\text D} = 0.02$, $S = 0.25$ and $Re_{\text c} = 500$.}
 	\label{fig:fig6}
 \end{figure}
 
@@ -370,7 +370,7 @@ where $Re_{\text c}$ is a new constant. The effect of the particles on the effec
 \end{equation}
 where $\phi_{\text m} = 0.585$ is the maximum volume fraction \citep{boyer2011unifying}.
 %
-As shown in figure~\ref{fig:fig6}(a), the combination of equations \eqref{eq:Fr_th_eta} and \eqref{eq:Krieger} can reproduce quantitatively the observed influence of $\phi$ on the dimensionless velocity for $\alpha=0^\circ$. This agreement does not depend on the choice of the viscosity model, and using other available rheological models from the literature \citep{stickel2005fluid, boyer2011unifying} leads to the same conclusions.
+Here, the only adjustable parameter is $Re_{\text c}$ as all the other parameters have been fixed previously. As shown in figure~\ref{fig:fig6}(a), the combination of equations \eqref{eq:Fr_th_eta} and \eqref{eq:Krieger} can reproduce quantitatively the observed influence of $\phi$ on the dimensionless velocity for $\alpha=0^\circ$. This agreement does not depend on the choice of the viscosity model, and using other available rheological models from the literature \citep{stickel2005fluid, boyer2011unifying} leads to the same conclusions.
 
 For $\alpha=45^\circ$, a decreasing trend of the dimensionless front velocity is also observed despite the dispersion of experimental points. However, the shape of this trend is less clear, especially because data at large $\phi$ correspond to a different initial condition (red-edged markers, see description of dataset 2 in section~\ref{sec:datasets}), which makes the interpretation difficult. The combination of \eqref{eq:Fr_th_eta} and \eqref{eq:Krieger} is shown for completeness.
 
@@ -407,7 +407,6 @@ Altogether, the influence of $\phi$, $\mathcal{S}t$, $\alpha$ on the slumping dy
 However, details of the current shape and related mixing remain unclear. In particular, even if the front velocity is well captured by the 2D simulations, they poorly capture the current shapes, as shown in figures~\ref{fig:fig1} and~\ref{fig:fig7}. This would require 3D simulations to properly capture the turbulent mixing at the current interface. For validation, advanced experimental metrologies are thus required to extract accurate measurements of the turbulent mixing at the interface and responsible for ambient entrainment in the current. This should be an important focus for future work.
 %
 Moreover, we also found that the choice in kinetic theory closures for the particle phases in the simulations can modify the measured velocities up to $30~\%$ (especially at larger slopes), which emphasizes the role of particle-particle interactions in the macroscopic dynamics of PLGCs. These are particularly important in zones of large volume fractions and are therefore key to quantifying the ability of a current to erode a loose sediment bottom or the dynamics of currents originating from deposited sediment. Both are common situations in natural flows and require the focus of future works.
-
 
 %\begin{itemize}
 %   \item Details of the current shape and associated mixing remains unclear

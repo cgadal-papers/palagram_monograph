@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1708617069 "/home/cyril/Documents/Work/Research/Projects/Turbity_Currents/palagram_monograph/paper/reply_to_referees/first_review/reply.tex" "reply.pdf" "reply" 1708617070
+["pdflatex"] 1709504543 "/home/cyril/Documents/Work/Research/Projects/Turbity_Currents/palagram_monograph/paper/reply_to_referees/first_review/reply.tex" "reply.pdf" "reply" 1709504544
   "/etc/texmf/web2c/texmf.cnf" 1697989932 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/cyril/Documents/Work/Research/Projects/Turbity_Currents/palagram_monograph/paper/reply_to_referees/first_review/reply.tex" 1708617069 6668 8f9a12b2712aa42424cc31cd42366f9e ""
+  "/home/cyril/Documents/Work/Research/Projects/Turbity_Currents/palagram_monograph/paper/reply_to_referees/first_review/reply.tex" 1709504543 7167 c231a1e9c509ea06e47547b1cb844917 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
@@ -30,7 +30,6 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1248133631 35469 70d41d2b9ea31d5d813066df7c99281c ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
-  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1248133631 36118 fad905eba93cff5bce1e185fe980a177 ""
   "/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty" 1583617216 6501 4011d89d9621e0b0901138815ba5ff29 ""
@@ -78,8 +77,8 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1697989955 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1697989984 2799610 f59e2c74ce744b74cfc4533898d0606e ""
-  "reply.aux" 1708617070 244 fd86119c9e3b011c7647ef5efaa7407a "pdflatex"
-  "reply.tex" 1708617069 6668 8f9a12b2712aa42424cc31cd42366f9e ""
+  "reply.aux" 1709504544 244 fd86119c9e3b011c7647ef5efaa7407a "pdflatex"
+  "reply.tex" 1709504543 7167 c231a1e9c509ea06e47547b1cb844917 ""
   (generated)
   "reply.aux"
   "reply.log"

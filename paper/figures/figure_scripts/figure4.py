@@ -68,7 +68,7 @@ markers[dataset_idx == "4"] = "s"
 facecolors = np.vectorize(tp.color_datasets.get)(dataset_idx)
 facecolors = np.array([to_rgba(c, a) for c, a in zip(facecolors, alphas)])
 
-mask_nosuspended = (authors == "Rastello") & (H0 / Ha < 1)
+mask_nosuspended = (authors == "Marie Rastello") & (H0 / Ha < 1)
 edgecolors = np.array([to_rgba("k", a) for a in alphas])
 edgecolors[mask_nosuspended] = np.array([to_rgba("tab:red", 0.4) for a in alphas[mask_nosuspended]])
 
@@ -82,7 +82,7 @@ plot_idxs = np.lexsort((random_order, zorders))
 phi_m = 0.585
 alpha_plot = np.linspace(0, 50, 500)
 eta = 0
-Fr_th = Froude(alpha_plot, eta, 7e4)
+Fr_th = Froude(alpha_plot, eta, 7e4, Cd=0.02, Fr0=0.45)
 
 # %% figure
 fig, ax = plt.subplots(1, 1, figsize=tp.large_figure_size, constrained_layout=True)
