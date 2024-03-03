@@ -66,7 +66,7 @@ markers[dataset_idx == "4"] = "s"
 facecolors = np.vectorize(tp.color_datasets.get)(dataset_idx)
 facecolors = np.array([to_rgba(c, a) for c, a in zip(facecolors, alphas)])
 
-mask_nosuspended = (authors == "Rastello") & (H0 / Ha < 1)
+mask_nosuspended = (authors == "Marie Rastello") & (H0 / Ha < 1)
 edgecolors = np.array([to_rgba("k", a) for a in alphas])
 edgecolors[mask_nosuspended] = np.array([to_rgba("tab:red", 0.4) for a in alphas[mask_nosuspended]])
 

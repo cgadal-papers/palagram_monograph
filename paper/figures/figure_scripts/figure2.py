@@ -54,7 +54,7 @@ markers[dataset_idx == "4"] = "s"
 facecolors = np.vectorize(tp.color_datasets.get)(dataset_idx)
 edgecolors = np.full_like(facecolors, "k")
 
-mask_nosuspended = (authors == "Rastello") & (H0 / Ha < 1)
+mask_nosuspended = (authors == "Marie Rastello") & (H0 / Ha < 1)
 edgecolors[mask_nosuspended] = "tab:red"
 
 zorders = np.vectorize(lambda dataset: tp.dataset_zorder[dataset])(dataset_idx)
