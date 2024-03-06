@@ -1,9 +1,9 @@
-PWD /home/cyril/Documents/Work/Research/Projects/Turbity_Currents/palagram_monograph/paper/reply_to_referees/first_review
+PWD /home/cyril/Documents/Work/Research/Projects/Turbity_Currents/palagram_monograph/paper/reply_to_referees
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/cyril/Documents/Work/Research/Projects/Turbity_Currents/palagram_monograph/paper/reply_to_referees/first_review/reply.tex
+INPUT /home/cyril/Documents/Work/Research/Projects/Turbity_Currents/palagram_monograph/paper/reply_to_referees/reply.tex
 OUTPUT reply.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
