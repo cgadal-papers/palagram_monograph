@@ -174,7 +174,7 @@ The third set-up (figure~\ref{fig:fig1}(c)) has $L_0+L_1=150~{\text cm}$ with $L
 
 \paragraph{Two-fluid model}
 
-A two-fluid model, SedFoam \citep{chauchat2017}, is used to simulate lock-release configurations from set-ups 1 and 2. This model available for download at Zenodo \citep{bonamy2023} is implemented in the open-source computational fluid dynamics toolbox OpenFOAM and has been extensively validated for various sediment transport problems such as sheet-flow \citep{cheng2016,chauchat2022,mathieu2021,mathieu2022}, scour \citep{nagel2020,tsai2022}, ripples \citep{salimi2021a,salimi2021b}, avalanches \citep{montella2021} and granular collapse \citep{montella2023}. The simulations presented herein are 2D vertical and turbulence-averaged. The turbulence model is a $k-\epsilon$ model with additional two-phase flow terms for density stratification and turbulent drag dissipation. The closure for the particle-particle interactions is a frictional-collisional model based on a Coulomb rheology for the frictional part and the kinetic theory of granular flows for the collisional part. The two contributions are simply added as described in \cite{chauchat2017}. The drag force is modeled using the \cite{schiller1933} closure multiplied by a hindrance function of \cite{richardson1954}. In order to describe the influence of the slope, the total pressure is solved and the gravity vector is rotated while the mesh is kept aligned with the $x$ and $y$ axis.
+A two-fluid model, SedFoam \citep{chauchat2017}, is used to simulate lock-release configurations from set-ups 1 and 2. This model available for download at Zenodo \citep{bonamy2023} is implemented in the open-source computational fluid dynamics toolbox OpenFOAM and has been extensively validated for various sediment transport problems such as sheet-flow \citep{cheng2016,chauchat2022,mathieu2021,mathieu2022}, scour \citep{nagel2020,tsai2022}, ripples \citep{salimi2021a,salimi2021b}, avalanches \citep{montella2021} and granular collapse \citep{montella2023}. The simulations presented herein are 2D Reynolds-averaged considering the streamwise and wall-normal direction. The turbulence model is a $k-\epsilon$ model with additional two-phase flow terms for density stratification and turbulent drag dissipation. The closure for the particle-particle interactions is a frictional-collisional model based on a Coulomb rheology for the frictional part and the kinetic theory of granular flows for the collisional part. The two contributions are simply added as described in \cite{chauchat2017}. The drag force is modeled using the \cite{schiller1933} closure multiplied by a hindrance function of \cite{richardson1954}. In order to describe the influence of the slope, the total pressure is solved and the gravity vector is rotated while the mesh is kept aligned with the $x$ and $y$ axis.
 
 \subsection{Datasets}
 \label{sec:datasets}
@@ -444,7 +444,9 @@ Sylvain Dauge is acknowledged for the full design of setup 2. Hervé Bellot and 
 %
 We also acknowledge Hugo Divel for his contribution to the preliminary lock-release simulations using SedFoam.
 %
-Finally, we would like to acknowledge the contributors of the open-source numerical Python libraries, including Matplotlib \citep{Hunter2007}, NumPy \citep{Harris2020} and SciPy \citep{Virtanen2020}, which provide an incredibly efficient ecosystem allowing scientific research in Python.
+We also acknowledge the contributors of the open-source numerical Python libraries, including Matplotlib \citep{Hunter2007}, NumPy \citep{Harris2020} and SciPy \citep{Virtanen2020}, which provide an incredibly efficient ecosystem allowing scientific research in Python.
+%
+Finally, we also would like to acknowledge the two anonymous reviewers for their comments and Prof. Marius Ungarish for his extensive suggestions.
 
 \subsection*{Fundings}
 We acknowledge financial support from the French National Research Agency Grants, ANR-19-CE30-0041/PALAGRAM.

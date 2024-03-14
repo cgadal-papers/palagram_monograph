@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex main"] 1709503405 "main.aux" "main.bbl" "main" 1709753377
+["bibtex main"] 1710429952 "main.aux" "main.bbl" "main" 1710430570
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
   "biblio.bib" 1709504905 27376 d2d69c1e99e1edea5426e3034908ae56 ""
-  "main.aux" 1709753377 11803 557a809ce6b45481b2ccf1bf1fa2d242 "pdflatex"
+  "main.aux" 1710430570 11803 71ff5a28f663a851c321d9250c2671e4 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1709753376 "/home/cyril/Documents/Work/Research/Projects/Turbity_Currents/palagram_monograph/paper/main.tex" "main.pdf" "main" 1709753377
+["pdflatex"] 1710430570 "/home/cyril/Documents/Work/Research/Projects/Turbity_Currents/palagram_monograph/paper/main.tex" "main.pdf" "main" 1710430570
   "/etc/texmf/web2c/texmf.cnf" 1697989932 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/cyril/Documents/Work/Research/Projects/Turbity_Currents/palagram_monograph/paper/main.tex" 1709753376 57195 f77c986429c66e1e49c4584926569880 ""
+  "/home/cyril/Documents/Work/Research/Projects/Turbity_Currents/palagram_monograph/paper/main.tex" 1710430569 57364 72dea915e443e53741d84394b63cc109 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm0600.tfm" 1136768653 1536 12e8c510d3e158fdd0e9a42e75118bd9 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm0800.tfm" 1136768653 1536 05df9db6aeccc4eea94fec15c9024f79 ""
@@ -102,9 +102,9 @@
   "figures/figure5.pdf" 1709506338 57933 272563e1737f65b6be9ac669c6bdff64 ""
   "figures/figure6.pdf" 1709506417 27541 43ed89c62502ea6d13eedf8766505981 ""
   "figures/figure7.pdf" 1698227274 203444 30dfdf9ccaac5582c4eb409ca85b7fe8 ""
-  "main.aux" 1709753377 11803 557a809ce6b45481b2ccf1bf1fa2d242 "pdflatex"
-  "main.bbl" 1709504905 12550 ba65dec2f0f8dec96442f97e9f7a4892 "bibtex main"
-  "main.tex" 1709753376 57195 f77c986429c66e1e49c4584926569880 ""
+  "main.aux" 1710430570 11803 71ff5a28f663a851c321d9250c2671e4 "pdflatex"
+  "main.bbl" 1710429952 12550 ba65dec2f0f8dec96442f97e9f7a4892 "bibtex main"
+  "main.tex" 1710430569 57364 72dea915e443e53741d84394b63cc109 ""
   (generated)
   "main.aux"
   "main.log"
