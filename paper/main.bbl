@@ -101,6 +101,12 @@ Hogg, A.~J. (2006).
 \newblock Lock-release gravity currents and dam-break flows.
 \newblock {\em Journal of Fluid Mechanics}, 569:61--87.
 
+\bibitem[Hogg and Pritchard, 2004]{hogg2004effects}
+Hogg, A.~J. and Pritchard, D. (2004).
+\newblock The effects of hydraulic resistance on dam-break and other shallow
+  inertial flows.
+\newblock {\em Journal of Fluid Mechanics}, 501:179--212.
+
 \bibitem[Hogg and Woods, 2001]{Hogg2001}
 Hogg, A.~J. and Woods, A.~W. (2001).
 \newblock The transition from inertia-to bottom-drag-dominated motion of
@@ -261,10 +267,23 @@ Tsai, B., Mathieu, A., Montell{\`a}, E.~P., Hsu, T.-J., and Chauchat, J.
   backfill of a 2d pipeline.
 \newblock {\em European Journal of Mechanics - B/Fluids}, 91:10--26.
 
-\bibitem[Ungarish, 2009]{Ungarish2009}
-Ungarish, M. (2009).
-\newblock {\em An introduction to gravity currents and intrusions}.
-\newblock CRC press.
+\bibitem[Ungarish, 2011]{Ungarish2011}
+Ungarish, M. (2011).
+\newblock {Two-layer shallow-water dam-break solutions for non-Boussinesq
+  gravity currents in a wide range of fractional depth}.
+\newblock {\em Journal of Fluid Mechanics}, 675:27--59.
+
+\bibitem[Ungarish, 2020]{ungarish2020gravity}
+Ungarish, M. (2020).
+\newblock {\em Gravity Currents and Intrusions: Analysis and Prediction},
+  volume~1.
+\newblock World Scientific.
+
+\bibitem[Ungarish and Zemach, 2005]{Ungarish2005}
+Ungarish, M. and Zemach, T. (2005).
+\newblock On the slumping of high {Reynolds} number gravity currents in
+  two-dimensional and axisymmetric configurations.
+\newblock {\em European Journal of Mechanics - B/Fluids}, 24(1):71--90.
 
 \bibitem[Virtanen et~al., 2020]{Virtanen2020}
 Virtanen, P., Gommers, R., Oliphant, T.~E., Haberland, M., Reddy, T.,

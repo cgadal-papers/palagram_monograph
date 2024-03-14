@@ -55,7 +55,7 @@ markers[dataset_idx == "4"] = "s"
 facecolors = np.vectorize(tp.color_datasets.get)(dataset_idx)
 edgecolors = np.full_like(facecolors, "k")
 
-mask_nosuspended = (authors == "Rastello") & (H0 / Ha < 1)
+mask_nosuspended = (authors == "Marie Rastello") & (H0 / Ha < 1)
 edgecolors[mask_nosuspended] = "tab:red"
 
 zorders = np.vectorize(lambda dataset: tp.dataset_zorder[dataset])(dataset_idx)
@@ -68,7 +68,7 @@ plot_idxs = np.lexsort((random_order, zorders))
 phi_m = 0.585
 phi_plot = np.logspace(-3, phi_m, 200)
 eta = Krieger_viscosity(phi_plot, phi_m)
-Fr_th0 = Froude(0, eta, 7e4)
+Fr_th0 = Froude(0, eta, 7e4, Cd=0.02, Fr0=0.45)
 Fr_th45 = Froude(45, eta, 7e4)
 
 # %% masks for plot

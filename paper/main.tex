@@ -1,4 +1,5 @@
-\documentclass[twocolumn]{article}
+% \documentclass[twocolumn]{article}
+\documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{natbib}
 \usepackage{graphicx, caption}
@@ -6,19 +7,14 @@
 \usepackage{textcomp}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{cuted}
 
 \usepackage{multicol}
 \usepackage[textwidth=492.982pt, top=2cm, bottom=2cm]{geometry}
 
-\newcommand*{\cyril}{\textcolor{ForestGreen}}
-\newcommand*{\marie}{\textcolor{Cyan}}
-\newcommand*{\julien}{\textcolor{Brown}}
-\newcommand*{\yvan}{\textcolor{Blue}}
-
-\definecolor{jeanc}{RGB}{253,129,43}
-\newcommand*{\jean}{\textcolor{jeanc}}
-
+\usepackage{setspace}
+\doublespacing
 
 \graphicspath{{./figures}{./}}
 
@@ -47,30 +43,22 @@ et Appliquée (LEMTA), Université de Lorraine, CNRS, 54500, Nancy, France}
 \affil[3]{Univ. Grenoble Alpes, CNRS, Grenoble INP, LEGI, 38000 Grenoble, France}
 \affil[4]{Univ. Grenoble Alpes, INRAE, CNRS, IRD, Grenoble INP, IGE, 38000 Grenoble, France}
 
-\date{{\it\color{red}Deadline: May 31$^{st}$ - repoussé (mi juillet ou EuroMech?)}}
 
 \begin{document}
 
-\twocolumn[
+\maketitle
 
-	\maketitle
+\begin{abstract}
 
-	\begin{abstract}
+	Particle-laden gravity currents (PLGCs) are driven by the mass difference between a heavy fluid-particle mixture and a lighter ambient liquid. They often occur in natural and industrial situations, among which a typical situation is the release of a finite volume. Here, we focus on such `dam-break' situations, which are studied using lock-release devices at the laboratory scale, and more specifically on Boussinesq turbidity currents generated from full-depth releases of vertical reservoirs.
+	%
+	The objective of the present chapter is to describe the macroscopic scale of the early moments of the flow, namely the \emph{slumping regime}, with respect to the relevant dimensionless parameters. For this, we combine a total of 288 runs from three different lock-release devices and from two-fluids numerical simulations, which allow us to cover a large range of particle types (size and density), volume fractions, bottom slopes and geometries. 
+	%
+	By tracking the front propagation through time, we extract the dimensionless slumping velocity $\mathcal{F}r$ and dimensionless characteristic slumping duration $\tau$, on which we base our description.
+	%
+	Our results show that the slumping velocity increases with the bottom slope, but decreases with the particle volume fraction when the latter exceeds a critical value. However, it remains independent of particle settling processes, which on the other hand affects the slumping duration. Hence, above a critical threshold, $\tau$ decreases as the ratio between the settling velocity and characteristic current velocity increases. For all these regimes, we derive scalings and energetic balances that reproduce the observed trends. The latter comparison confirms the role of initial energy transfer from the initial state towards the slumping phase on the resulting dynamics. This initial process and its characterization remain crucial to prescribe relevant initial conditions for large-scale predictive modeling.
+\end{abstract}
 
-		Particle-laden gravity currents (PLGCs) are driven by the mass difference between a heavy fluid-particle mixture and a lighter ambient liquid. They often occur in natural and industrial situations, among which a typical situation is the release of a finite volume. Here, we focus on such `dam-break' situations, which are studied using lock-release devices at the laboratory scale.
-		%
-		The objective of the present chapter is to provide a description at the macroscopic scale of the early moments of the flow, namely the \emph{slumping regime}, with respect to the relevant dimensionless parameters. For this, we combine a total of 288 runs from three different lock-release devices and from two-fluids numerical simulations, which allow us to cover a large range of particle types (size and density), volume fractions, bottom slopes and geometries.
-		%
-		By tracking the front propagation through time, we extract the dimensionless slumping velocity $\mathcal{F}r$ and dimensionless characteristic slumping duration $\tau$, on which we base our description.
-		%
-		Our results show that the slumping velocity increases with the bottom slope, but decreases with the particle volume fraction when the latter exceeds a critical value. However, it remains independent of particle settling processes, which on the other hand affects the slumping duration. Hence, above a critical threshold, $\tau$ decreases as the ratio between the settling velocity and characteristic current velocity increases. For all these regimes, we derive scalings and energetic balances that reproduce the observed trends. The latter comparison confirms the role of initial energy transfer from the initial state towards the slumping phase on the resulting dynamics. This initial process and its characterisation remain crucial to prescribe relevant initial conditions for large-scale predictive modelling.
-
-	\end{abstract}
-
-	\vspace{0.3cm}
-	{\it \color{red}REMINDER: Word limit of about 10,000 per article, plus 7 figures.}\\
-	\vspace{0.3cm}
-]
 
 \section{Introduction}
 \label{sec:intro}
@@ -78,7 +66,7 @@ et Appliquée (LEMTA), Université de Lorraine, CNRS, 54500, Nancy, France}
 \subsection{Finite volume density currents}
 \label{sec:intro_lockrelease}
 
-Density currents have been widely considered at the laboratory scale for their ubiquitous occurrence in geophysical flows \citep{Hopfinger1983,Simpson1999,Dufek2016}. As they are mostly associated with unsteady and non-uniform dynamics in nature, the lock-release device appeared to be a popular canonical configuration to mimic their behaviour at the laboratory scale \citep{Hacker1996,Shin2004,Nogueira2014}. In particular, studies often focused on characterising the front dynamics and the front shape as a macroscopic description of the underlying complex dynamics \citep{Rottman1983,Marino2005,Hogg2006}.
+Density currents have been widely considered at the laboratory scale for their ubiquitous occurrence in geophysical flows \citep{Hopfinger1983,Simpson1999,Dufek2016}. As they are mostly associated with unsteady and non-uniform dynamics in nature, the lock-release device appeared to be a popular canonical configuration to mimic their behavior at the laboratory scale \citep{Hacker1996,Shin2004,Nogueira2014}. It consists of generating the current by releasing a fixed volume of fluid initially locked behind a gate (see figure~\ref{fig:fig1}). In particular, studies often focused on characterizing the front dynamics and the front shape as a macroscopic description of the underlying complex dynamics \citep{Rottman1983,Marino2005,Hogg2006}.
 
 The basic approach to describe a lock-release evolution is built upon characteristics solutions of the hyperbolic shallow water equations for an inviscid dense liquid of density $\rho_{\text c}$ slumping on a horizontal bottom under an inertialess and weightless ambient fluid. In particular, this allows predicting the front velocity $U_{\text{c}}$ only based on the initial condition of the released mass. At the early stages of the slumping phase, it is found to be simply related to the only velocity scale of the system as
 \begin{equation}
@@ -89,42 +77,44 @@ with $g$ gravitational acceleration and $H_0$ the initial height of the fluid vo
 	\label{eq:solUc}
 	U_{\text{c}}=F\sqrt{\tilde{g}H_0},\quad\mbox{with}\quad \tilde{g}=\frac{\rho_{\text c}-\rho_{\text a}}{\rho_{\text c}}g,
 \end{equation}
-However, the coefficient of proportionality $F$, similar to a Froude number, now requires slightly more attention as it is clearly found smaller than $2$ in experiments or simulations. The main reason is that most density currents are characterized by a small density ratio between current and ambient, making the assumption of inertialess ambient fluid unlikely. A dynamic front condition is now required, and is often inspired from the steady front configuration derived by \citet{Benjamin1968}, now also linking the ambient height $H_{\text a}$ to the front velocity. This front relation includes two unknowns, a front velocity and a front height, and is often used as a front boundary condition in shallow water numerical solver for gravity currents \cite[e.g.][]{Ungarish2009}. Then, past studies managed to link the front velocity to the current height close to the front. However, the link between the front velocity and the initial conditions then becomes much more difficult to predict.
-Models have been proposed to circumvent this issue, leading for instance to \citep{Huppert1980}
+However, the coefficient of proportionality $F$, similar to a Froude number, now requires slightly more attention as it is clearly found smaller than $2$ in experiments or simulations. The main reason is that most density currents are characterized by a small density ratio between current and ambient, making the assumption of inertialess ambient fluid unlikely. 
+%
+Hence, a dynamic front condition is now required, typically inspired by the steady front configuration derived by \citet{Benjamin1968}, also involving the ambient height $H_{\text a}$. This front relation includes two unknowns, a front velocity and a front height, and is used as a front boundary condition in the depth-averaged modeling of gravity currents \cite[e.g.][]{ungarish2020gravity}. Then, past studies managed to link the front velocity to the current height close to the front~\citep[e.g.][]{Benjamin1968, Huppert1980, Rottman1983, Ungarish2005}. However, the link between the front velocity and the initial conditions then becomes much more difficult to predict. From the front law of \citet{Huppert1980}, one can use the typical scaling of the front height as $0.5 H_{0}$ to obtain :
 \begin{equation}
 	\label{eq:Froude_Huppert1980}
-	F = 0.5 \sqrt{\frac{\rho_{\text c}}{\rho_{\text a}}}\left(\frac{H_{\text a}}{H_0}\right)^{1/3}.
+	F \simeq 0.45 \sqrt{\frac{\rho_{\text c}}{\rho_{\text a}}}\left(\frac{H_{\text a}}{H_0}\right)^{-1/3}.
 \end{equation}
 %
-The latter is relevant for not too deep ambient $H_{\text a}$ compared to the reservoir height $H_0$, which is actually the case in most experiments. Many configurations correspond to full-depth release ($H_{\text a}=H_0$), which leads to $F = 0.5(\rho_{\text c}/\rho_{\text a})^{1/2}$. Even if several experiments and numerical simulations confirm such a result, the exact value of $F$ remains still unclear and probably dependent on several physical processes. In particular, these relationships during the slumping regime are based on assuming negligible dissipation, which shall be violated in some cases, for instance in the presence of settling particles or significant mixing with the ambient at the miscible interface.
+Note that the latter is relevant only when typically $H_0/H_{\text a} \gtrsim 0.15$, which is the case in most experiments. Many configurations correspond to full-depth release ($H_{\text a}=H_0$), which leads to $F \simeq 0.45(\rho_{\text c}/\rho_{\text a})^{1/2}$. Even if several experiments and numerical simulations confirm such a result, the exact value of $F$ remains still unclear and probably dependent on several physical processes. In particular, these relationships during the slumping regime are based on assuming negligible dissipation, which shall be violated in some cases, for instance in the presence of settling particles or significant mixing with the ambient at the miscible interface.
 
-For a finite volume lock-release device on a mild enough slope, the slumping regime necessarily ends when the rarefaction wave associated with finite volume reaches the current front \citep[e.g.][]{Rottman1983, Hogg2006}. This leads to a new regime usually referred to as the inertial regime in the literature. This is observed on the front evolution as $U_{\text{c}}$ is no longer time independent but evolves as $t^{-1/3}$.
-A simple approach can be useful to provide a rapid estimation of the position $X_{\text t}$ or time $T_{\text t}$ at which this transition occurs. For that purpose, it is worth mentioning that such a transition occurs as a rarefaction wave evolves faster than the front. Then, assuming the front velocity $U_{\text{c}}$ to be different from the rarefaction wave velocity at the interface $\sqrt{\tilde{g}H_0}$, which is assumed to be constant along its entire propagation path for simplicity, this leads to a transition length scale $X_{\text t}$ written as
+For a finite volume lock-release device, the opening of the gate also generates a backward propagating rarefaction wave or bore (depending on $H_{0}/H_{\rm a}$), which reflects on the wall at the end of the reservoir and then propagates towards the front \citep[e.g.][]{ungarish2020gravity}. As it evolves faster than the current front, it eventually reaches it, ending the slumping regime and leading to a new regime usually referred to as the self-similar regime \citep[e.g.][]{Rottman1983, Hogg2006}. This is observed on the front evolution as $U_{\text{c}}$ is no longer time independent but evolves as $t^{-1/3}$.
+%
+Experiments, numerical simulations and theoretical studies using shallow-water modeling have shown that the position $X_{\text t}$ at which this transition occurs typically writes as:
+%%
 \begin{equation}
 	\label{eq:Xt_inertial}
-	\displaystyle X_{\text t}\propto  \frac{2L_0 F}{1 - F}.
+	\displaystyle X_{\text t} = \mathcal{A} L_{0},
 \end{equation}
-Note that here $2$ comes from the path of propagation of the wave: emanating from the gate, it propagates backwards to the end of the reservoir, reflects on the wall and then propagates towards the front.
-During the slumping regime, the previous estimation of $F$ \eqref{eq:Froude_Huppert1980} for full depth release $H_0=H_{\text a}$ leads to $X_{\text t}\propto 2L_0/[2(\rho_{\text a}/\rho_{\text c})^{1/2}-1]$. Note that, although more advanced methods based on single-layer shallow-water models predict a similar result, $X_{\text t} = 2 L_0 F (1 + F/2)^{1/2}$ \citep{Hogg2006}, full depth-release experiments have found much larger transitional positions, i.e $X_{\text t} \approx 10 L_{0}$~\citep{Rottman1983}.
+%%
+where $\mathcal{A}$ is an increasing function of $H_{0}/H_{\rm a}$, and may depend on other parameters of the problem, e.g. $\rho_{\rm c}/\rho_{a}$. In the general case, its determination requires the numerical resolution of the two-layer shallow-water system of equations. However, in the limit of deep currents (typically $H_{0}/H_{\rm a} \lesssim 0.25$), the system can be approximated by the one-layer shallow-water model, for which an analytical solution is available, $X_{\text t} = 2 L_0 F (1 + F/2)^{1/2}$ \citep{Hogg2006}. In the present case of full-depth releases ($H_{0} = H_{\rm a}$), experiments and the resolution of the two-layer shallow-water model lead to $X_{\text t} \approx 8 \text{--} 12 L_{0}$ \citep{Rottman1983, Ungarish2005}.
 
-Other mechanisms can modify the dynamics of the slumping regime which could lead to other transitions of the front velocity at different positions $X_{\text t}$ or times $T_{\text t}$, prior to the influence of the rarefaction wave. This is basically part of the topic of the present chapter.
+Other mechanisms can modify the dynamics of the slumping regime, possibly leading to other possible positions $X_{\text t}$ or times $T_{\text t}$ at which the velocity is no longer time-independent. Depending on the relative intensity of these mechanisms, this may occur prior to the influence of the rarefaction wave or bore. Hence, determining the various regimes related to the prevalence of each mechanism is part of the topic of the present chapter.
 
-For a gravity current on a horizontal bottom, a classic transition discussed in the literature is the one dominated by viscous dissipation. The flow eventually reaches a fully viscous regime \citep{Huppert1980}. This transition typically holds for fully laminar flow. A similar regime can be induced by inertial friction, for which the full derivation remains less obvious \citep[see for instance][for the case of a constant-influx current]{Hogg2001}. In any case, such transition can be seen as the time or position at which the current is strongly affected by dissipation, which actually encompasses entrainment for miscible gravity currents. The slumping regime then ends when dissipation induced by bottom friction and/or entrainment at the miscible interface, overcomes the current dynamics.
+For a gravity current on a horizontal bottom, a classic transition discussed in the literature is the one dominated by viscous dissipation. The flow eventually reaches a fully viscous regime \citep{Huppert1980}. This transition typically holds for fully laminar flow. A similar regime can be induced by inertial friction, for which the full derivation remains less obvious \citep[see for instance][for the case of a constant-influx current]{Hogg2001}. In any case, such transition can be seen as the time or position at which the current is strongly affected by dissipation, which encompasses entrainment for miscible gravity currents. The slumping regime then ends when dissipation induced by bottom friction and/or entrainment at the miscible interface, overcomes the current dynamics.
 %
-Again using a simple idealised approach, the latter transition can be estimated from a dynamic condition balancing an estimation of the shear stress $\rho_{\text c} C_d U_{\text{c}}^2$ ($C_d$ being some drag coefficient induced by friction at the bottom and/or by entrainment at the interface) with inertia over the current height $h_{\text c}$, $\rho_{\text c} U_{\text{c}}^2 h_{\text c} /X_t$. In the latter expression, $h_{\text c}$ can have different scaling. In the case of a clearly detached current head, the constant height scales with the initial height $H_0$. When assuming that the current remains attached to the initial column at transition \citep[similarly to][but for inertial drag instead of viscous dissipation]{Bougouin2022}, mass conservation between the initial column and a simplified box geometry implies $h_{\text c} = H_0 L_0/X_t$.
-%
-Both cases respectively lead to
+Again using a simple idealized approach, the latter transition can be estimated from a dynamic condition balancing an estimation of the shear stress $\rho_{\text c} C_d U_{\text{c}}^2$ ($C_d$ being some drag coefficient induced by friction at the bottom and/or by entrainment at the interface) with inertia over the current height $h_{\text c}$, $\rho_{\text c} U_{\text{c}}^2 h_{\text c} /X_t$. In the case of Boussinesq currents, the height is relatively constant along the current, $h_{\text c} \propto H_{0}$, hence leading to 
 \begin{equation}
 	\label{eq:Xt_drag}
-	\displaystyle X_{\text t}= {\frac{H_0}{C_d}}\quad \mbox{or} \quad X_{\text t}=  \sqrt{\frac{H_0 L_0}{C_d}}.
+	\displaystyle X_{\text t} \propto {\frac{H_0}{C_d}}.
 \end{equation}
+Note that this is not the case for non-Boussinesq currents, whose height significantly decreases from the position of the gate to the nose of the current \citep{Ungarish2011}. While the height at the nose still scales with $H_{0}$, the average height can then be obtained through mass conservation, $h_{\text c} \propto H_0 L_0/X_t$, hence leading to another possible scaling, $X_{\text t} \propto \sqrt{H_0 L_0/C_d}$ \citep[similar to][but for inertial drag instead of viscous dissipation]{Bougouin2022}.
 
 To finish with, constant bottom slope $\alpha$, often relevant to characterize the main process of natural flow over topography, adds complexity to this front analysis. First, note that, when considering an inclined bottom, the reduced gravity and therefore the characteristic velocity \eqref{eq:solUc} shall be updated with a $\cos{\alpha}$ term accounting for the reduced effect of the initial column pressure normal to the inclined bottom. Second, including a bottom slope also adds a constant forcing along the slope suggesting a constant acceleration of the flow, at least until balanced by friction at both the interface and the bottom. Hence, it could affect the existence of the aforementioned slumping constant-velocity regime.
 %
 Yet, constant velocities associated with a slumping regime are clearly observed at early stages in experiments and simulations prior to such balance \citep{Birman2007, Gadal2023}. This is due to the relatively long time or length scales required for slope-induced acceleration to overcome the flow induced by the initial pressure gradient. A way to highlight that is a simple balance between slope and pressure gradient, resulting in
 \begin{equation}
 	\label{eq:Xt_slope}
-	X_{\text t}=H_0\tan^{-1}{(\alpha)}.
+	X_{\text t} \propto H_0\tan^{-1}{(\alpha)}.
 \end{equation}
 The latter can be seen as a transition length scale after which the slope starts driving the current until reaching the next equilibrium between slope and friction.
 
@@ -133,7 +123,7 @@ The latter can be seen as a transition length scale after which the slope starts
 \begin{figure*}[ht!]
 	\centering
 	\includegraphics{figure1.pdf}
-	\caption{\textbf{Experimental set-ups used in this study.} (a--c) Sketches of the three experimental set-ups. Below are shown snapshots of corresponding experimental images: (d--h) Set-up 1, $\alpha = 7^\circ$, $\phi \sim 3~\%$, ${S}t=0.027$; (i--k) Set-up 2, $\alpha = 45.4^\circ$, $\phi \sim 1.5~\%$, ${S}t=0.06 $; (l--p) Set-up 3, $\alpha = 0^\circ$, $\phi \sim 55\%$, ${S}t \equiv 0$; (q--v) SedFoam, $\alpha = 45.4^\circ$, $\phi \sim 1.7~\%$, $\mathcal{S}t=0.06$.}
+	\caption{\textbf{Experimental set-ups used in this study.} (a--c) Sketches of the three experimental set-ups. Below are shown snapshots of corresponding experimental images: (d--h) Set-up 1, $\alpha = 7^\circ$, $\phi \sim 3~\%$, ${S}t=0.027$; (i--k) Set-up 2, $\alpha = 45.4^\circ$, $\phi \sim 1.5~\%$, ${S}t=0.06 $; (l--p) Set-up 3, $\alpha = 0^\circ$, $\phi \sim 55\%$, ${S}t \equiv 0$. Below the horizontal black line are shown snapshots of a numerical simulation using SedFoan: (q--v) $\alpha = 45.4^\circ$, $\phi \sim 1.7~\%$, $\mathcal{S}t=0.06$.}
 	\label{fig:fig1}
 \end{figure*}
 %%%%%%%%
@@ -142,21 +132,21 @@ The latter can be seen as a transition length scale after which the slope starts
 \subsection{Particle-Laden Gravity Currents}
 \label{sec:intro_PLGC}
 
-Particle-Laden Gravity Currents (PLGCs) refer to as gravity currents, or density currents, are driven by a mass difference between a heavy fluid-particle mixture and a lighter ambient liquid \citep[e.g.][]{Hopfinger1983,Middleton1993,Kneller2000,Meiburg2010,wells2021}. Different subclasses of PLGCs can be distinguished depending on the relative density of the different phases constituting the system; i.e. the particle phase, the carrier fluid phase and the ambient fluid phase. In the following, we will focus on two of them, characterized by only two distinct densities. At one end, the carrier phase and ambient phase are the same fluid and particles are heavier. This is the most commonly studied subclass of PLGCs, usually referred to as turbidity currents. At the other end, PLGCs can also be induced by a neutrally-buoyant fluid-particle mixture flowing into a lighter ambient fluid.
+Particle-Laden Gravity Currents (PLGCs), also referred to as gravity currents or density currents, are driven by a mass difference between a heavy fluid-particle mixture and a lighter ambient liquid \citep[e.g.][]{Hopfinger1983, Middleton1993,Kneller2000, Meiburg2010,wells2021}. Different subclasses of PLGCs can be distinguished depending on the relative density of the different phases constituting the system; i.e. the particle phase, the carrier fluid phase and the ambient fluid phase. In the following, we will focus on two of them, characterized by only two distinct densities. At one end, the carrier phase and ambient phase are the same fluid and particles are heavier. This is the most commonly studied subclass of PLGCs, usually referred to as turbidity currents. At the other end, PLGCs can also be induced by a neutrally buoyant fluid-particle mixture flowing into a lighter ambient fluid.
 
-A major difference between PLGCs and compositional currents is therefore the existence of typical length and time scales associated with the particle dynamics. Nevertheless, the prediction of these finite scales is difficult as it shall strongly depend on the interaction between particle dynamics and the local turbulence of the carrying fluid and/or ambient fluid at the upper interface which modifies entrainment and associated dissipation. In turn, this can modify the macroscopic behaviour of the current, for instance, the dynamics of the front. Accordingly, these dynamics shall be controlled by several dimensionless parameters that can lead to a wide variety of flow regimes. In particular, beyond the slope $\alpha$, the dimensionless density difference between the current and the ambient $\mathcal{A}t$, the ratio between available inertia and dissipation, say a Reynolds number $\mathcal{R}e$ as usually introduced as a control parameter for any density currents, the initial solid fraction of particles $\phi$ and a dimensionless settling velocity $S=V_{\text s}/U_{\text{c}}$ with $V_{\text s}$ the settling velocity of particles into the carrying fluid phase, have now to be considered as potentially affecting flow regimes. It shall be noted that in some specific situations, some of these dimensionless parameters could be linked (for instance $\phi$ and $\mathcal{A}t$ for heavy particles in a single-phase liquid for the carrying and ambient fluids).
+A major difference between PLGCs and compositional currents is therefore the existence of typical length and time scales associated with the particle dynamics, such as settling or particle/particle interactions. Nevertheless, the prediction of these finite scales is difficult as it should strongly depend on the interaction between particle dynamics and the local turbulence of the carrying fluid and/or ambient fluid at the upper interface which modifies entrainment and associated dissipation. In turn, this can modify the macroscopic behavior of the current, for instance, the dynamics of the front. Accordingly, these dynamics shall be controlled by several dimensionless parameters that can lead to a wide variety of flow regimes. In particular, beyond the slope $\alpha$, the dimensionless density difference between the current and the ambient $\mathcal{A}t$, the ratio between available inertia and dissipation, say a Reynolds number $\mathcal{R}e$ as usually introduced as a control parameter for any density currents, the initial solid fraction of particles $\phi$ and a dimensionless settling velocity $S=V_{\text s}/U_{\text{c}}$ with $V_{\text s}$ the settling velocity of particles into the carrying fluid phase, have now to be considered as potentially affecting flow regimes. It shall be noted that in some specific situations, some of these dimensionless parameters could be linked (for instance $\phi$ and $\mathcal{A}t$ for heavy particles in a single-phase liquid for the carrying and ambient fluids).
 
-Beyond the transition from the slumping regime to other regimes discussed in the previous section (still relevant for PLGCs although parametrisation of the processes involves more complex mechanisms induced by the fluid-particle interaction), here, a new transition towards the deposition of the particle can emerge. In particular, based on a kinematic approach balancing time scales related to current propagation and particle settling, leads to
+Beyond the transition from the slumping regime to other regimes discussed in the previous section (still relevant for PLGCs although parametrization of the processes involves more complex mechanisms induced by the fluid-particle interaction), here, a new transition towards the deposition of the particle can emerge. In particular, based on a kinematic approach balancing time scales related to current propagation and particle settling, leads to
 %
 \begin{equation}
 	\label{eq:Xt_settling}
 	X_{\text t} \propto H_0\frac{U_{\text{c}}}{V_{\text s}}.
 \end{equation}
 %
-Note that such transition shall disappear for the neutrally-buoyant situation of PLGCs.
-However, it has been observed that mixing at the interface can modify the local concentration of particles at the front, resulting in behaviour similar to that of settling~\cite{Schneider2023}. Again, such an approach only gives a scaling of transition, but the influence of the particle dynamics prior to such transition remains unclear. Overall, the value of $F$ in \eqref{eq:solUc} during the slumping inertial regime remains to clarify varying the influence of the mechanisms discussed so far.
+Note that such transition shall disappear for the neutrally buoyant situation of PLGCs.
+However, it has been observed that mixing at the interface can modify the local concentration of particles at the front, resulting in behavior similar to that of settling \cite{Schneider2023}. Again, such an approach only gives a scaling of transition, but the influence of the particle dynamics prior to such transition remains unclear. Overall, the value of $F$ in \eqref{eq:solUc} during the slumping regime remains to clarify varying the influence of the mechanisms discussed so far.
 
-Even if the dynamics of PLGCs is associated with several complex processes, a general consequence is observed in the front dynamics, often referred to as the Froude number, and the front shape. Then prediction of the different flow regimes associated with PLGCs shall be somewhat included in these observables. After presenting the experimental and numerical methods used to investigate PLGCs dynamics in section~\ref{sec:methods}, we introduce the main dimensionless quantities used and macroscopic observations in section~\ref{sec:current_description}. We discuss our results in section~\ref{sec:results} and conclude in section~\ref{sec:conclusion}.
+Even if the dynamics of PLGCs is associated with several complex processes, a general consequence is observed in the front dynamics, often referred to as the Froude number. Then prediction of the different flow regimes associated with PLGCs shall be somewhat included in this observable, on which we focus the present chapter. After presenting in section~\ref{sec:methods} the experimental and numerical methods used to investigate the dynamics of Boussinesq finite-volume PLGCs currents generated from full-depth ($H_{0} \simeq H_{a}$) releases of vertical reservoirs ($a >1$), we introduce the main dimensionless quantities used and macroscopic observations in section~\ref{sec:current_description}. We discuss our results in section~\ref{sec:results} and conclude in section~\ref{sec:conclusion}.
 
 \section{Methods}
 \label{sec:methods}
@@ -184,12 +174,12 @@ The third set-up (figure~\ref{fig:fig1}(c)) has $L_0+L_1=150~{\text cm}$ with $L
 
 \paragraph{Two-fluid model}
 
-A two-fluid model, SedFoam \citep{chauchat2017}, is used to simulate lock-release configurations from set-ups 1 and 2. This model available for download at Zenodo \citep{bonamy2023} is implemented in the open-source computational fluid dynamics toolbox OpenFOAM and has been extensively validated for various sediment transport problems such as sheet-flow \citep{cheng2016,chauchat2022,mathieu2021,mathieu2022}, scour \citep{nagel2020,tsai2022}, ripples \citep{salimi2021a,salimi2021b}, avalanches \citep{montella2021} and granular collapse \citep{montella2023}. The simulations presented herein are 2D vertical and turbulence-averaged. The turbulence model is a $k-\epsilon$ model with additional two-phase flow terms for density stratification and turbulent drag dissipation. The closure for the particle-particle interactions is a frictional-collisional model based on a Coulomb rheology for the frictional part and the kinetic theory of granular flows for the collisional part. The two contributions are simply added as described in \cite{chauchat2017}. The drag force is modelled using the \cite{schiller1933} closure multiplied by a hindrance function of \cite{richardson1954}. In order to describe the influence of the slope, the total pressure is solved and the gravity vector is rotated while the mesh is kept aligned with the $x$ and $y$ axis.
+A two-fluid model, SedFoam \citep{chauchat2017}, is used to simulate lock-release configurations from set-ups 1 and 2. This model available for download at Zenodo \citep{bonamy2023} is implemented in the open-source computational fluid dynamics toolbox OpenFOAM and has been extensively validated for various sediment transport problems such as sheet-flow \citep{cheng2016,chauchat2022,mathieu2021,mathieu2022}, scour \citep{nagel2020,tsai2022}, ripples \citep{salimi2021a,salimi2021b}, avalanches \citep{montella2021} and granular collapse \citep{montella2023}. The simulations presented herein are 2D Reynolds-averaged considering the streamwise and wall-normal direction. The turbulence model is a $k-\epsilon$ model with additional two-phase flow terms for density stratification and turbulent drag dissipation. The closure for the particle-particle interactions is a frictional-collisional model based on a Coulomb rheology for the frictional part and the kinetic theory of granular flows for the collisional part. The two contributions are simply added as described in \cite{chauchat2017}. The drag force is modeled using the \cite{schiller1933} closure multiplied by a hindrance function of \cite{richardson1954}. In order to describe the influence of the slope, the total pressure is solved and the gravity vector is rotated while the mesh is kept aligned with the $x$ and $y$ axis.
 
 \subsection{Datasets}
 \label{sec:datasets}
 
-269 experiments have been performed on the 3 experimental set-ups described in the previous section. They are complemented by 19 numerical simulations using SedFoam. Altogether, they are classified into 4 different datasets corresponding to the 3 experimental set-ups and the numerical modelling respectively. These 4 datasets are described below.
+269 experiments have been performed on the 3 experimental set-ups described in the previous section. They are complemented by 19 numerical simulations using SedFoam. Altogether, they are classified into 4 different datasets corresponding to the 3 experimental set-ups and the numerical modeling respectively. These 4 datasets are described below.
 
 \paragraph{Dataset 1}
 
@@ -207,11 +197,11 @@ A third series of experiments is carried out with hydrogel particles of densitie
 
 \paragraph{Dataset 3}
 
-The third dataset is gathered using setup 3. The experiments are performed using a neutrally-buoyant fluid-particle mixture made of polystyrene beads of typical diameter $d \sim 1~\textrm{mm}$ with density $\rho_{\text p} \sim 1038.5~\textrm{kg/m}^{3}$. Saltwater is added to the lock for density matching. The density difference between the lock and the ambient fluid is kept nearly constant for each experiment, equal to $25 \textrm{kg}~\textrm{m}^{-3}$. Only the initial volume fraction is varied in the range $[0.03$  $0.55]$.
+The third dataset is gathered using setup 3. The experiments are performed using a neutrally buoyant fluid-particle mixture made of polystyrene beads of typical diameter $d \sim 1~\textrm{mm}$ with density $\rho_{\text p} \sim 1038.5~\textrm{kg/m}^{3}$. Saltwater is added to the lock for density matching. The density difference between the lock and the ambient fluid is kept nearly constant for each experiment, equal to $25 \textrm{kg}~\textrm{m}^{-3}$. Only the initial volume fraction is varied in the range $[0.03$  $0.55]$.
 
 \paragraph{Dataset 4}
 
-This dataset has been obtained using the two-fluid model described above. The domain size is $L_0+L_1=3.8$~m long and $W=0.5$~m height and the typical grid resolution is $\Delta x=1.25$~mm in the streamwise direction and it varies between $\Delta y \in [0.25 ; 3.5]$ mm in the wall-normal direction with a geometrical progression. The time step is adaptative following criteria on the Courant number, $C_{FL}=\max(U) \Delta t / \Delta x < 0.3$ for the phase velocities as well as for the relative velocity between the phases (the maximum allowed time-step during the simulation is set to $\max(\Delta t) = 10^{-3}$~s). The lock is $L_0=0.3$~m wide and $H_0=0.5$~m high, corresponding to the domain dimensions. The numerical schemes are second order in time and space: backward for time, a blend of centred and upwind schemes for advection (limitedLinear in OpenFOAM) and a centred scheme for diffusion. The initial condition is fluid and particle phase at rest ($u_f=u_p=0$) and the initial volume fraction of particles $\phi$ is set to a constant value in the region $x\in[-0.5 ; 0]$ m and $y\in[0;0.5]m$. At $t=0$, the governing equations are numerically integrated until $t_{end}=80$s maximum. The front position is determined as the most downstream position of the isocontour of volume fraction $\phi =10^{-3}$ at a frequency of 10Hz. This criterion has been demonstrated to be robust for all the simulations presented in this work. The particle properties are $e=0.8$ (restitution coefficient for binary collisions) and $\mu_{\text s}=0.53$ (macroscopic friction coefficient). Two sets of simulations have been performed. One mimics silica sand beads in water $\rho_{\text p}/\rho_{\text f}=2.65$ with diameter $d_p=60~\mu$m and initial volume fractions $\phi\in[0.015, 0.1]$. The other one mimics PMMA particles in water $\rho_{\text p}/\rho_{\text f}=1.19$ with diameters $d \in [100, 650]~\mu$m and initial volume fractions $\phi \in [0.0144, 0.5]$. For both configurations, the slope angle $\alpha$ has been varied in the range $\alpha \in [0^\circ, 45^\circ]$.
+This dataset has been obtained using the two-fluid model described above. The domain size is $L_0+L_1=3.8$~m long and $W=0.5$~m height and the typical grid resolution is $\Delta x=1.25$~mm in the streamwise direction and it varies between $\Delta y \in [0.25; 3.5]$ mm in the wall-normal direction with a geometrical progression. The time step is adaptative following criteria on the Courant number, $C_{FL}=\max(U) \Delta t / \Delta x < 0.3$ for the phase velocities as well as for the relative velocity between the phases (the maximum allowed time-step during the simulation is set to $\max(\Delta t) = 10^{-3}$~s). The lock is $L_0=0.3$~m wide and $H_0=0.5$~m high, corresponding to the domain dimensions. The numerical schemes are second order in time and space: backward for time, a blend of centered and upwind schemes for advection (limitedLinear in OpenFOAM) and a centered scheme for diffusion. The initial condition is fluid and particle phase at rest ($u_f=u_p=0$) and the initial volume fraction of particles $\phi$ is set to a constant value in the region $x\in[-0.5 ; 0]$ m and $y\in[0;0.5]m$. At $t=0$, the governing equations are numerically integrated until $t_{end}=80$s maximum. The front position is determined as the most downstream position of the isocontour of volume fraction $\phi =10^{-3}$ at a frequency of 10Hz. This criterion has been demonstrated to be robust for all the simulations presented in this work. The particle properties are $e=0.8$ (restitution coefficient for binary collisions) and $\mu_{\text s}=0.53$ (macroscopic friction coefficient). Two sets of simulations have been performed. One mimics silica sand beads in water $\rho_{\text p}/\rho_{\text f}=2.65$ with diameter $d_p=60~\mu$m and initial volume fractions $\phi\in[0.015, 0.1]$. The other one mimics PMMA particles in water $\rho_{\text p}/\rho_{\text f}=1.19$ with diameters $d \in [100, 650]~\mu$m and initial volume fractions $\phi \in [0.0144, 0.5]$. For both configurations, the slope angle $\alpha$ has been varied in the range $\alpha \in [0^\circ, 45^\circ]$.
 
 \section{Macroscopic current description}
 \label{sec:current_description}
@@ -259,14 +249,14 @@ The dimensionless control parameters $\phi$, $\alpha$, $\mathcal{S}t$ and $\math
 \begin{figure*}[ht]
 	\centering
 	\includegraphics{figure3.pdf}
-	\caption{(a) Current front position as a function of time for all experimental runs (b) Selected runs plotted in non-dimensional coordinates.}
+	\caption{(a) Dimensionless current front position as a function of dimensionless time for all experimental runs (b) Zoom on the early dynamics for selected runs. Here, $\alpha$ and $\mathcal{S}t$ increase along the black arrows.}
 	\label{fig:fig3}
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%
 
-The current dynamics is characterized by the evolution of several dimensionless variables. Here, as stated in section~\ref{sec:intro}, we aim at giving a macroscopic description of the initial current dynamics across ranges of several parameters spanning multiple orders of magnitude. The wide diversity of experiments and simulations results in a large variety of currents which does not allow for an exhaustive description of their individual dynamics. We rather choose to focus on a single variable, the front position $x_{\text{f}}$, which has been shown in the literature to be a good proxy to describe the current dynamics~\citep[e.g.][]{bonnecaze1993particle, Chowdhury2011, Adduce2012}.
+The current dynamics is characterized by the evolution of several dimensionless variables. Here, as stated in section~\ref{sec:intro}, we aim to give a macroscopic description of the initial current dynamics across ranges of several parameters spanning multiple orders of magnitude. The wide diversity of experiments and simulations results in a large variety of currents which does not allow for an exhaustive description of their individual dynamics. We rather choose to focus on a single variable, the front position $x_{\text{f}}$, which has been shown in the literature to be a good proxy to describe the current dynamics \citep[e.g.][]{bonnecaze1993particle, Chowdhury2011, Adduce2012}.
 
-Figure~\ref{fig:fig3}(a) shows the front position of all experiments and simulations in dimensional coordinates, and figure~\ref{fig:fig3}(b) exhibits some selected runs in dimensionless coordinates. After a short transient acceleration phase, most currents exhibit at first a constant velocity phase, which corresponds to the so-called \emph{slumping} regime discussed in section \ref{sec:intro}. Afterwards, the velocity becomes time-dependent, often decreasing, due to one or multiple of the attenuation processes described in section~\ref{sec:intro}.
+Figure~\ref{fig:fig3}(a) shows the front position of all experiments and simulations in dimensional coordinates, and figure~\ref{fig:fig3}(b) exhibits some selected runs in dimensionless coordinates. After a short transient acceleration phase, most currents exhibit at first a constant velocity phase, which corresponds to the so-called \emph{slumping} regime discussed in section \ref{sec:intro}. Afterward, the velocity becomes time-dependent, often decreasing, due to one or multiple of the attenuation processes described in section~\ref{sec:intro}.
 %
 Qualitatively, it can be seen that increasing the bottom slope increases the slumping velocity while increasing the Stokes number shortens the duration of the constant-velocity phase (see fig~\ref{fig:fig3}).
 
@@ -280,10 +270,10 @@ where $\mathcal{F}r = U_{\text{c}}/U_{0}$ corresponds to the dimensionless curre
 	\label{eq:link_Xt_tau}
 	\frac{X_{\text{t}}}{L_{0}} \propto \tau\mathcal{F}r.
 \end{equation}
-Note that the previous expansion \eqref{eq:fit_eq} assumes a constant velocity and constant deceleration trend of the front evolution. The latter is relevant to extract the time scale of existence of the slumping regime, i.e. the linear component, as long as its dynamics has only weakly deviated from such linear evolution. It is thus required to consider such a solution only during a brief time scale beyond the linear slumping regime.
+Note that the previous expansion \eqref{eq:fit_eq} assumes a constant velocity and constant deceleration trend of the front evolution. The latter is relevant to extract the time scale of the existence of the slumping regime, i.e. the linear component, as long as its dynamics has only weakly deviated from such linear evolution. It is thus required to consider such a solution only during a brief time scale beyond the linear slumping regime.
 %as defined here, $\mathcal{F}r$ is not a control parameter, but a dimensionless variable characteristic of the initial current dynamics (The Froude number which would be defined as a control parameter for a lock-release configuration would be $\mathcal{F}r \equiv U_{0}/U_{0} = 1$, and is thus not relevant to describe the flow dynamics).
 
-In the following, we fit all front propagation curves (except for dataset 3) with \eqref{eq:fit_eq} between $t/t_{0} = 5$, to avoid the initial transient phase, and $t/t_{0} = 30$, the transition time from the slumping to the inertial regime~\citep[similar to $X_{\text{t}}/L_{0}\approx 10$ as mentioned in section \ref{sec:intro_lockrelease}; see also e.g.][]{Rottman1983, Sher2015, Ottolenghi2016}. Note that $x_{i}$ is kept constant equal to 0 for datasets 1 and 2, but had to be left free to adjust for the SedFoam simulations. This is probably due to the influence of the initial condition. In most of the experiments, due to the stirring, the initial condition exhibits velocity fluctuations as well as concentration fluctuations which might influence the early current behaviour. In the 2D RANS two-fluid simulations using sedFOAM, the velocities are zero and the concentration is homogeneous, both without any fluctuations. For runs with strong attenuation ($\tau < 10^{2}$), we add a quartic term to \eqref{eq:fit_eq} to improve the fit quality and obtain a better estimation of $\mathcal{F}r$ and $\tau$. We checked that our results do not depend on the presence of this quartic term and that the linear and quadratic ones remain much larger. Finally, for dataset 3, the time resolution and the experiment duration do not allow for inferring the quadratic term. Therefore, we simply fit the whole available points with a linear function.
+In the following, we fit all front propagation curves (except for dataset 3) with \eqref{eq:fit_eq} between $t/t_{0} = 5$, to avoid the initial transient phase, and $t/t_{0} = 30$, the transition time from the slumping to the inertial regime \citep[similar to $X_{\text{t}}/L_{0}\approx 10$ as mentioned in section \ref{sec:intro_lockrelease}; see also e.g.][]{Rottman1983, Sher2015, Ottolenghi2016}. Note that $x_{i}$ is kept constant equal to 0 for datasets 1 and 2, but had to be left free to adjust for the SedFoam simulations. This is probably due to the influence of the initial condition. In most of the experiments, due to the stirring, the initial condition exhibits velocity fluctuations as well as concentration fluctuations which might influence the early current behavior. In the 2D RANS two-fluid simulations using sedFOAM, the velocities are zero and the concentration is homogeneous, both without any fluctuations. For runs with strong attenuation ($\tau < 10^{2}$), we add a quartic term to \eqref{eq:fit_eq} to improve the fit quality and obtain a better estimation of $\mathcal{F}r$ and $\tau$. We checked that our results do not depend on the presence of this quartic term and that the linear and quadratic ones remain much larger. Finally, for dataset 3, the time resolution and the experiment duration do not allow for inferring the quadratic term. Therefore, we simply fit the whole available points with a linear function.
 
 \section{Results}
 \label{sec:results}
@@ -291,41 +281,41 @@ In the following, we fit all front propagation curves (except for dataset 3) wit
 \subsection{Influence of the bottom slope, $\alpha$}
 \label{sec:influence_slope}
 
+\begin{figure*}
+	\centering
+	\includegraphics{figure4.pdf}
+	\caption{\textbf{Influence of the bottom slope} on the current Froude number. Plain symbols correspond to $\phi < 0.45$, while transparent symbols are for $\phi \geq 0.45$ (see section~\ref{sec:influence_phi} for details on the influence of $\phi$). The black plain line indicates the prediction of \eqref{eq:Fr_th} for $Fr_{0} = 0.45$, $C_{\text D} = 0.02$ and $S = 0.25$. The black dashed line indicates the fit to the data from the numerical simulation of \citet{Birman2007} for saline homogeneous gravity currents.}
+	\label{fig:fig4}
+\end{figure*}
+
 In this section, we focus on the influence of the bottom slope $\alpha$ on the current dynamics. Hence, figure~\ref{fig:fig4} shows the dimensionless front velocity $\mathcal{F}r$ as a function of $\alpha$ for the entire set of experiments.
 
 Despite the scatter in our experimental points, $\mathcal{F}r$ clearly exhibits an increasing trend with $\alpha$. Note however that the exact shape of this trend remains unclear, especially close to $\alpha=0^\circ$, where the various datasets may suggest slightly different trends. Note also the large scatter at $\alpha=45^\circ$, mostly related to experimental data points with $\phi > 0.45$ (transparent markers) and a settled initial condition (red-edged markers, see description of dataset 2 in section~\ref{sec:datasets}).
 %
 Such evolution of $\mathcal{F}r$ with $\alpha$ has only been reported few studies of homogeneous saline currents with either experiments on a smaller range of slopes $\alpha$ \citep{Maxworthy2007} or numerical simulations for small aspect-ratio $a = 0.1$ \citet{Birman2007}. This suggests a mechanism independent of the properties of the dense fluid, either saline or particle-laden. Interestingly, our data exhibits a much larger dependency of $\mathcal{F}r$ on $\alpha$ than reported in these simulations at small $a$. This difference is thus probably due to a significant difference in the lock aspect-ratio, which has been shown to significantly affect $\mathcal{F}r$ for $\alpha=0$ (see \citet{Bonometti2011} for instance), rather than from the presence of particles, as further discussed in sections~\ref{sec:influence_stokes} and~\ref{sec:influence_phi}.
 
-It shall be noted that this dependency of the slumping velocity on the bottom slope exists despite the slumping equilibrium being unmodified by the presence of a slope-induced acceleration (see section~\ref{sec:intro} for details). As suggested in \citet{Gadal2023}, the latter acceleration may instead affect the complicated dynamics of the early transient acceleration phase, involving strong vertical motions and significant interfacial friction~\citep{Cantero2007}.
+It shall be noted that this dependency of the slumping velocity on the bottom slope exists despite the slumping equilibrium being unmodified by the presence of a slope-induced acceleration (see section~\ref{sec:intro} for details). As suggested in \citet{Gadal2023}, the latter acceleration may instead affect the complicated dynamics of the early transient acceleration phase, involving strong vertical motions and significant interfacial friction \citep{Cantero2007}.
 %
-One can write an energetic balance between the initial state and the end of this early acceleration phase \citep{Gadal2023}
+One can write an energetic balance for the entire current between its initial state and the end of this early acceleration phase \citep{Gadal2023}
 \begin{equation}
 	\label{eq:energetic_balance}
 	\left[\frac{1}{2}\rho_{0}u_{\text c}^{2} - B \Delta\rho g \sin\alpha L\right] - A \Delta\rho g \cos\alpha h_{0} =  - \frac{1}{2}c_{\text d}\rho_{0}u_{\text c}^{2} \frac{L}{h_{0}},
 \end{equation}
-where $A$, $B$ and $c_{\text d}$ are scaling constants, and $L$ accounts for the along slope distance over which the current moves during this phase. \citet{Cantero2007} found it to be independent of the lock aspect ratio or initial buoyancy, $L = 0.3 h_{0}$. Hence, we use here $L = D h_{0}$ with $D$ constant, which results in
+where $A$ and $B$ are scaling constants, $c_{\text d}$ is a drag coefficient typically on the order of $10^{-2}$ -- $10^{-3}$ \citep{hogg2004effects}, and $L$ accounts for the alongslope distance over which the current moves during this phase. \citet{Cantero2007} found it to be independent of the lock aspect ratio or initial buoyancy, $L = 0.3 h_{0}$. Hence, we use here $L = D h_{0}$ with $D$ constant, which results in
 \begin{equation}
 	\label{eq:Fr_th}
 	\mathcal{F}r = \frac{U_{\text c}}{U_0} = \frac{Fr_0}{\sqrt{1 + C_{\text D}}} \sqrt{1 + \frac{\tan\alpha}{S}},
 \end{equation}
-where $Fr_0$, $C_{\text D}$ and $S$ are new constants depending on $A$, $B$, $c_{\text d}$ and $D$. As shown in Fig.~\ref{fig:fig4}, this simple model is able to reproduce the observed variation of the dimensionless velocity in the bottom slope in the range [$5^\circ$, $35^\circ$].
+where $Fr_0$, $C_{\text D}$ and $S$ are new constants depending on $A$, $B$, $c_{\text d}$ and $D$. Note that $C_{\rm d}$ has little influence if $c_{\text d}$ is kept within the reasonable values mentioned previously, and $Fr_0$ is fixed by the values in $\theta = 0^\circ$ (also corresponding to previous literature), such that the only truly adjustable parameter is $S$. As shown in Fig.~\ref{fig:fig4}, this simple dimensional model is able to reproduce the observed variation of the dimensionless velocity in the bottom slope in the range [$5^\circ$, $35^\circ$] while keeping the scaling constants within reasonable values.
 %
 For $\alpha < 5^\circ$, experimental data points are significantly scattered, and \eqref{eq:Fr_th} almost systematically overpredicts the $\mathcal{F}r$ values. A plausible explanation for this discrepancy could be the difference in the width-to-depth ratio of the flumes (and associated wall dissipation) and in aspect ratios of the lock, which are not addressed in the energetic balance leading to \eqref{eq:Fr_th}.
 %
-For $\alpha > 35^\circ$, the measured dimensionless velocities ($\mathcal{F}r$) slowly stand above equation (\ref{eq:Fr_th}) curve. In this region of large slope angles, it is likely that the equilibrium between the forces becomes a lot more in favour of the so-called slope effect than the pressure gradient. Consequently, the scaling constants may have to be adapted to this major change in the influence of the forces.
-
-\begin{figure*}[ht]
-	\centering
-	\includegraphics{figure4.pdf}
-	\caption{\textbf{Influence of the bottom slope} on the current Froude number. Plain symbols correspond to $\phi < 0.45$, while transparent symbols are for $\phi \geq 0.45$ (see section~\ref{sec:influence_phi} for details on the influence of $\phi$). The black plain line indicates the prediction of \eqref{eq:Fr_th} for $Fr_{0} = 0.5$, $C_{\text D} = 0.4$ and $S = 0.25$. The black dashed line indicates the fit to the data from the numerical simulation of \citet{Birman2007} for saline homogeneous gravity currents.}
-	\label{fig:fig4}
-\end{figure*}
+For $\alpha > 35^\circ$, the measured dimensionless velocities ($\mathcal{F}r$) slowly stand above equation (\ref{eq:Fr_th}) curve. In this region of large slope angles, the equilibrium between the forces likely becomes a lot more in favor of the so-called slope effect than the pressure gradient. Consequently, the scaling constants may have to be adapted to this major change in the influence of the forces.
 
 \subsection{Influence of the Stokes number, $\mathcal{S}t$}
 \label{sec:influence_stokes}
 
-\begin{figure*}[ht]
+\begin{figure*}
 	\centering
 	\includegraphics{figure5.pdf}
 	\caption{\textbf{Influence of particle settling.} Current Froude number $\mathcal{F}r$ and attenuation $1/\tau$ as a function of the ratio between the Stokes number and the lock aspect-ratio, for different ranges of bottom slopes. Plain symbols correspond to $\phi < 0.45$, while transparent symbols are for $\phi \geq 0.45$ (see section~\ref{sec:influence_phi} for details on the influence of $\phi$). Dotted lines mark either the average of points with $\phi < 0.45$ (a, c, e, g) or the 0 baseline (b, d, f, h). On (e, f), the dashed line indicates the average value for homogeneous saline currents ($St \equiv 0$) of dataset 1. On (b, d, f, h), the black line is $1/\tau = 0.27 (St - 0.015)$.}
@@ -352,13 +342,13 @@ For larger slopes, our experiments do not allow us to discriminate the influence
 \begin{figure}
 	\centering
 	\includegraphics{figure6.pdf}
-	\caption{\textbf{Influence of particle volume fraction.} Current Froude number as a function of the initial particle volume fraction for (a) $\alpha \approx 0^\circ$, and (b) $\alpha \approx 45^\circ$. The inset in (a) shows the plot in linear scale. The black line indicates the prediction of \eqref{eq:Fr_th_eta} for $Fr_{0} = 0.5$, $C_{\text D} = 0.4$, $S = 0.25$ and $Re_{\text c} = 500$.}
+	\caption{\textbf{Influence of particle volume fraction.} Current Froude number as a function of the initial particle volume fraction for (a) $\alpha \approx 0^\circ$, and (b) $\alpha \approx 45^\circ$. The inset in (a) shows the plot in linear scale. The black line indicates the prediction of \eqref{eq:Fr_th_eta} for $Fr_{0} = 0.45$, $C_{\text D} = 0.02$, $S = 0.25$ and $Re_{\text c} = 500$.}
 	\label{fig:fig6}
 \end{figure}
 
 In this section, we focus on the influence of the particle volume fraction $\phi$ on the current dynamics. Hence, figure~\ref{fig:fig6} shows the dimensionless front velocity $\mathcal{F}r$ as a function of $\phi$ for $\alpha=0^\circ$ and $\alpha=45^\circ$.
 
-For $\alpha=0^\circ$, figure~\ref{fig:fig6}(a) shows that $\mathcal{F}r$ is independent of $\phi$ up to a critical value $\phi_{c} \simeq 0.45$, above which the Froude number abruptly decreases. This results from the large increase in effective viscosity induced by the presence of particles~\citep{stickel2005fluid}, which probably enhances dissipation at the bottom and on the sidewalls. Furthermore, this decrease in Froude number is associated with a reduction of the height of the current in the presence of a strong mass gradient near the front, as noted by \citet{Schneider2023}.
+For $\alpha=0^\circ$, figure~\ref{fig:fig6}(a) shows that $\mathcal{F}r$ is independent of $\phi$ up to a critical value $\phi_{c} \simeq 0.45$, above which the Froude number abruptly decreases. This results from the large increase in effective viscosity induced by the presence of particles \citep{stickel2005fluid}, which probably enhances dissipation at the bottom and on the sidewalls. Furthermore, this decrease in Froude number is associated with a reduction of the height of the current in the presence of a strong mass gradient near the front, as noted by \citet{Schneider2023}.
 
 
 The energetic balance presented in section~\ref{sec:influence_slope} can be adapted to include viscous dissipation effects, by replacing the constant $c_{\text d}$ in \eqref{eq:energetic_balance} by:
@@ -378,9 +368,9 @@ where $Re_{\text c}$ is a new constant. The effect of the particles on the effec
 	\label{eq:Krieger}
 	\frac{\eta_{\text eff}}{\eta_{\text f}} = \left(1 - \frac{\phi}{\phi_{\text m}}\right)^{-(5/2)\phi_{\text m}},
 \end{equation}
-where $\phi_{\text m} = 0.585$ is the maximum volume fraction~\citep{boyer2011unifying}.
+where $\phi_{\text m} = 0.585$ is the maximum volume fraction \citep{boyer2011unifying}.
 %
-As shown in figure~\ref{fig:fig6}(a), the combination of equations \eqref{eq:Fr_th_eta} and \eqref{eq:Krieger} can reproduce quantitatively the observed influence of $\phi$ on the dimensionless velocity for $\alpha=0^\circ$. This agreement does not depend on the choice of the viscosity model, and using other available rheological models from the literature~\citep{stickel2005fluid, boyer2011unifying} leads to the same conclusions.
+Here, the only adjustable parameter is $Re_{\text c}$ as all the other parameters have been fixed previously. As shown in figure~\ref{fig:fig6}(a), the combination of equations \eqref{eq:Fr_th_eta} and \eqref{eq:Krieger} can reproduce quantitatively the observed influence of $\phi$ on the dimensionless velocity for $\alpha=0^\circ$. This agreement does not depend on the choice of the viscosity model, and using other available rheological models from the literature \citep{stickel2005fluid, boyer2011unifying} leads to the same conclusions.
 
 For $\alpha=45^\circ$, a decreasing trend of the dimensionless front velocity is also observed despite the dispersion of experimental points. However, the shape of this trend is less clear, especially because data at large $\phi$ correspond to a different initial condition (red-edged markers, see description of dataset 2 in section~\ref{sec:datasets}), which makes the interpretation difficult. The combination of \eqref{eq:Fr_th_eta} and \eqref{eq:Krieger} is shown for completeness.
 
@@ -394,7 +384,7 @@ For $\alpha=45^\circ$, a decreasing trend of the dimensionless front velocity is
 	\label{fig:fig7}
 \end{figure*}
 
-In this chapter, we summarize the effect of various dimensionless parameters on the early propagation of finite-volume turbidity currents. Hence, by using data from multiple experimental devices and from two-fluid numerical simulations, we explore a wide range of $\phi$, $\alpha$, $\mathcal{S}t$ and $\mathcal{R}e$.
+In this chapter, we summarize the effect of various dimensionless parameters on the early propagation of Boussinesq finite-volume turbidity currents generated from full-depth ($H_{0} \simeq H_{a}$) releases of vertical reservoirs ($a >1$). Hence, by using data from multiple experimental devices and from two-fluid numerical simulations, we explore a wide range of $\phi$, $\alpha$, $\mathcal{S}t$ and $\mathcal{R}e$.
 %
 By reducing the early dynamics to a constant-velocity propagation at a dimensionless velocity $\mathcal{F}r$ during a dimensionless characteristic time $\tau$ (see~\eqref{eq:fit_eq} for additional details), we show that:
 \begin{itemize}
@@ -412,12 +402,11 @@ Importantly, all these variations can also be quantitatively reproduced by the 2
 %     \item Numerique diphasique EUler-Euler 2D, permet de retrouver ces tendances. Donc l echelle du grain n est pas primordiale pour comprendre tout ca.
 % \end{itemize}
 
-Altogether, the influence of $\phi$, $\mathcal{S}t$, $\alpha$ on the slumping dynamics of PLGCs characterised in the present study, highlights the importance of a better understanding of the early stage transfer of initial potential energy towards the along-slope kinetic energy. To predict the longtime scale evolution of PLGCs, the knowledge and the characterisation of their early-stage dynamics remain fundamental to prescribe an initial input for large-scale modelling.
+Altogether, the influence of $\phi$, $\mathcal{S}t$, $\alpha$ on the slumping dynamics of PLGCs characterized in the present study, highlights the importance of a better understanding of the early stage transfer of initial potential energy towards the along-slope kinetic energy. To predict the longer-time evolution of PLGCs, the knowledge and the characterization of their early-stage dynamics remain fundamental to prescribing an initial input for large-scale modeling.
 
-However, details of the current shape and related mixing remain unclear. In particular, even even if the front velocity is well captured by the 2D simulations, they poorly capture the current shapes, as shown in figures~\ref{fig:fig1} and~\ref{fig:fig7}. This would require 3D simulations to properly capture the turbulent mixing at the current interface. For validation, advanced experimental metrologies are thus required to extract accurate measurements of the turbulent mixing at the interface and responsible for ambient entrainment in the current. These should be an important focus for future work.
+However, details of the current shape and related mixing remain unclear. In particular, even if the front velocity is well captured by the 2D simulations, they poorly capture the current shapes, as shown in figures~\ref{fig:fig1} and~\ref{fig:fig7}. This would require 3D simulations to properly capture the turbulent mixing at the current interface. For validation, advanced experimental metrologies are thus required to extract accurate measurements of the turbulent mixing at the interface and responsible for ambient entrainment in the current. This should be an important focus for future work.
 %
 Moreover, we also found that the choice in kinetic theory closures for the particle phases in the simulations can modify the measured velocities up to $30~\%$ (especially at larger slopes), which emphasizes the role of particle-particle interactions in the macroscopic dynamics of PLGCs. These are particularly important in zones of large volume fractions and are therefore key to quantifying the ability of a current to erode a loose sediment bottom or the dynamics of currents originating from deposited sediment. Both are common situations in natural flows and require the focus of future works.
-
 
 %\begin{itemize}
 %   \item Details of the current shape and associated mixing remains unclear
@@ -455,7 +444,9 @@ Sylvain Dauge is acknowledged for the full design of setup 2. Hervé Bellot and 
 %
 We also acknowledge Hugo Divel for his contribution to the preliminary lock-release simulations using SedFoam.
 %
-Finally, we would like to acknowledge the contributors of the open-source numerical Python libraries, including Matplotlib \citep{Hunter2007}, NumPy \citep{Harris2020} and SciPy \citep{Virtanen2020}, which provide an incredibly efficient ecosystem allowing scientific research in Python.
+We also acknowledge the contributors of the open-source numerical Python libraries, including Matplotlib \citep{Hunter2007}, NumPy \citep{Harris2020} and SciPy \citep{Virtanen2020}, which provide an incredibly efficient ecosystem allowing scientific research in Python.
+%
+Finally, we also would like to acknowledge the two anonymous reviewers for their comments and Prof. Marius Ungarish for his extensive suggestions.
 
 \subsection*{Fundings}
 We acknowledge financial support from the French National Research Agency Grants, ANR-19-CE30-0041/PALAGRAM.
