@@ -2,7 +2,7 @@ Project: LOCK_PLGC_MONOGRAPH
 
 List of authors:
 
- - Cyril Gadal <laurent.lacaze@imft.fr> Institut de Mécanique des Fluides de Toulouse (IMFT), Université de Toulouse, CNRS, Toulouse, France
+ - Cyril Gadal <cyril.gadal@imft.fr> Institut de Mécanique des Fluides de Toulouse (IMFT), Université de Toulouse, CNRS, Toulouse, France
 
  - Jean Schneider <jean.schneider@univ-lorraine.fr> Laboratoire Énergies et Mécanique Théorique et Appliquée (LEMTA), Université de Lorraine, CNRS, 54500, Nancy, France
 
@@ -20,7 +20,7 @@ List of authors:
 
  - Marie Rastello <marie.rastello@univ-grenoble-alpes.fr> Univ. Grenoble Alpes, CNRS, Grenoble INP, LEGI, 38000 Grenoble, France
 
- - Laurent Lacaze <cyril.gadal@imft.fr> Institut de Mécanique des Fluides de Toulouse (IMFT), Université de Toulouse, CNRS, Toulouse, France
+ - Laurent Lacaze <laurent.lacaze@imft.fr> Institut de Mécanique des Fluides de Toulouse (IMFT), Université de Toulouse, CNRS, Toulouse, France
 
 
 ----

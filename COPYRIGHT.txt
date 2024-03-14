@@ -3,7 +3,7 @@ Project title: Data used in 'Chapter 16. Particle-laden gravity currents: the lo
 Short project name: LOCK_PLGC_MONOGRAPH
   
 List of authors:
- - Cyril Gadal <laurent.lacaze@imft.fr> Institut de Mécanique des Fluides de Toulouse (IMFT), Université de Toulouse, CNRS, Toulouse, France
+ - Cyril Gadal <cyril.gadal@imft.fr> Institut de Mécanique des Fluides de Toulouse (IMFT), Université de Toulouse, CNRS, Toulouse, France
  - Jean Schneider <jean.schneider@univ-lorraine.fr> Laboratoire Énergies et Mécanique Théorique et Appliquée (LEMTA), Université de Lorraine, CNRS, 54500, Nancy, France
  - Cyrille Bonamy <cyrille.bonamy@univ-grenoble-alpes.fr> Univ. Grenoble Alpes, CNRS, Grenoble INP, LEGI, 38000 Grenoble, France
  - Julien Chauchat <julien.chauchat@univ-grenoble-alpes.fr> Univ. Grenoble Alpes, CNRS, Grenoble INP, LEGI, 38000 Grenoble, France
@@ -12,7 +12,7 @@ List of authors:
  - Matthieu Mercier <matthieu.mercier@imft.fr> Institut de Mécanique des Fluides de Toulouse (IMFT), Université de Toulouse, CNRS, Toulouse, France
  - Florence Naaim <florence.naaim@inrae.fr> Univ. Grenoble Alpes, INRAE, CNRS, IRD, Grenoble INP, IGE, 38000 Grenoble, France
  - Marie Rastello <marie.rastello@univ-grenoble-alpes.fr> Univ. Grenoble Alpes, CNRS, Grenoble INP, LEGI, 38000 Grenoble, France
- - Laurent Lacaze <cyril.gadal@imft.fr> Institut de Mécanique des Fluides de Toulouse (IMFT), Université de Toulouse, CNRS, Toulouse, France
+ - Laurent Lacaze <laurent.lacaze@imft.fr> Institut de Mécanique des Fluides de Toulouse (IMFT), Université de Toulouse, CNRS, Toulouse, France
 
 Description
 -----------
@@ -30,7 +30,7 @@ The folder 'data/output_data' contains 287 netcdf4 files corresponding to each e
     - setup: setup used to acquire the data. See article.
     - dataset: Dataset classification of this run, See paper.
 
-   - dimensions(sizes): time(1801)
+   - dimensions(sizes): time(n)
 
    - variables(dimensions):
     - At(): Atwood number
@@ -62,8 +62,6 @@ The folder 'data/output_data' contains 287 netcdf4 files corresponding to each e
     - u0(): characteristic velocity scale, u0 = sqrt(gprime*H0)
     - vs(): particle Stokes velocity
     - x_front('time',): front position vector
-
-   - groups:
 
 Variables can sometimes possess the following attributes:
   - unit: corresponding unit

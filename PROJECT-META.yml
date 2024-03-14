@@ -9,7 +9,7 @@ project:
       acronym: LOCK_PLGC_MONOGRAPH
 
    creator:
-      - Cyril Gadal <laurent.lacaze@imft.fr> Institut de Mécanique des Fluides de Toulouse (IMFT), Université de Toulouse, CNRS, Toulouse, France
+      - Cyril Gadal <cyril.gadal@imft.fr> Institut de Mécanique des Fluides de Toulouse (IMFT), Université de Toulouse, CNRS, Toulouse, France
       - Jean Schneider <jean.schneider@univ-lorraine.fr> Laboratoire Énergies et Mécanique Théorique et Appliquée (LEMTA), Université de Lorraine, CNRS, 54500, Nancy, France
       - Cyrille Bonamy <cyrille.bonamy@univ-grenoble-alpes.fr> Univ. Grenoble Alpes, CNRS, Grenoble INP, LEGI, 38000 Grenoble, France
       - Julien Chauchat <julien.chauchat@univ-grenoble-alpes.fr> Univ. Grenoble Alpes, CNRS, Grenoble INP, LEGI, 38000 Grenoble, France
@@ -18,7 +18,7 @@ project:
       - Matthieu Mercier <matthieu.mercier@imft.fr> Institut de Mécanique des Fluides de Toulouse (IMFT), Université de Toulouse, CNRS, Toulouse, France
       - Florence Naaim <florence.naaim@inrae.fr> Univ. Grenoble Alpes, INRAE, CNRS, IRD, Grenoble INP, IGE, 38000 Grenoble, France
       - Marie Rastello <marie.rastello@univ-grenoble-alpes.fr> Univ. Grenoble Alpes, CNRS, Grenoble INP, LEGI, 38000 Grenoble, France
-      - Laurent Lacaze <cyril.gadal@imft.fr> Institut de Mécanique des Fluides de Toulouse (IMFT), Université de Toulouse, CNRS, Toulouse, France
+      - Laurent Lacaze <laurent.lacaze@imft.fr> Institut de Mécanique des Fluides de Toulouse (IMFT), Université de Toulouse, CNRS, Toulouse, France
 
    subject:
       - Experiments
@@ -45,7 +45,7 @@ project:
         - setup: setup used to acquire the data. See article.
         - dataset: Dataset classification of this run, See paper.
 
-       - dimensions(sizes): time(1801)
+       - dimensions(sizes): time(n)
 
        - variables(dimensions):
         - At(): Atwood number
@@ -78,8 +78,6 @@ project:
         - vs(): particle Stokes velocity
         - x_front('time',): front position vector
 
-       - groups:
-
     Variables can sometimes possess the following attributes:
       - unit: corresponding unit
       - std: error(s) on the given quantity, calculated by error propagation from measurement uncertainties using the `uncertainties` module (https://pythonhosted.org/uncertainties/) in Python.
@@ -87,12 +85,11 @@ project:
 
     In addition, the `analysis/analysis.py` script is used to generate the aforementioned NetCDF files from the original ones in `data/input_data`. The folder `paper` contains all source files of the article preprint, including Python codes to generate the article figures from the NetCDF files.
 
-    Finally, the CSV file 'dataset_summary.csv' offers a summary of all runs and corresponding experimental parameters,
-    allowing for easier access to the data.
+    Finally, the CSV file 'dataset_summary.csv' offers a summary of all runs and corresponding experimental parameters, allowing for easier access to the data.
 
    publisher:
 
-   date: 09/08/2023
+   date: 14/03/2024
 
    type:
       - dataset
@@ -103,9 +100,10 @@ project:
 
    # if the work is derived from...
    source:
-      - https://doi.org/10.48550/arXiv.2301.00192
+      - https://doi.org/10.1017/jfm.2023.762
       - https://doi.org/10.5281/zenodo.7487189
       - https://doi.org/10.1007/s00348-022-03562-y 
+      - https://doi.org/10.5194/gmd-10-4367-2017
 
    language: en-US
 
