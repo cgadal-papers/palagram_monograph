@@ -22,6 +22,7 @@ Bonamy, C., Chauchat, J., Hsu, T.-J., Puig-Montella, E., Chassagne, R.,
   Mathieu, A., Cheng, Z., Nagel, T., Salimi-Tarazouj, A., Tsai, B., and
   Higuera, P. (2023).
 \newblock sedfoam.
+\newblock {\em Zenodo}.
 
 \bibitem[Bonnecaze et~al., 1993]{bonnecaze1993particle}
 Bonnecaze, R.~T., Huppert, H.~E., and Lister, J.~R. (1993).
@@ -79,10 +80,18 @@ Dufek, J. (2016).
 \newblock The fluid mechanics of pyroclastic density currents.
 \newblock {\em Annual Review of Fluid Mechanics}, 48:459--485.
 
-\bibitem[Gadal et~al., 2022]{Gadal2023}
-Gadal, C., Mercier, M., and Lacaze, L. (2022).
+\bibitem[Gadal et~al., 2023]{Gadal2023}
+Gadal, C., Mercier, M., Rastello, M., and Lacaze, L. (2023).
 \newblock Slumping regime in lock-release turbidity currents.
-\newblock {\em arXiv preprint arXiv:2301.00192}.
+\newblock {\em Journal of Fluid Mechanics}, 974:A4.
+
+\bibitem[Gadal et~al., 2024]{gadal2024dataset}
+Gadal, C., Schneider, J., Bonamy, C., Chauchat, J., Dossmann, Y., Kiesgen~de
+  Richter, S., Mercier, M.~J., Florence, N.-B., Rastello, M., and Lacaze, L.
+  (2024).
+\newblock Data and codes for ``{Chapter} 16: {Particle}-laden gravity currents:
+  the lock-release slumping regime at the laboratory scale''.
+\newblock {\em Zenodo}.
 
 \bibitem[Hacker et~al., 1996]{Hacker1996}
 Hacker, J., Linden, P., and Dalziel, S. (1996).

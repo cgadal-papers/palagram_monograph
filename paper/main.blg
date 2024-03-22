@@ -3,47 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: apalike.bst
 Database file #1: biblio.bib
-Warning--entry type for "bonamy2023" isn't style-file defined
---line 35 of file biblio.bib
-You've used 52 entries,
+You've used 53 entries,
             1935 wiz_defined-function locations,
-            819 strings with 12899 characters,
-and the built_in function-call counts, 21706 in all, are:
-= -- 2112
-> -- 1017
+            824 strings with 13209 characters,
+and the built_in function-call counts, 22354 in all, are:
+= -- 2164
+> -- 1075
 < -- 26
-+ -- 373
-- -- 348
-* -- 1958
-:= -- 3841
-add.period$ -- 156
-call.type$ -- 52
-change.case$ -- 430
-chr.to.int$ -- 51
-cite$ -- 52
-duplicate$ -- 720
-empty$ -- 1426
-format.name$ -- 432
-if$ -- 4118
++ -- 395
+- -- 370
+* -- 2024
+:= -- 3962
+add.period$ -- 160
+call.type$ -- 53
+change.case$ -- 446
+chr.to.int$ -- 52
+cite$ -- 53
+duplicate$ -- 737
+empty$ -- 1455
+format.name$ -- 455
+if$ -- 4235
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 53
-newline$ -- 263
-num.names$ -- 156
-pop$ -- 314
+missing$ -- 55
+newline$ -- 269
+num.names$ -- 159
+pop$ -- 329
 preamble$ -- 1
-purify$ -- 432
+purify$ -- 448
 quote$ -- 0
-skip$ -- 547
+skip$ -- 559
 stack$ -- 0
-substring$ -- 1608
-swap$ -- 52
+substring$ -- 1626
+swap$ -- 54
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 308
+type$ -- 314
 warning$ -- 0
-while$ -- 182
+while$ -- 185
 width$ -- 0
-write$ -- 675
-(There was 1 warning)
+write$ -- 690
